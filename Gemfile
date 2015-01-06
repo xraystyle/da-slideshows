@@ -17,6 +17,7 @@ gem 'puma'
 gem 'redis', '3.0.6'
 gem 'sidekiq'
 gem 'sidetiq'
+gem 'devise'
 
 
 group :production do
