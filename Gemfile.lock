@@ -52,6 +52,8 @@ GEM
     did_you_mean (0.9.4)
       interception
     diff-lcs (1.2.5)
+    erb2haml (0.1.5)
+      html2haml
     erubis (2.7.0)
     execjs (2.2.2)
     factory_girl (4.2.0)
@@ -242,6 +244,7 @@ DEPENDENCIES
   childprocess
   coffee-rails (= 4.0.1)
   did_you_mean
+  erb2haml
   factory_girl_rails (= 4.2.0)
   faker (= 1.4.3)
   guard-rspec

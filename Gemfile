@@ -31,6 +31,7 @@ group :development, :test do
   gem 'guard-spork'
   gem 'childprocess'
   gem 'did_you_mean'
+  gem 'erb2haml'
 end
 
 group :test do
