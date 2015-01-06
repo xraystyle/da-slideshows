@@ -1,40 +1,44 @@
 source 'https://rubygems.org'
+ruby '2.1.2'
+#ruby-gemset=da-slideshow
 
-
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.3'
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
-# Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer',  platforms: :ruby
+gem 'bcrypt-ruby', '3.1.2'
+gem 'faker', '1.4.3'
+gem 'haml-rails'
+gem 'sass-rails', '4.0.3'
+gem 'uglifier', '2.1.1'
+gem 'coffee-rails', '4.0.1'
+gem 'jquery-rails', '3.0.4'
+gem 'turbolinks', '1.1.1'
+gem 'jbuilder', '1.0.2'
+gem 'sprockets', '2.11.0'
+gem 'puma'
+gem 'redis', '3.0.6'
+gem 'sidekiq'
+gem 'sidetiq'
 
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.0'
-# bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0',          group: :doc
 
-# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring',        group: :development
+group :production do
+	gem 'mysql'
+end
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+group :development, :test do
+  gem 'sqlite3', '1.3.8'
+  gem 'rspec-rails'
+  gem 'guard-rspec'
+  gem 'spork-rails'
+  gem 'guard-spork'
+  gem 'childprocess'
+  gem 'did_you_mean'
+end
 
-# Use unicorn as the app server
-# gem 'unicorn'
+group :test do
+  gem 'selenium-webdriver', '2.35.1'
+  gem 'capybara', '2.2.0'
+  gem 'factory_girl_rails', '4.2.0'
+end
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
-
+group :doc do
+  gem 'sdoc', '0.3.20', require: false
+end
