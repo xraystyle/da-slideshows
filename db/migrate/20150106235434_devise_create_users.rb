@@ -30,6 +30,10 @@ class DeviseCreateUsers < ActiveRecord::Migration
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
+      # END DEVISE ATTRIBUTES
+      t.integer :slideshow_id #For future relation to the user's chosen slideshow.
+      
+
 
       t.timestamps
     end
