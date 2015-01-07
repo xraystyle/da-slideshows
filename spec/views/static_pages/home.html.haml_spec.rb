@@ -8,13 +8,8 @@ RSpec.describe "static_pages/home.html.haml", :type => :view do
 
 		it 'has h1 "Hello World!"' do
 			render template: "static_pages/home", layout: "layouts/application"
-			# subject { page }
-			# expect(rendered).to have_selector("h1", text: "Hello World!")
 			expect(page_title(rendered)).to be true
-
 			expect(rendered).to have_title("DA Slideshows")
-
-			# its(:title){ should eq "DA Slideshows" }
 		end
 	  
 	end

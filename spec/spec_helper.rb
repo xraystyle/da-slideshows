@@ -16,6 +16,13 @@ Spork.prefork do
   ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
   RSpec.configure do |config|
+    config.include Devise::TestHelpers, :type => :controller
+    # This next line is necessary for view tests, or Devise helper methods won't be
+    # available when rendering pages and tests will fail.
+    config.include Devise::TestHelpers, :type => :view 
+
+    # allows inference of spec type depending on the folder, so you don't have
+    # to specify it in the spec file itself.
     config.infer_spec_type_from_file_location!
     # ## Mock Framework
     #
