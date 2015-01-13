@@ -29,7 +29,7 @@ RSpec.describe Slideshow, :type => :model do
 
 
 	describe "when seed format is invalid" do
-		before { @slideshow.seed = "This tastes like Grandma." }
+		before { @slideshow.seed = "Holy Moses it DOES taste like Gramma" } # That string is 36 chars, same as seed UUID
 		it { should_not be_valid }
 	end
 
