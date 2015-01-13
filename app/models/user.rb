@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
 
 
 	# Relationships:
-	has_one :slideshow
+	has_one :slideshow, dependent: :destroy
 
 
 end

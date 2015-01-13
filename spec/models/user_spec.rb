@@ -94,6 +94,19 @@ RSpec.describe User, :type => :model do
 		end
 	end
 
+	describe "Slideshow should be retrievable," do
+		let!(:seed) { "27E3DB23-BCA1-8653-1ACC-313A474B9FF2" }
+		
+		before do
+		  @user.create_slideshow(seed: seed)
+		  @user.save
+		end
+		it "should have the same seed" do
+			expect(@user.reload.slideshow.seed).to eq seed	
+		end
+		
+	end
+
 
 
 end
