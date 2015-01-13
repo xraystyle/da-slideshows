@@ -5,7 +5,7 @@ class Slideshow < ActiveRecord::Base
 	validates :seed, presence: true, length: { is: 36 }, format: VALID_SEED_REGEX
 
 
-
+	belongs_to :user
 
 
 
