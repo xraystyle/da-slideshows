@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 	# has_one :slideshow, dependent: :destroy
 
 	def slideshow
-		Slideshow.where(seed: self.seed)
+		Slideshow.where(seed: self.seed).first
 	end
 
 
