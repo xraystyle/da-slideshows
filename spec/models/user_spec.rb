@@ -98,8 +98,8 @@ RSpec.describe User, :type => :model do
 		let!(:seed) { "27E3DB23-BCA1-8653-1ACC-313A474B9FF2" }
 		
 		before do
-		  @user.create_slideshow(seed: seed)
-		  @user.save
+			Slideshow.create(seed: seed)
+			@user.seed = seed
 		end
 		it "should have the same seed" do
 			expect(@user.reload.slideshow.seed).to eq seed	
