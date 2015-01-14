@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150114043627) do
+ActiveRecord::Schema.define(version: 20150114045405) do
 
   create_table "deviations", force: true do |t|
     t.string   "url"
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 20150114043627) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "slideshows", ["seed"], name: "index_slideshows_on_seed"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
