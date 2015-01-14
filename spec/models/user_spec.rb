@@ -102,7 +102,7 @@ RSpec.describe User, :type => :model do
 			@user.seed = seed
 		end
 		it "should have the same seed" do
-			expect(@user.reload.slideshow.seed).to eq seed	
+			expect(@user.slideshow.seed).to eq seed	
 		end
 		
 	end
