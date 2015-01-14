@@ -12,7 +12,11 @@ class User < ActiveRecord::Base
 
 
 	# Relationships:
-	has_one :slideshow, dependent: :destroy
+	# has_one :slideshow, dependent: :destroy
+
+	def slideshow
+		Slideshow.where(seed: self.seed)
+	end
 
 
 end
