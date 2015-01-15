@@ -10,7 +10,7 @@ class Deviation < ActiveRecord::Base
 	validates :title, presence: true
 	validates :author, presence: true
 	validates :mature, inclusion: { in: [true, false] }
-	validates :orientation, presence: true
+	validates :orientation, inclusion: { in: ["portrait", "landscape", "square"] }
 	validates :uuid, presence: true
 
 

@@ -66,6 +66,32 @@ RSpec.describe Deviation, :type => :model do
 	  it { should_not be_valid }
 	end
 
+	describe "acceptible values for 'orientation':" do
+		
+		describe "when 'portrait'" do
+			before { @deviation.orientation = "portrait" }
+			it { should be_valid }
+		end
+
+		describe "when 'landscape'" do
+			before { @deviation.orientation = "landscape" }
+			it { should be_valid }
+		end
+
+		describe "when 'square'" do
+			before { @deviation.orientation = "square" }
+			it { should be_valid }
+		end
+
+		describe "when not an acceptible value" do
+			before { @deviation.orientation = "rhombus" }		  
+			it { should_not be_valid }
+		end
+
+	end
+
+
+
 	describe "when uuid is missing" do
 	  before { @deviation.uuid = "" }
 	  it { should_not be_valid }
