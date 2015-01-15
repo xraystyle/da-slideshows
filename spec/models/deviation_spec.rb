@@ -98,7 +98,7 @@ RSpec.describe Deviation, :type => :model do
 	end
 
 	describe "when 'src' is not an image" do
-		before { @deviation.src = "http://turdb.in/dump/internet.txt" }
+		before { @deviation.src = "http://deviantart.com/file/internet.txt" }
 		it { should_not be_valid }
 	end
 
@@ -116,7 +116,7 @@ RSpec.describe Deviation, :type => :model do
 	end
 
 	describe "when 'thumb' is not an image" do
-		before { @deviation.thumb = "http://turdb.in/dump/internet.txt" }
+		before { @deviation.thumb = "http://deviantart.com/file/internet.txt" }
 		it { should_not be_valid }
 	end
 
