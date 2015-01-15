@@ -5,11 +5,8 @@ RSpec.describe Slideshow, :type => :model do
   	let(:user) { User.new(email: "email@example.com", password: "foobar", password_confirmation: "foobar") }
 	before do
 		user.save
-		# @slideshow = user.build_slideshow(seed: "DFE52DC8-726A-2C57-FEA4-6A61E9DEA8B0")
-		# puts user.id
+		@slideshow = Slideshow.new(seed: "DFE52DC8-726A-2C57-FEA4-6A61E9DEA8B0")
 	end
-
-	before { @slideshow = Slideshow.new(seed: "DFE52DC8-726A-2C57-FEA4-6A61E9DEA8B0") }
 
 	subject { @slideshow }
 
@@ -17,8 +14,7 @@ RSpec.describe Slideshow, :type => :model do
 
 		it { should respond_to(:seed) }
 
-		# Relationships to User and Deviations
-		# it { should respond_to(:user) }
+		# Relationship to Deviations
 		it { should respond_to(:deviations) }
 
 	end
@@ -38,28 +34,5 @@ RSpec.describe Slideshow, :type => :model do
 		it { should_not be_valid }
 	end
 
-
-	# describe "when creating a slideshow" do
-	# 	before { @slideshow.save }			  
-	# 	it "should be associated with a user" do
-	# 		expect(@slideshow.id).to eq(user.slideshow.id)
-	# 	end
-	# end
-
-	# describe "when it has no user_id" do
-	# 	before { @slideshow.user_id = nil }
-	#   	it { should_not be_valid }
-	# end
-
-	# describe "when the associated user is destroyed" do
-	# 	before do
-	# 		user.slideshow.save
-	# 		user.destroy
-	# 	end
-	# 	it "should self-destruct" do
-	# 		expect(subject.destroyed?).to eq(true)
-	# 	end
-	  
-	# end
 
 end

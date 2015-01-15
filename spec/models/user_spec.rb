@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe User, :type => :model do
-# pending "add some examples to (or delete) #{__FILE__}"
 
 	before { @user = User.new(email: "email@example.com", password: "foobar", password_confirmation: "foobar") }
 
@@ -24,6 +23,7 @@ RSpec.describe User, :type => :model do
 	  	it { should respond_to(:last_sign_in_ip) }
 
 	  	# Slideshow relationship:
+	  	# Handled with a method instead of an ActiveRecord relationship.
 	  	it { should respond_to(:slideshow) }
 
 	end
