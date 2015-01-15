@@ -1,0 +1,57 @@
+DA API Object for a deviation:
+
+{
+            "deviationid": "62CD20E0-F32D-CB46-1853-BF80B9F22EDE",
+            "printid": null,
+            "url": "http://xraystyle.deviantart.com/art/Looking-Back-497917730",
+            "title": "Looking Back",
+            "category": "Street",
+            "category_path": "photography/street",
+            "is_favourited": false,
+            "is_deleted": false,
+            "author": {
+                "userid": "89EEC96E-640E-20A3-D7AC-6F25ABC38AF5",
+                "username": "xraystyle",
+                "usericon": "http://a.deviantart.net/avatars/x/r/xraystyle.png?3",
+                "type": "senior"
+            },
+            "stats": {
+                "comments": 4,
+                "favourites": 12
+            },
+            "published_time": 1417542315,
+            "allows_comments": true,
+            "is_mature": false,
+            "preview": {
+                "src": "http://th04.deviantart.net/fs70/PRE/i/2014/336/f/9/looking_back_by_xraystyle-d88g3s2.jpg",
+                "height": 730,
+                "width": 1095,
+                "transparency": false
+            },
+            "content": {
+                "src": "http://fc04.deviantart.net/fs70/i/2014/336/f/9/looking_back_by_xraystyle-d88g3s2.jpg",
+                "height": 853,
+                "width": 1280,
+                "transparency": false
+            },
+            "thumbs": [
+                {
+                    "src": "http://th02.deviantart.net/fs70/150/i/2014/336/f/9/looking_back_by_xraystyle-d88g3s2.jpg",
+                    "height": 100,
+                    "width": 150,
+                    "transparency": false
+                },
+                {
+                    "src": "http://th07.deviantart.net/fs70/200H/i/2014/336/f/9/looking_back_by_xraystyle-d88g3s2.jpg",
+                    "height": 200,
+                    "width": 300,
+                    "transparency": false
+                },
+                {
+                    "src": "http://th03.deviantart.net/fs70/300W/i/2014/336/f/9/looking_back_by_xraystyle-d88g3s2.jpg",
+                    "height": 200,
+                    "width": 300,
+                    "transparency": false
+                }
+            ]
+        }

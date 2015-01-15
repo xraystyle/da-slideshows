@@ -11,9 +11,7 @@ class User < ActiveRecord::Base
 
 
 
-	# Relationships:
-	# has_one :slideshow, dependent: :destroy
-
+	# Instance Methods
 	def slideshow
 		Slideshow.where(seed: self.seed).first
 	end
