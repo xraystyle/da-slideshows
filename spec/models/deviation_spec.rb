@@ -22,6 +22,7 @@ RSpec.describe Deviation, :type => :model do
 		it { should respond_to(:thumb) }
 		it { should respond_to(:orientation) }
 		it { should respond_to(:uuid) }
+		it { should respond_to(:slideshows) }
 
 	end
 
@@ -73,49 +74,49 @@ RSpec.describe Deviation, :type => :model do
 
 	#  Test 'url' for validity ------------------------------
 	describe "when 'url' is not a valid DA URL" do
-		before { @slideshow.url = "http://turdb.in" }
+		before { @deviation.url = "http://turdb.in" }
 		it { should_not be_valid }
 	end
 
 
 	describe "when 'url' is not a full, usable URL" do
-		before { @slideshow.url = "turdb.in" }
+		before { @deviation.url = "turdb.in" }
 	  	it { should_not be_valid }
 	end
 
 
 	#  Test 'src' for validity ------------------------------
 	describe "when 'src' is not a valid DA URL" do
-		before { @slideshow.src = "http://turdb.in/img/permanent/tacos.jpg" }
+		before { @deviation.src = "http://turdb.in/img/permanent/tacos.jpg" }
 		it { should_not be_valid }
 	end
 
 
 	describe "when 'src' is not a full, usable URL" do
-		before { @slideshow.src = "tacos.jpg" }
+		before { @deviation.src = "tacos.jpg" }
 	  	it { should_not be_valid }
 	end
 
 	describe "when 'src' is not an image" do
-		before { @slideshow.src = "http://turdb.in/dump/internet.txt" }
+		before { @deviation.src = "http://turdb.in/dump/internet.txt" }
 		it { should_not be_valid }
 	end
 
 
 	#  Test 'thumb' for validity ------------------------------
 	describe "when 'thumb' is not a valid DA URL" do
-		before { @slideshow.thumb = "http://turdb.in/img/permanent/tacos.jpg" }
+		before { @deviation.thumb = "http://turdb.in/img/permanent/tacos.jpg" }
 		it { should_not be_valid }
 	end
 
 
 	describe "when 'thumb' is not a full, usable URL" do
-		before { @slideshow.thumb = "tacos.jpg" }
+		before { @deviation.thumb = "tacos.jpg" }
 	  	it { should_not be_valid }
 	end
 
 	describe "when 'thumb' is not an image" do
-		before { @slideshow.thumb = "http://turdb.in/dump/internet.txt" }
+		before { @deviation.thumb = "http://turdb.in/dump/internet.txt" }
 		it { should_not be_valid }
 	end
 
