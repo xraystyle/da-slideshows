@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Slideshow, :type => :model do
   
-  	let(:user) { User.new(email: "email@example.com", password: "foobar", password_confirmation: "foobar") }
+  	let(:user) { FactoryGirl.create(:user) }
 	before do
-		user.save
-		@slideshow = Slideshow.new(seed: "DFE52DC8-726A-2C57-FEA4-6A61E9DEA8B0")
+		@slideshow = FactoryGirl.build(:slideshow)
+		puts @slideshow.seed
 	end
 
 	subject { @slideshow }
@@ -34,5 +34,18 @@ RSpec.describe Slideshow, :type => :model do
 		it { should_not be_valid }
 	end
 
+	describe "when seed already exists" do
+		before do
+			duplicate_slideshow = @slideshow.dup
+			duplicate_slideshow.save		  
+		end
+		it { should_not be_valid }
+	end
 
 end
+
+
+
+
+
+

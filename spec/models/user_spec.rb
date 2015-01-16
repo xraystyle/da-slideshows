@@ -2,7 +2,13 @@ require 'rails_helper'
 
 RSpec.describe User, :type => :model do
 
-	before { @user = User.new(email: "email@example.com", password: "foobar", password_confirmation: "foobar") }
+	# before { @user = User.new(email: "email@example.com", password: "foobar", password_confirmation: "foobar") }
+
+	# Use FactoryGirl.build here instead of '.create' because some of the tests require
+	# that a duplicate of @user be saved first, then the test checks @user for validity.
+	# If '.create' is used, @user is saved first, and it will be the duplicate that is invalid,
+	# which is not what we're testing for, even though it's correct behavior.
+	before { @user = FactoryGirl.build(:user) }
 
 	subject { @user }
 
@@ -40,7 +46,8 @@ RSpec.describe User, :type => :model do
 
 	describe "when password is not present" do
 		before do
-			@user = @user = User.new(email: "email@example.com", password: " ", password_confirmation: " ")
+			@user.password = ""
+			@user.password_confirmation = ""
 		end
 		it { should_not be_valid }
 	end
