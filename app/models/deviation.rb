@@ -14,6 +14,9 @@ class Deviation < ActiveRecord::Base
 	validates :uuid, presence: true
 
 
+	# Relationships:
+	has_and_belongs_to_many :slideshows
+
 
 
 
