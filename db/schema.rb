@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150114045405) do
+ActiveRecord::Schema.define(version: 20150116004906) do
 
   create_table "deviations", force: true do |t|
     t.string   "url"
@@ -33,6 +33,14 @@ ActiveRecord::Schema.define(version: 20150114045405) do
   end
 
   add_index "slideshows", ["seed"], name: "index_slideshows_on_seed"
+
+  create_table "slideshows_deviations", id: false, force: true do |t|
+    t.integer "slideshow_id"
+    t.integer "deviation_id"
+  end
+
+  add_index "slideshows_deviations", ["deviation_id"], name: "index_slideshows_deviations_on_deviation_id"
+  add_index "slideshows_deviations", ["slideshow_id"], name: "index_slideshows_deviations_on_slideshow_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
