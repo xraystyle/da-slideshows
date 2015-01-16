@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150116004906) do
+ActiveRecord::Schema.define(version: 20150116010909) do
 
   create_table "deviations", force: true do |t|
     t.string   "url"
@@ -26,6 +26,14 @@ ActiveRecord::Schema.define(version: 20150116004906) do
     t.datetime "updated_at"
   end
 
+  create_table "deviations_slideshows", id: false, force: true do |t|
+    t.integer "slideshow_id"
+    t.integer "deviation_id"
+  end
+
+  add_index "deviations_slideshows", ["deviation_id"], name: "index_deviations_slideshows_on_deviation_id"
+  add_index "deviations_slideshows", ["slideshow_id"], name: "index_deviations_slideshows_on_slideshow_id"
+
   create_table "slideshows", force: true do |t|
     t.string   "seed"
     t.datetime "created_at"
@@ -33,14 +41,6 @@ ActiveRecord::Schema.define(version: 20150116004906) do
   end
 
   add_index "slideshows", ["seed"], name: "index_slideshows_on_seed"
-
-  create_table "slideshows_deviations", id: false, force: true do |t|
-    t.integer "slideshow_id"
-    t.integer "deviation_id"
-  end
-
-  add_index "slideshows_deviations", ["deviation_id"], name: "index_slideshows_deviations_on_deviation_id"
-  add_index "slideshows_deviations", ["slideshow_id"], name: "index_slideshows_deviations_on_slideshow_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
