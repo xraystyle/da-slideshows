@@ -3,10 +3,8 @@ require 'rails_helper'
 RSpec.describe Slideshow, :type => :model do
   
   	let(:user) { FactoryGirl.create(:user) }
-	before do
-		@slideshow = FactoryGirl.build(:slideshow)
-		puts @slideshow.seed
-	end
+	
+	before { @slideshow = FactoryGirl.build(:slideshow) }
 
 	subject { @slideshow }
 
