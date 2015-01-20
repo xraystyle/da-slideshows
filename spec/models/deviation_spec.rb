@@ -167,6 +167,7 @@ RSpec.describe Deviation, :type => :model do
 
 		it "is then associated with those slideshows" do
 			expect(@deviation.slideshows).to include(slideshow_a)
+			expect(@deviation.slideshows).to include(slideshow_b)
 		end
 	  
 	end
