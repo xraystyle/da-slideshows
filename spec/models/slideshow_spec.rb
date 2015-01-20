@@ -41,14 +41,14 @@ RSpec.describe Slideshow, :type => :model do
 		it { should_not be_valid }
 	end
 
-	describe "when a deviation is added" do
+	describe "a deviation added to a slideshow" do
 		before do
 		  @slideshow.save
-		  @slideshow << deviation
+		  @slideshow.deviations << deviation
 		end
 
-		it "is then retrievable" do
-			@slideshow.deviations.should include(deviation)
+		it "should then be retrievable" do
+			expect(@slideshow.deviations).to include(deviation)
 		end
 	  
 	end

@@ -10,6 +10,10 @@ RSpec.describe Deviation, :type => :model do
 										thumb: "http://th07.deviantart.net/fs70/200H/i/2014/336/f/9/looking_back_by_xraystyle-d88g3s2.jpg", 
 										orientation: "landscape", 
 										uuid: "62CD20E0-F32D-CB46-1853-BF80B9F22EDE") }
+
+	let(:slideshow_a) { FactoryGirl.create(:slideshow) }
+	let(:slideshow_b) { FactoryGirl.create(:slideshow) }
+
 	subject { @deviation }
 
 	describe "should respond to the following methods:" do
@@ -97,6 +101,14 @@ RSpec.describe Deviation, :type => :model do
 	  it { should_not be_valid }
 	end
 
+	describe "when uuid is already taken" do
+		before do
+			duplicate = @deviation.dup
+			duplicate.save	
+		end
+		it { should_not be_valid }
+	end
+
 
 	#  Test 'url' for validity ------------------------------
 	describe "when 'url' is not a valid DA URL" do
@@ -146,7 +158,18 @@ RSpec.describe Deviation, :type => :model do
 		it { should_not be_valid }
 	end
 
+	describe "when added to slideshows" do
+		before do
+			@deviation.save
+			slideshow_a.deviations << @deviation
+			slideshow_b.deviations << @deviation
+		end
 
+		it "is then associated with those slideshows" do
+			expect(@deviation.slideshows).to include(slideshow_a)
+		end
+	  
+	end
 
 end
 

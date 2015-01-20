@@ -2,7 +2,7 @@
 # It's kinda lame that you need to monkey-patch the DefinitionProxy class
 # because you can't just include modules.
 module FactoryGirl
-	class DefinitionProxy
+	class SyntaxRunner
 		
 		def make_uuid
 			# make random numbers for the first few parts of the seed.
@@ -37,7 +37,7 @@ FactoryGirl.define do
 	# Build slideshows.
 	factory :slideshow do
 
-		seed make_uuid
+		seed { make_uuid }
 
 	end
 
@@ -49,7 +49,7 @@ FactoryGirl.define do
 		src "http://fc04.deviantart.net/fs70/i/2014/336/f/9/deviation-by-author-d88g3s2.jpg"
 		thumb "http://th07.deviantart.net/fs70/200H/i/2014/336/f/9/deviation-by-author-d88g3s2.jpg"
 		orientation { %w(portrait landscape square).sample }
-		uuid make_uuid
+		uuid { make_uuid }
 
 
 	end
