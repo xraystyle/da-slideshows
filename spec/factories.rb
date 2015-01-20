@@ -19,6 +19,8 @@ module FactoryGirl
 end
 
 
+require "faker"
+
 
 FactoryGirl.define do
 	
@@ -39,5 +41,42 @@ FactoryGirl.define do
 
 	end
 
+	factory :deviation do
+		sequence(:url) { |n| "http://user#{n}.deviantart.com/art/title-#{n}" }
+		title Faker::Lorem.words.join(" ")
+		author Faker::Internet.user_name
+		mature false
+		src "http://fc04.deviantart.net/fs70/i/2014/336/f/9/deviation-by-author-d88g3s2.jpg"
+		thumb "http://th07.deviantart.net/fs70/200H/i/2014/336/f/9/deviation-by-author-d88g3s2.jpg"
+		orientation { %w(portrait landscape square).sample }
+		uuid make_uuid
+
+
+	end
+
 
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

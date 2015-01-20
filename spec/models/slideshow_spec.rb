@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Slideshow, :type => :model do
   
   	let(:user) { FactoryGirl.create(:user) }
+  	let(:deviation) { FactoryGirl.create(:deviation) }
 	
 	before { @slideshow = FactoryGirl.build(:slideshow) }
 
@@ -38,6 +39,18 @@ RSpec.describe Slideshow, :type => :model do
 			duplicate_slideshow.save		  
 		end
 		it { should_not be_valid }
+	end
+
+	describe "when a deviation is added" do
+		before do
+		  @slideshow.save
+		  @slideshow << deviation
+		end
+
+		it "is then retrievable" do
+			@slideshow.deviations.should include(deviation)
+		end
+	  
 	end
 
 end
