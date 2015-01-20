@@ -51,6 +51,9 @@ FactoryGirl.define do
 		orientation { %w(portrait landscape square).sample }
 		uuid { make_uuid }
 
+		factory :mature do
+			mature true
+		end
 
 	end
 
