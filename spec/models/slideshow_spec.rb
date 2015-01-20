@@ -4,6 +4,7 @@ RSpec.describe Slideshow, :type => :model do
   
   	let(:user) { FactoryGirl.create(:user) }
   	let(:deviation) { FactoryGirl.create(:deviation) }
+  	let(:boobs) { FactoryGirl.create(:mature) }
 	
 	before { @slideshow = FactoryGirl.build(:slideshow) }
 
@@ -12,6 +13,7 @@ RSpec.describe Slideshow, :type => :model do
 	describe "should respond to the following methods" do
 
 		it { should respond_to(:seed) }
+		it { should respond_to(:mature_results) }
 
 		# Relationship to Deviations
 		it { should respond_to(:deviations) }
@@ -51,6 +53,18 @@ RSpec.describe Slideshow, :type => :model do
 			expect(@slideshow.deviations).to include(deviation)
 		end
 	  
+	end
+
+
+	describe "with mature results" do
+		before do
+		  @slideshow.save
+		  @slideshow.deviations << boobs
+		end
+
+		it "should not include mature deviations by default" do
+			expect(@slideshow.deviations).not_to include(boobs)
+		end
 	end
 
 end

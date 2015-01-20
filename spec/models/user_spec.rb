@@ -8,7 +8,17 @@ RSpec.describe User, :type => :model do
 	# that a duplicate of @user be saved first, then the test checks @user for validity.
 	# If '.create' is used, @user is saved first, and it will be the duplicate that is invalid,
 	# which is not what we're testing for, even though it's correct behavior.
-	before { @user = FactoryGirl.build(:user) }
+	let(:slideshow) { FactoryGirl.create(:slideshow) }
+	before do
+		@user = FactoryGirl.build(:user)
+		
+		5.times do
+			slideshow.deviations << FactoryGirl.create(:deviation)
+		end
+
+		slideshow.deviations << FactoryGirl.create(:mature)
+
+	end
 
 	subject { @user }
 
@@ -27,6 +37,7 @@ RSpec.describe User, :type => :model do
 	  	it { should respond_to(:last_sign_in_at) }
 	  	it { should respond_to(:current_sign_in_ip) }
 	  	it { should respond_to(:last_sign_in_ip) }
+	  	it { should respond_to(:seed) }
 
 	  	# Slideshow relationship:
 	  	# Handled with a method instead of an ActiveRecord relationship.
@@ -101,7 +112,7 @@ RSpec.describe User, :type => :model do
 		end
 	end
 
-	describe "Slideshow should be retrievable," do
+	describe "slideshow should be retrievable," do
 		let!(:seed) { "27E3DB23-BCA1-8653-1ACC-313A474B9FF2" }
 		
 		before do
@@ -112,6 +123,22 @@ RSpec.describe User, :type => :model do
 			expect(@user.slideshow.seed).to eq seed	
 		end
 		
+	end
+
+	describe "when user slideshow is retrieved" do
+		before do
+			@user.save
+			@user.seed = slideshow.seed
+		end
+
+		it "should have the correct deviations" do
+			expect(@user.slideshow.deviations).to eq(slideshow.deviations)	
+		end
+
+		it "should not include mature deviations" do
+			expect(@user.slideshow).not_to include(slideshow.mature_results)
+		end
+	  	
 	end
 
 
