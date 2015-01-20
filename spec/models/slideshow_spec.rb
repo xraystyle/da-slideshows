@@ -62,7 +62,7 @@ RSpec.describe Slideshow, :type => :model do
 		  @slideshow.deviations << deviation
 		  @slideshow.deviations << boobs
 		end
-		it "should return the default deviations list" do
+		it "should return the default deviations list, i.e. all work safe deviations" do
 			expect(@slideshow.results).to eq(@slideshow.deviations.where(mature: false))			
 		end
 	end
