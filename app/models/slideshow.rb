@@ -9,4 +9,14 @@ class Slideshow < ActiveRecord::Base
 	has_and_belongs_to_many :deviations
 
 
+	def results
+		deviations.where(mature: false)
+	end
+
+
+	def nsfw
+		deviations
+	end
+
+
 end

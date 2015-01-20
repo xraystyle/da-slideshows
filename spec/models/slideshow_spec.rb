@@ -10,10 +10,11 @@ RSpec.describe Slideshow, :type => :model do
 
 	subject { @slideshow }
 
-	describe "should respond to the following methods" do
+	describe "should respond to the following methods:" do
 
 		it { should respond_to(:seed) }
-		it { should respond_to(:mature_results) }
+		it { should respond_to(:nsfw) }
+		it { should respond_to(:results) }
 
 		# Relationship to Deviations
 		it { should respond_to(:deviations) }
@@ -55,16 +56,39 @@ RSpec.describe Slideshow, :type => :model do
 	  
 	end
 
+	describe ".results method" do
+		before do
+		  @slideshow.save
+		  @slideshow.deviations << deviation
+		  @slideshow.deviations << boobs
+		end
+		it "should return the default deviations list" do
+			expect(@slideshow.results).to eq(@slideshow.deviations.where(mature: false))			
+		end
+	end
 
-	describe "with mature results" do
+
+	describe "that contains mature deviations" do
 		before do
 		  @slideshow.save
 		  @slideshow.deviations << boobs
 		end
 
 		it "should not include mature deviations by default" do
-			expect(@slideshow.deviations).not_to include(boobs)
+			expect(@slideshow.results).not_to include(boobs)
 		end
+	end
+
+	describe ".nsfw method" do
+		before do
+		  @slideshow.save
+		  @slideshow.deviations << boobs
+
+		end
+		it "should return mature deviations associated with that slideshow" do
+			expect(@slideshow.nsfw).to include(boobs)
+		end
+	  
 	end
 
 end

@@ -136,7 +136,7 @@ RSpec.describe User, :type => :model do
 		end
 
 		it "should not include mature deviations" do
-			expect(@user.slideshow).not_to include(slideshow.mature_results)
+			expect(@user.slideshow.results).not_to include(slideshow.nsfw)
 		end
 	  	
 	end
