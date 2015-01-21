@@ -68,9 +68,9 @@ module ApplicationHelper
 			get_api_token
 		end
 
-		deviations = []
-		failure_count = 0
-		offset = 0
+		deviations = [] # Hold all the deviation objects we get. Return this value.
+		failure_count = 0 # Count api call errors
+		offset = 0 # page offset for what's hot
 
 		access_token = $redis.get("access_token")
 
@@ -82,11 +82,13 @@ module ApplicationHelper
 			if api_object["error"]
 				
 				log_message("Error retrieving page #{(offset / 24) + 1} of What's Hot, retrying.", logfile: "api_calls.log", log_level: "error")
+				log_message(api_object["error_description"], logfile: "api_calls.log", log_level: "error")
 				
 				# Increment the failure count. If we've tried 10 times, bail.
 				# Otherwise, next.
 				failure_count += 1
 				if failure_count >= 10
+					log_message("Tried 10 times, something is borked.", logfile: "api_calls.log", log_level: "error")
 					break
 				end
 
@@ -106,13 +108,95 @@ module ApplicationHelper
 				end
 
 			end
-			
 
 		end
 		
 		return deviations
 
 	end
+
+	# Add a passed array of deviation objects to the Deviations table.
+	# Optionally add them to a slideshow, if a slideshow seed is passed.
+	def add_deviations_to_db(deviations_array, slideshow_seed = nil)
+
+
+		if slideshow_seed
+			# Find the passed slideshow if there's a seed given.
+			# If it doesn't exist, it'll return nil.
+			slideshow = Slideshow.where(seed: slideshow_seed).first
+
+			# If we didn't get a slideshow from the passed seed, we need to make it.
+			unless slideshow
+				slideshow = Slideshow.create(seed: slideshow_seed)
+			end
+		else # no slideshow to deal with
+			slideshow = false
+		end
+
+		deviations_array.each do |entry|
+
+			# non-standard deviations like journals don't have a 'src'.
+			# Skip 'em.
+			next unless entry["content"]
+
+			# Get all the pieces we need to make a new database entry.
+			url = entry["url"]
+			title = entry["title"]
+			author = entry["author"]["username"]
+			mature = entry["is_mature"]
+			uuid = entry["deviationid"]
+			src = entry["content"]["src"]
+			thumb = entry["thumbs"].last["src"]
+			
+			# We don't need height and width on their own, but it makes
+			# the orientation calculation easier to read. Might be interesting
+			# later anyway.
+			height = entry["content"]["height"]
+			width = entry["content"]["width"]
+			
+			# Figure out the orientation based on width and height.
+			if width > height
+				orientation = "landscape"
+			elsif width < height
+				orientation = "portrait"
+			elsif width == height
+				orientation = "square"
+			end
+			
+			# If the UUID is already in the DB, skip it.
+			# if it's not there, the lookup will return nil.
+			next if Deviation.where(uuid: uuid).first
+
+			# Make our new deviation.
+			begin
+				
+				new_deviation = Deviation.create(url: url,
+												 title: title, 
+												 author: author,
+												 mature: mature,
+												 uuid: uuid,
+												 src: src,
+												 thumb: thumb,
+												 orientation: orientation)
+
+			rescue Exception => e
+				log_message("Deviation with UUID #{uuid} failed to save.", log_level: "error")
+			end
+
+
+			# if we have a slideshow to add it to, do that now.
+			begin
+				slideshow.deviations << new_deviation if slideshow
+			rescue Exception => e
+				log_message("Couldn't add deviation #{uuid} to slideshow #{slideshow.seed}.", log_level: "error")
+			end
+
+		end
+
+			
+	end
+
+
 
 
 	# def test_logger
