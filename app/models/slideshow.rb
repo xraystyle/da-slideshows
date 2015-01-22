@@ -6,7 +6,7 @@ class Slideshow < ActiveRecord::Base
 	validates :seed, presence: true, length: { is: 36 }, format: VALID_SEED_REGEX, uniqueness: true
 
 	# Relationships:
-	has_and_belongs_to_many :deviations
+	has_and_belongs_to_many :deviations, -> { uniq }
 
 
 	def results

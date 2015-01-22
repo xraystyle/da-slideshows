@@ -56,6 +56,17 @@ RSpec.describe Slideshow, :type => :model do
 	  
 	end
 
+	describe "deviations added to a slideshow" do
+		before do
+			@slideshow.save
+			@slideshow.deviations << deviation
+			@slideshow.deviations << deviation
+		end
+		it "should be unique" do
+			expect(@slideshow.deviations.count).to eq(1)
+		end
+	end
+
 	describe ".results method" do
 		before do
 		  @slideshow.save

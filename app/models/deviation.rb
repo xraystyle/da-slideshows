@@ -15,7 +15,7 @@ class Deviation < ActiveRecord::Base
 
 
 	# Relationships:
-	has_and_belongs_to_many :slideshows
+	has_and_belongs_to_many :slideshows, -> { uniq }
 
 	scope :nsfw, where(mature: true)
 
