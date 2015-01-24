@@ -18,11 +18,8 @@ gem 'redis', '3.0.6'
 gem 'sidekiq'
 gem 'sidetiq'
 gem 'devise'
+gem 'pg'
 
-
-group :production do
-	gem 'mysql'
-end
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'
