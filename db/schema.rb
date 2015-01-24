@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150116010909) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "deviations", force: true do |t|
     t.string   "url"
     t.string   "title"
@@ -31,8 +34,8 @@ ActiveRecord::Schema.define(version: 20150116010909) do
     t.integer "deviation_id"
   end
 
-  add_index "deviations_slideshows", ["deviation_id"], name: "index_deviations_slideshows_on_deviation_id"
-  add_index "deviations_slideshows", ["slideshow_id"], name: "index_deviations_slideshows_on_slideshow_id"
+  add_index "deviations_slideshows", ["deviation_id"], name: "index_deviations_slideshows_on_deviation_id", using: :btree
+  add_index "deviations_slideshows", ["slideshow_id"], name: "index_deviations_slideshows_on_slideshow_id", using: :btree
 
   create_table "slideshows", force: true do |t|
     t.string   "seed"
@@ -40,7 +43,7 @@ ActiveRecord::Schema.define(version: 20150116010909) do
     t.datetime "updated_at"
   end
 
-  add_index "slideshows", ["seed"], name: "index_slideshows_on_seed"
+  add_index "slideshows", ["seed"], name: "index_slideshows_on_seed", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -58,7 +61,7 @@ ActiveRecord::Schema.define(version: 20150116010909) do
     t.string   "seed"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
