@@ -19,7 +19,7 @@ Signal.trap("INT") {
 
 	sidekiq_pid = `cat tmp/pids/sidekiq.pid`
 	if system "kill #{sidekiq_pid}"
-		puts "Sidekiq killed.\n\n"
+		puts "Sidekiq shut down.\n\n"
 	else
 		puts "Sidekiq may have failed to quit.\n\n"
 	end
@@ -30,10 +30,17 @@ Signal.trap("INT") {
 
 	redis_pid = `cat tmp/pids/redis.pid` 
 	if system "kill #{redis_pid}"
-		puts "Redis killed.\n\n"
+		puts "Redis shut down.\n\n"
 	else
 		puts "Redis may have failed to quit.\n\n"
 	end
+
+	# Quit the Postgres app gracefully via osascript.
+	puts "Quitting Postgres App..."
+	`osascript -e 'quit app "Postgres"'`
+	sleep 2
+	puts "Postgres shut down.\n\n"
+
 
 	puts "Quitting Puma...\n\n"
 
@@ -46,6 +53,10 @@ puts "Press enter to continue, or ctrl-c to quit.\n\n"
 
 gets
 
+# Launch Postgres.app
+def start_postgres_app
+	`open /Applications/Postgres.app`
+end
 
 
 
@@ -77,7 +88,7 @@ end
 
 
 
-
+# launch Puma webserver.
 def start_puma
 	Open3.popen3('puma') do |stdin, stdout, stderr, wait_thr|
 		while line = stdout.gets
@@ -86,11 +97,28 @@ def start_puma
 	end
 end
 
+
+
+#  -----------------   Start Script  -----------------
+
 system 'clear'
 
 puts "Bootstrapping application...\n\n"
 
 sleep 2
+
+puts "Starting Postgress.app...\n\n"
+
+start_postgres_app
+
+sleep 2
+
+if File.exist?(File.expand_path("#{ENV["HOME"]}/Library/Application Support/Postgres/var-9.4/postmaster.pid"))
+	puts "Postgress started successfully.\n\n"
+else 
+	puts "Postgress failed to start. Check your configuration and try again."
+	exit 1
+end
 
 # start redis
 puts "Starting Redis...\n\n"
