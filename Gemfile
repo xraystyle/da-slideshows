@@ -21,6 +21,7 @@ gem 'devise'
 gem 'pg'
 
 
+
 group :development, :test do
   gem 'sqlite3', '1.3.8'
   gem 'rspec-rails'
@@ -31,6 +32,7 @@ group :development, :test do
   gem 'did_you_mean'
   gem 'erb2haml'
   gem 'factory_girl_rails', '4.2.0'
+  gem 'sinatra', :require => nil
 end
 
 group :test do

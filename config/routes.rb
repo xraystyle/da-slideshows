@@ -1,5 +1,11 @@
+require 'sidekiq/web'
+require 'sidetiq/web'
+
 Rails.application.routes.draw do
-	
+
+
+	mount Sidekiq::Web => '/sidekiq'
+
 	root "static_pages#home"
 
 	devise_for :users
