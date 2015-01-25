@@ -1,4 +1,4 @@
-# Sidetiq is tested working.
+# # Sidetiq is tested working.
 
 # class TestWorker
 
@@ -6,10 +6,10 @@
 # 	include Sidetiq::Schedulable
 
 
-# 	recurrence { minutely }
+# 	# recurrence { hourly.minute_of_hour(22,24,26,28,30) }
 
 # 	def perform
-# 		# logger.info "I'm running once a minute!" 	
+# 		# logger.info "I'm running once every 2 minutes!" 	
 # 	end
 
 # end
