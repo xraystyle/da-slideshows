@@ -11,7 +11,7 @@ class MLTCachcing
 	
 	sidekiq_options retry: false
 
-	recurrence daily.hour_of_day(0, 4, 8, 12, 16, 20, 24)
+	recurrence { daily.hour_of_day(0, 4, 8, 12, 16, 20, 24) }
 
 	def perform
 
