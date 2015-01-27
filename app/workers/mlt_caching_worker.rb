@@ -11,8 +11,10 @@ class MLTCachcing
 	
 	sidekiq_options retry: false
 
-	recurrence { daily.hour_of_day(0, 4, 8, 12, 16, 20, 24) }
-
+	recurrence backfill: false do
+		daily.hour_of_day(0, 4, 8, 12, 16, 20, 24) 
+	end
+	
 	def perform
 
 		logger.info("\nGetting fresh results for What's Hot...")

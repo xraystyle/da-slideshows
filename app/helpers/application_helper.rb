@@ -10,7 +10,7 @@ module ApplicationHelper
 			log = Rails.root.to_s + "/log/" + options[:logfile]
 			logger = Logger.new(log)
 		else
-			default_log = Rails.root.to_s + "/" + Rails.env + ".log"
+			default_log = Rails.root.to_s + "/log/" + Rails.env + ".log"
 			logger = Logger.new(default_log)
 		end
 
