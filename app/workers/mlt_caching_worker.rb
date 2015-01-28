@@ -4,7 +4,7 @@
 # create a slideshow for each seed.
 class MLTCachcing
 
-
+	include ApplicationHelper
 	include ApiHelper
 	include Sidekiq::Worker
 	include Sidetiq::Schedulable
@@ -14,25 +14,37 @@ class MLTCachcing
 	recurrence backfill: false do
 		daily.hour_of_day(0, 4, 8, 12, 16, 20, 24) 
 	end
-	
+
 	def perform
 
-		logger.info("\nGetting fresh results for What's Hot...")
+		logger.info("Getting all deviation UUIDs...")
+
+		all_uuids = get_every_deviation_uuid
+
+		logger.info("Getting all slideshow seeds...")
+
+		all_seeds = get_every_slideshow_seed
+
+		logger.info("Refreshing What's Hot...")
 
 		# Update the What's Hot deviations list.
 		get_whats_hot
 
-		logger.info("What's Hot updated. Fetching MLT results for retrieved deviations.")
+		logger.info("What's Hot updated. Fetching MLT for WH list...")
 
 		# Retrieve the fresh What's Hot list.
 		whats_hot = Slideshow.where(seed: "00000000-0000-0000-0000-000000000001").first
 
 		whats_hot.deviations.each do |d|
 
-			logger.info("Retrieving MLT results for #{d.uuid}...")
+			# Skip MLT fetching for slideshows that already exist.
+			# No real point in updating slideshows, the MLT results
+			# are fine as is. Plus, this MAJORLY cuts down on the
+			# number of unnecessary API calls.
+			next if all_seeds.include?(d.uuid)
 
 			# Get MLT results and park 'em in the DB.
-			get_mlt_results(d.uuid)
+			get_mlt_results(d.uuid, all_uuids)
 			
 		end
 
