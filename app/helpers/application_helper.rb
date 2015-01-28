@@ -26,10 +26,32 @@ module ApplicationHelper
 		
 	end
 
-	# def test_logger
-	# 	log_message("Test one.", logfile: "test one.log")
-	# 	log_message("Test two.", logfile: "redis.log")
-	# end
+
+	def get_every_deviation_uuid
+		
+		all_uuids = Set.new
+			
+		Deviation.find_each do |d|
+			all_uuids << d.uuid
+		end
+
+		all_uuids
+
+	end
+
+	def get_every_slideshow_seed
+		
+		all_seeds = Set.new
+
+		Slideshow.find_each do |s|
+			all_seeds << s.seed
+		end
+
+		all_seeds
+
+	end
+
+
 
 end
 
