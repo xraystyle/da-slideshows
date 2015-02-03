@@ -15,5 +15,16 @@ body {
 		min-width: 100px;
 		border: 3px solid black;
 		margin: auto;
+		cursor: pointer;
 	}
+}
+
+
+.channel-selected {
+	@extend .channel;
+	img {
+		border: 5px solid green;
+		cursor: auto;	
+	}
+	
 }

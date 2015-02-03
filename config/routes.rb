@@ -3,16 +3,20 @@ require 'sidetiq/web'
 
 Rails.application.routes.draw do
 
+	get 'slideshows/channels'
 
-  get 'slideshows/channels'
-
-  get 'slideshows/slideshow'
+	get 'slideshows/slideshow'
 
 	mount Sidekiq::Web => '/sidekiq'
 
 	root "static_pages#home"
 
 	devise_for :users
+
+
+	match 'slideshows/update_slideshow',	to: 'slideshows#update_slideshow', via: 'post'
+
+
 
 	# match "/users",				to: 'static_pages#home', via: 'get'
     # get 'static_pages/home'
