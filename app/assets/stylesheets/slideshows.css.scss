@@ -3,6 +3,8 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 body {
 	background: grey;
+	height: 100%;
+	margin: 0;
 }
 
 .channel {
@@ -28,3 +30,14 @@ body {
 	}
 	
 }
+
+#slideshow {
+	min-height: 100%;
+	img {
+		min-width: 100%;
+	}
+}
+
+// header {
+// 	display: none;
+// }

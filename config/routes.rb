@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
 
 	match 'slideshows/update_slideshow',	to: 'slideshows#update_slideshow', via: 'post'
+	match 'slideshows/update_slideshow',	to: 'slideshows#update_slideshow', via: 'get'
 
 
 

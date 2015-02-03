@@ -19,6 +19,7 @@ class SlideshowsController < ApplicationController
 
 	# Set up data to display the slideshow.
 	def slideshow
+		@image = Deviation.where(uuid: current_user.seed).first.src
 	end
 
 	# Show the logged in user's homepage. Should have links to the
@@ -29,9 +30,16 @@ class SlideshowsController < ApplicationController
 	end
 
 	def update_slideshow
-		current_user.seed = params[:uuid]
-		current_user.save
-		render status: 200, json: @controller.to_json
+		
+		@image = Deviation.where(uuid: current_user.seed).first.src
+		if params[:uuid]
+			current_user.seed = params[:uuid]
+			current_user.save
+			render status: 200, json: @controller.to_json
+		else
+			render json: {url: @image}
+		end
+
 	end
 
 
