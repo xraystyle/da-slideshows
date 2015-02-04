@@ -1,0 +1,9 @@
+%h1 Choose a Channel!
+.channel-list
+	- @channels.each do |c|
+		-if c[:uuid] == @user_seed
+			.channel-selected
+				= image_tag(c[:thumb], data: {uuid: c[:uuid]})
+		-else	
+			.channel
+				= image_tag(c[:thumb], data: {uuid: c[:uuid]})

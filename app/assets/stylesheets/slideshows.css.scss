@@ -1,0 +1,58 @@
+// Place all the styles related to the Slideshows controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+html {height: 100%;}
+
+body {
+	background: black;
+	height: 100%;
+	margin: 0;
+}
+
+header {
+	display: none;
+}
+
+.container {
+	height: 100%;
+	display: block;
+	position: absolute;
+	width: 100%;
+}
+
+.channel {
+	display: inline;
+	padding: 5px;
+	img {
+		max-height: 300px;
+		max-width: 300px;
+		min-height: 100px;
+		min-width: 100px;
+		border: 3px solid black;
+		margin: auto;
+		cursor: pointer;
+	}
+}
+
+
+.channel-selected {
+	@extend .channel;
+	img {
+		border: 5px solid #00E5FF;
+		cursor: auto;	
+	}
+	
+}
+
+#slideshow {
+	background-size: contain !important;
+	display: block;
+	height: 100%;
+	// img {
+	// 	width: 100%;
+	// }
+}
+
+// header {
+// 	display: none;
+// }
