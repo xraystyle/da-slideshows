@@ -34,12 +34,6 @@ class SlideshowsController < ApplicationController
 	end
 
 	def update_slideshow
-		
-		if current_user.seed
-			@image = Deviation.where(uuid: current_user.seed).first.src
-		else
-			@image = "2C1E2200-81EE-A42F-BAB1-BC5D7FEA0DD9"
-		end
 
 		if params[:uuid]
 			current_user.seed = params[:uuid]

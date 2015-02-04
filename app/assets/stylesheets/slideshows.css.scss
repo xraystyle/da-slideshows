@@ -13,13 +13,20 @@ header {
 	display: none;
 }
 
-.container {
-	height: 100%;
-	display: block;
-	position: absolute;
-	width: 100%;
+footer {
+	display: none;
 }
 
+// .container {
+// 	top: 0; 
+// 	left: 0; 
+// 	width: 100%; 
+// 	height: 100%;
+// 	display: table;
+// 	position: absolute;
+// }
+
+// Chanel changer CSS--------------------
 .channel {
 	display: inline;
 	padding: 5px;
@@ -43,16 +50,42 @@ header {
 	}
 	
 }
+// End channel changer CSS------------------------
 
+
+
+// Slideshow CSS-------------------------------
 #slideshow {
-	background-size: contain !important;
-	display: block;
+	top: 0; 
+	left: 0; 
+	width: 100%; 
 	height: 100%;
-	// img {
-	// 	width: 100%;
-	// }
+	display: table;
+	position: absolute;
+	p {
+		display: table-cell;
+		vertical-align: middle;
+		text-align: center;
+		img {
+			position: relative;
+			display: block;
+			margin: 1em auto;
+			height: 90%
+		}
+	}
 }
 
-// header {
-// 	display: none;
-// }
+#next-image {
+	display: none;
+}
+
+// End slideshow CSS-------------------------------
+
+
+
+
+
+
+
+
+
