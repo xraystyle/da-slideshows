@@ -12,7 +12,7 @@ class SlideshowsController < ApplicationController
 
 		whats_hot = Slideshow.where(seed: @@wh).first
 
-		@channels = whats_hot.deviations.map { |d| {thumb: d.thumb, uuid: d.uuid} unless d.mature? }.compact # add unless d.mature? for mature filter.
+		@channels = whats_hot.deviations.map { |d| {thumb: d.thumb, uuid: d.uuid} }.compact # add unless d.mature? for mature filter.
 
 	end
 

@@ -4,14 +4,13 @@
 html {height: 100%;}
 
 body {
-	background: gray;
+	background: black;
 	height: 100%;
 	margin: 0;
 }
 
 header {
-	position: absolute;
-	z-index: 100;
+	display: none;
 }
 
 .container {
@@ -39,7 +38,7 @@ header {
 .channel-selected {
 	@extend .channel;
 	img {
-		border: 5px solid green;
+		border: 5px solid #00E5FF;
 		cursor: auto;	
 	}
 	
