@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
 
 	# callbacks
-	before_save :set_default_slideshow
+	before_create :set_default_slideshow
 
 	# Instance Methods
 	def slideshow

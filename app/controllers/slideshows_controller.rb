@@ -19,11 +19,7 @@ class SlideshowsController < ApplicationController
 
 	# Set up data to display the slideshow.
 	def slideshow
-		if current_user.seed
-			@image = Deviation.where(uuid: current_user.seed).first.src
-		else
-			@image = "2C1E2200-81EE-A42F-BAB1-BC5D7FEA0DD9"
-		end
+
 	end
 
 	# Show the logged in user's homepage. Should have links to the
@@ -36,11 +32,12 @@ class SlideshowsController < ApplicationController
 	def update_slideshow
 
 		if params[:uuid]
+			puts "Setting seed..."
 			current_user.seed = params[:uuid]
 			current_user.save
 			render status: 200, json: @controller.to_json
 		else
-			render json: {url: @image}
+			render status: 200, json: @controller.to_json
 		end
 
 	end
