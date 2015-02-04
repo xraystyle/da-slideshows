@@ -62,20 +62,26 @@ footer {
 	height: 100%;
 	display: table;
 	position: absolute;
-	p {
+	div {
 		display: table-cell;
 		vertical-align: middle;
-		text-align: center;
-		img {
-			position: relative;
-			display: block;
-			margin: 1em auto;
-			height: 90%
-		}
 	}
 }
 
+#spinner {
+	z-index: 0;
+	position: absolute;
+	left: 50%;
+	display: block;
+	margin: 1em auto;
+	height: 90%
+}
+
 #next-image {
+	display: none;
+}
+
+#current-seed {
 	display: none;
 }
 
