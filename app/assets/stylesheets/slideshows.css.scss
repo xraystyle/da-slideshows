@@ -27,7 +27,11 @@ footer {
 // }
 
 // Chanel changer CSS--------------------
-.channel {
+.channel-list {
+	padding-left: 20px;
+}
+
+.channel { 
 	display: inline;
 	padding: 5px;
 	img {
@@ -61,7 +65,7 @@ footer {
 	width: 100%; 
 	height: 100%;
 	display: table;
-	position: absolute;
+	// position: absolute;
 	div {
 		display: table-cell;
 		vertical-align: middle;
@@ -71,13 +75,11 @@ footer {
 #spinner {
 	z-index: 0;
 	position: absolute;
-	left: 50%;
 	display: block;
 	margin: 1em auto;
-	height: 90%
 }
 
-#next-image {
+#placeholder {
 	display: none;
 }
 
