@@ -128,6 +128,7 @@ function slideshowUpdate() {
 // This rotates the image at imageIndex into the slideshow div, then 
 // removes the current one from the DOM.
 function rotateImage(imageList, imageIndex) {
+	
 	// where the image is displayed.
 	slideshowDiv = $("#slideshow div:first");
 
@@ -160,61 +161,117 @@ function rotateImage(imageList, imageIndex) {
 	}
 
 	nextImageAspect = imageList[imageIndex]["aspect"];
+	console.log("Start -------------------------------------------------");
+	// console.log("Next image aspect is set to: " + nextImageAspect);
+	// console.log("The value of the json is: " + imageList[imageIndex]["aspect"]);
 
 	// when nextImage has loaded, we can get it's height and width, then go from there.
 	nextImage.load(function() {
 		$(this).appendTo(placeholderDiv);
+		// get the natural dimensions of the image.
 		var imgWidth = $(this).get(0).naturalWidth;
 		var imgHeight = $(this).get(0).naturalHeight;
 
-		// portrait window case.
-		if ( windowAspect == "portrait" ) {
-			// portrait image in portrait window case.
-			if ( nextImageAspect == "portrait" ) {
-				var maxHeight = windowHeight - 30;
-				var percentChange = imgHeight / maxHeight; // % change between current and max.
-				imgHeight = maxHeight; //set imgHeight to max allowable.
-				imgWidth = imgWidth * percentChange; // set width to the same percentage change.
+		// get the maximum values the image can be displayed at.
+		// There should be a 15px border on each side. That means the max = total - 30.
+		var maxWidth = windowWidth - 30;
+		var maxHeight = windowHeight - 30;
 
-				nextImage.attr({
-					"height": imgHeight,
-					"width": imgWidth,
-				});
+		// get the difference between the natural dimensions of the image and their max values.
+		var widthDifferece = maxWidth - imgWidth;
+		var heightDifference = maxHeight - imgHeight;
 
-				// now calculate the css positioning.
-				nextImage.css({
-					"top": "15px",
-					"left": (windowWidth - imgWidth) / 2,
-				});
-				// landscape/square image in portrait window case.
-			}else {
-				var maxWidth = windowWidth - 30;
-				var percentChange = imgWidth / maxWidth; // % change between current and max.
-				imgWidth = maxWidth; //set imgHeight to max allowable.
-				imgHeight = imgHeight * percentChange; // set width to the same percentage change.
+		// If we have to scale the images down:
+		// if both dimensions are too large:
+		if ( (widthDifferece < 0) && (heightDifference < 0) ) {
+			// both are too big. Constrain the one that's "more" too big.
+			if ( Math.abs(widthDifferece) > Math.abs(heightDifference) ) {
+				// width is too big. constrain width.
+			}	else {
+				// Height is too big, or the difference is the same. Constrain height.
+			}
+		} else if ( widthDifferece < 0 ) {
+			// Width is too big. Constrain width.
+		} else if ( heightDifference < 0 ) {
+			// Height is too big. Constrain height.
+		} else {
+			// Images don't need to be scaled down. do nothing.
+		}
 
-				nextImage.attr({
-					"height": imgHeight,
-					"width": imgWidth,
-				});
+		
+		// If we have to scale images up:
+		if ( windowAspect == "landscape" ) {
 
-				// now calculate the css positioning.
-				nextImage.css({
-					"top": (windowHeight - imgHeight) / 2,
-					"left": "15px",
-				});
+			if ( nextImageAspect == "landscape" ) {
+				// scale up width.
+			}	else {
+				// scale up height.
 			}
 
+
+
+		}	else if ( windowAspect == "portrait" )
+
+			if ( nextImageAspect == "portrait" ) {
+				// scale up height.
+			}	else {
+				// scale up width.
+			}
+			
 		}
+
+
+
+
+		// portrait window case.
+		// if ( windowAspect == "portrait" ) {
+		// 	// portrait image in portrait window case.
+		// 	if ( nextImageAspect == "portrait" ) {
+		// 		var maxHeight = windowHeight - 80;
+		// 		var percentChange = imgHeight / maxHeight; // % change between current and max.
+		// 		imgHeight = maxHeight; //set imgHeight to max allowable.
+		// 		imgWidth = imgWidth * percentChange; // set width to the same percentage change.
+
+		// 		nextImage.attr({
+		// 			"height": imgHeight,
+		// 			"width": imgWidth,
+		// 		});
+
+		// 		// now calculate the css positioning.
+		// 		nextImage.css({
+		// 			"top": "15px",
+		// 			"left": (windowWidth - imgWidth) / 2,
+		// 		});
+		// 		// landscape/square image in portrait window case.
+		// 	}else {
+		// 		var maxWidth = windowWidth - 80;
+		// 		var percentChange = imgWidth / maxWidth; // % change between current and max.
+		// 		imgWidth = maxWidth; //set imgHeight to max allowable.
+		// 		imgHeight = imgHeight * percentChange; // set width to the same percentage change.
+
+		// 		nextImage.attr({
+		// 			"height": imgHeight,
+		// 			"width": imgWidth,
+		// 		});
+
+		// 		// now calculate the css positioning.
+		// 		nextImage.css({
+		// 			"top": (windowHeight - imgHeight) / 2,
+		// 			"left": "15px",
+		// 		});
+		// 	}
+
+		// }
 
 		// Landscape window case.
 		if ( windowAspect == "landscape" ) {
 			// landscape image in landscape window case.
 			if ( nextImageAspect == "landscape" ) {
 
-				var maxWidth = windowWidth - 30;
+				var maxWidth = windowWidth - 80;
 				console.log("Before calculations:");
 				console.log("imgWidth: " + imgWidth + " maxWidth: " + maxWidth + " Window width: " + windowWidth);
+				console.log("imgHeight: " + imgHeight);
 				var percentChange = maxWidth / imgWidth; // % change between current and max.
 				console.log("landscape image. Percent change:" + percentChange);
 				imgWidth = maxWidth; //set imgWidth to max allowable.
@@ -228,9 +285,14 @@ function rotateImage(imageList, imageIndex) {
 				});
 
 				// now calculate the css positioning.
+				console.log("windowHeight is " + windowHeight);
+				console.log("imgHeight is " + imgHeight);
+
+				var topValue = (windowHeight - imgHeight) / 2;
+				console.log("Calculated top to be: " + topValue);
 				nextImage.css({
 					"top": (windowHeight - imgHeight) / 2,
-					"left": "15px",
+					"left": "40px",
 				});
 
 				console.log("Final image attributes:");
@@ -238,7 +300,7 @@ function rotateImage(imageList, imageIndex) {
 
 			// portrait/square image in portrait window case.
 			}	else {
-				var maxHeight = windowHeight - 30;
+				var maxHeight = windowHeight - 80;
 				console.log("Before calculations:");
 				console.log("imgHeight: " + imgHeight + " maxHeight: " + maxHeight + " Window height: " + windowHeight);
 				console.log("imgWidth: " + imgWidth);
@@ -254,15 +316,21 @@ function rotateImage(imageList, imageIndex) {
 				});
 
 				// now calculate the css positioning.
+				console.log("windowWidth is " + windowWidth);
+				console.log("imgWidth is " + imgWidth);
+				leftValue = (windowWidth - imgWidth) / 2;
+				console.log("Calculated left to be: " + leftValue);
 				nextImage.css({
-					"top": "15px",
-					"left": (windowWidth - imgWidth) / 2,
+					"top": "40px",
+					"left": leftValue,
 				});
 
 				console.log("Final image attributes:");
 				console.log(nextImage[0]);
 
 			}
+			console.log("End -------------------------------------------------------------");
+
 
 		}
 
@@ -273,7 +341,7 @@ function rotateImage(imageList, imageIndex) {
 		nextImage.animate({
 			opacity: 1},
 			2000, function() {
-				console.log("Image should have faded in.");				
+				// console.log("Image should have faded in.");				
 				currentImage.remove();
 				nextImage.css('z-index', '0');
 		});
@@ -281,7 +349,6 @@ function rotateImage(imageList, imageIndex) {
 
 
 	});
-
 
 }
 

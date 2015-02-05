@@ -49,8 +49,8 @@ class SlideshowsController < ApplicationController
 
 			else
 				url_hash = { seed: seed_in_db }
-				first_deviation = Deviation.where(uuid: seed_in_db).first.src
-				url_hash[0] = {url: first_deviation}
+				first_deviation = Deviation.where(uuid: seed_in_db).first
+				url_hash[0] = { url: first_deviation.src, aspect: first_deviation.orientation }
 				deviations = current_user.slideshow.deviations
 				urls = deviations.map { |d| { url: d.src, aspect: d.orientation } }.compact
 
