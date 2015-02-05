@@ -91,10 +91,10 @@ function slideshowUpdate() {
 
 		if ( json["update"] == "false" ) {
 			// do nothing.
-			console.log("No update.");
+			// console.log("No update.");
 		}	else {
 
-			console.log("Found an update.");
+			// console.log("Found an update.");
 			// Change the text in the current-seed div to the new value.
 			$("#current-seed p:first").text(json["seed"]);
 
@@ -140,7 +140,7 @@ function rotateImage(imageList, imageIndex) {
 	currentImage.css('z-index', '0');
 
 	// load the image at index imageIndex into the next-image div.
-	var nextImage = $("<img />", { src: imageList[imageIndex]["url"], "css" : {"opacity" : "0"} }).appendTo(placeholderDiv);
+	var nextImage = $("<img />", { src: imageList[imageIndex]["url"], "css" : {"opacity" : "0"} });
 
 	// Once the image is loaded, do some schmaculating about how big it should be and where to put it.
 	// There should be a 15px space between the image and all sides of the window.
@@ -163,8 +163,9 @@ function rotateImage(imageList, imageIndex) {
 
 	// when nextImage has loaded, we can get it's height and width, then go from there.
 	nextImage.load(function() {
-		var imgWidth = $(this).width();
-		var imgHeight = $(this).height();
+		$(this).appendTo(placeholderDiv);
+		var imgWidth = $(this).get(0).naturalWidth;
+		var imgHeight = $(this).get(0).naturalHeight;
 
 		// portrait window case.
 		if ( windowAspect == "portrait" ) {
@@ -206,6 +207,78 @@ function rotateImage(imageList, imageIndex) {
 
 		}
 
+		// Landscape window case.
+		if ( windowAspect == "landscape" ) {
+			// landscape image in landscape window case.
+			if ( nextImageAspect == "landscape" ) {
+
+				var maxWidth = windowWidth - 30;
+				console.log("Before calculations:");
+				console.log("imgWidth: " + imgWidth + " maxWidth: " + maxWidth + " Window width: " + windowWidth);
+				var percentChange = maxWidth / imgWidth; // % change between current and max.
+				console.log("landscape image. Percent change:" + percentChange);
+				imgWidth = maxWidth; //set imgWidth to max allowable.
+				imgHeight = imgHeight * percentChange; // set width to the same percentage change.
+				console.log("Image height was set to: " + imgHeight);
+				console.log("Image width was set to " + imgWidth);
+
+				nextImage.attr({
+					"height": imgHeight,
+					"width": imgWidth,
+				});
+
+				// now calculate the css positioning.
+				nextImage.css({
+					"top": (windowHeight - imgHeight) / 2,
+					"left": "15px",
+				});
+
+				console.log("Final image attributes:");
+				console.log(nextImage[0]);
+
+			// portrait/square image in portrait window case.
+			}	else {
+				var maxHeight = windowHeight - 30;
+				console.log("Before calculations:");
+				console.log("imgHeight: " + imgHeight + " maxHeight: " + maxHeight + " Window height: " + windowHeight);
+				console.log("imgWidth: " + imgWidth);
+				var percentChange = maxHeight / imgHeight; // % change between current and max.
+				console.log("portrait image. Percent change:" + percentChange);
+				imgHeight = maxHeight; //set imgHeight to max allowable.
+				imgWidth = imgWidth * percentChange; // set width to the same percentage change.
+				console.log("Image height was set to: " + imgHeight);
+
+				nextImage.attr({
+					"height": imgHeight,
+					"width": imgWidth,
+				});
+
+				// now calculate the css positioning.
+				nextImage.css({
+					"top": "15px",
+					"left": (windowWidth - imgWidth) / 2,
+				});
+
+				console.log("Final image attributes:");
+				console.log(nextImage[0]);
+
+			}
+
+		}
+
+		slideshowDiv.append(nextImage);
+
+		currentImage.animate({opacity: 0}, 2000)
+
+		nextImage.animate({
+			opacity: 1},
+			2000, function() {
+				console.log("Image should have faded in.");				
+				currentImage.remove();
+				nextImage.css('z-index', '0');
+		});
+
+
 
 	});
 
@@ -219,80 +292,80 @@ function rotateImage(imageList, imageIndex) {
 
 
 // old function, not using this.
-function startSlideshow(imageList) {
-	console.log("I'm starting the slideshow.");
-	var imageIndex = 0;
-	initialSeedValue = $("#current-seed p:first").text();
+// function startSlideshow(imageList) {
+// 	console.log("I'm starting the slideshow.");
+// 	var imageIndex = 0;
+// 	initialSeedValue = $("#current-seed p:first").text();
 
-	// this is where the images are displayed:
-	slideshowDiv = $("#slideshow div:first");
+// 	// this is where the images are displayed:
+// 	slideshowDiv = $("#slideshow div:first");
 
-	// This is the placeholder div for each newly created image:
-	placeholderDiv = $("#placeholder")
+// 	// This is the placeholder div for each newly created image:
+// 	placeholderDiv = $("#placeholder")
 
-	while ( initialSeedValue == $("#current-seed p:first").text() ) {
-		console.log("In the while loop now...");
+// 	while ( initialSeedValue == $("#current-seed p:first").text() ) {
+// 		console.log("In the while loop now...");
 
-		// get the current image if it exists.
-		currentImage = $("#slideshow div img:first");
+// 		// get the current image if it exists.
+// 		currentImage = $("#slideshow div img:first");
 
-		currentImage.css('z-index', '0');
+// 		currentImage.css('z-index', '0');
 
 		
-		// if there's an image at imageIndex, use it. Otherwise set 
-		// imageIndex back to 0 and continue, so we start over.
-		if ( imageList.hasOwnProperty(imageIndex) ) {
+// 		// if there's an image at imageIndex, use it. Otherwise set 
+// 		// imageIndex back to 0 and continue, so we start over.
+// 		if ( imageList.hasOwnProperty(imageIndex) ) {
 
 
-			// load the image at index imageIndex into the next-image div.
-			var nextImage = $("<img />", { src: imageList[imageIndex]["url"], "css" : {"opacity" : "0"} }).appendTo(placeholderDiv);
+// 			// load the image at index imageIndex into the next-image div.
+// 			var nextImage = $("<img />", { src: imageList[imageIndex]["url"], "css" : {"opacity" : "0"} }).appendTo(placeholderDiv);
 
-			nextImage.load(function() {
-				console.log("Hit load callback...");
-				var imgWidth = $(this).width();
-				var imgHeight = $(this).height();
-				console.log("Width: " + imgWidth + ". Height: " + imgHeight);
-				windowWidth = $(window).width();
-				windowHeight = $(window).height();
+// 			nextImage.load(function() {
+// 				console.log("Hit load callback...");
+// 				var imgWidth = $(this).width();
+// 				var imgHeight = $(this).height();
+// 				console.log("Width: " + imgWidth + ". Height: " + imgHeight);
+// 				windowWidth = $(window).width();
+// 				windowHeight = $(window).height();
 
-				leftValue = (windowWidth - imgWidth) / 2;
-				topValue = (windowHeight - imgHeight) / 2;
+// 				leftValue = (windowWidth - imgWidth) / 2;
+// 				topValue = (windowHeight - imgHeight) / 2;
 				
-				console.log("Setting top and left. Should be " + topValue + " and " + leftValue);
-				nextImage.css({
-					"left": leftValue,
-					"top": topValue,
-					"z-index": '1',
-					"position": "absolute",
-					"vertical-align": "middle"
-				});
+// 				console.log("Setting top and left. Should be " + topValue + " and " + leftValue);
+// 				nextImage.css({
+// 					"left": leftValue,
+// 					"top": topValue,
+// 					"z-index": '1',
+// 					"position": "absolute",
+// 					"vertical-align": "middle"
+// 				});
 				
-			});
+// 			});
 
-			slideshowDiv.append(nextImage);
-
-
-			nextImage.animate({
-				opacity: 1},
-				2000, function() {
-					console.log("Image should have faded in.");				
-					currentImage.remove();
-					nextImage.css('z-index', '0');
-			});
-
-			imageIndex++;
+// 			slideshowDiv.append(nextImage);
 
 
-			// break;
-		}	else {
-			console.log("Hit the else statement.");
-			imageIndex = 0;
-			continue;
-		}
+// 			nextImage.animate({
+// 				opacity: 1},
+// 				2000, function() {
+// 					console.log("Image should have faded in.");				
+// 					currentImage.remove();
+// 					nextImage.css('z-index', '0');
+// 			});
 
-	}
+// 			imageIndex++;
 
-}
+
+// 			// break;
+// 		}	else {
+// 			console.log("Hit the else statement.");
+// 			imageIndex = 0;
+// 			continue;
+// 		}
+
+// 	}
+
+// }
 
 
 
