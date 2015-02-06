@@ -15,7 +15,7 @@ $(document).ready(function() {
 			old_selected.addClass('channel').removeClass('channel-selected');
 
 			$.post('update_slideshow', { set_uuid: uuid }, function(data, textStatus, xhr) {
-				// console.log("Slideshow seed set to " + uuid);
+				console.log("Slideshow seed set to " + uuid);
 			});
 		
 		}
@@ -38,7 +38,7 @@ function startSpinner() {
 	// find any current images, get rid of them.
 	$("img").not("#spinner").fadeOut(500, function() {
 		$("img").not("#spinner").remove();
-		// console.log("Fading out existing images.");
+		console.log("Fading out existing images.");
 	});
 	// make the spinner.
 	if ( $("#spinner").length ) {
@@ -51,9 +51,9 @@ function startSpinner() {
 			"top": (windowHeight - 75) / 2,
 		});
 		$("#spinner").fadeIn(2000);
-		// console.log("A spinner already exists, not running makeSpiner()");
+		console.log("A spinner already exists, not running makeSpiner()");
 	}	else {
-		// console.log("Running makeSpinner()");
+		console.log("Running makeSpinner()");
 		makeSpinner();
 	}
 	
@@ -83,7 +83,7 @@ function makeSpinner() {
 		opacity: 1.0},
 		2000, function() {
 		spinner.css('z-index', '0');
-		// console.log("Spinner loaded.");
+		console.log("Spinner loaded.");
 	});
 
 }
@@ -117,9 +117,9 @@ function slideshowUpdate() {
 var slideshowInterval = 0; 
 
 function startRotator(jsonObj) {
-	// console.log("interval before: " + slideshowInterval);
+	console.log("interval before: " + slideshowInterval);
 	clearInterval(slideshowInterval);
-	// console.log("after clear:" + slideshowInterval);
+	console.log("after clear:" + slideshowInterval);
 
 	$("#current-seed p:first").text(jsonObj["seed"]);
 	
@@ -138,8 +138,8 @@ function startRotator(jsonObj) {
 		}
 		
 	}, 5000);
-	// console.log("After set:");
-	// console.log(slideshowInterval);
+	console.log("After set:");
+	console.log(slideshowInterval);
 }
 
 
@@ -197,12 +197,12 @@ function rotateImage(imageList, imageIndex) {
 		var widthDifferece = maxWidth - imgWidth;
 		var heightDifference = maxHeight - imgHeight;
 
-		console.log("Window width is: " + windowWidth);
-		console.log("Window height is: " + windowHeight);
-		console.log("Image width is: " + imgWidth);
-		console.log("Image height is: " + imgHeight);
-		console.log("Width difference is: " + widthDifferece);
-		console.log("Height difference is: " + heightDifference);
+		// console.log("Window width is: " + windowWidth);
+		// console.log("Window height is: " + windowHeight);
+		// console.log("Image width is: " + imgWidth);
+		// console.log("Image height is: " + imgHeight);
+		// console.log("Width difference is: " + widthDifferece);
+		// console.log("Height difference is: " + heightDifference);
 
 		// If we have to scale the images down:
 		// if both dimensions are too large:
@@ -284,19 +284,19 @@ function formatImage(image, dimensionToAlter, maxWidth, maxHeight, imgWidth, img
 
 
 	var percentChange = maxWidth / imgWidth;
-	console.log("Image values before adjustment:")
-	console.log("Height: " + imgHeight);
-	console.log("Width: " + imgWidth);
-	console.log("Percent change:" + percentChange);
+	// console.log("Image values before adjustment:")
+	// console.log("Height: " + imgHeight);
+	// console.log("Width: " + imgWidth);
+	// console.log("Percent change:" + percentChange);
 
 	if ( (imgHeight * percentChange) > maxHeight ) {
 		// width change won't bring height within tolerance. resize height.
 		percentChange = maxHeight / imgHeight;
 		imgHeight = maxHeight; //set imgHeight to max allowable.
 		imgWidth = imgWidth * percentChange; // set width to the same percentage change.
-		console.log("Image values after adjustment:")
-		console.log("Height: " + imgHeight);
-		console.log("Width: " + imgWidth);
+		// console.log("Image values after adjustment:")
+		// console.log("Height: " + imgHeight);
+		// console.log("Width: " + imgWidth);
 
 		// Set image height & width.
 		image.attr({
@@ -312,13 +312,13 @@ function formatImage(image, dimensionToAlter, maxWidth, maxHeight, imgWidth, img
 		});
 		
 		
-		console.log("Height was altered.");
-		console.log("Max width should be no larger than " + maxWidth);
-		console.log("Max height should be no larger than " + maxHeight);
-		console.log("Final image attributes:");
-		console.log(image[0]);
-		console.log("");
-		console.log("");
+		// console.log("Height was altered.");
+		// console.log("Max width should be no larger than " + maxWidth);
+		// console.log("Max height should be no larger than " + maxHeight);
+		// console.log("Final image attributes:");
+		// console.log(image[0]);
+		// console.log("");
+		// console.log("");
 
 	}	else {
 		// width change will bring height within tolerance. resize width.
@@ -338,13 +338,13 @@ function formatImage(image, dimensionToAlter, maxWidth, maxHeight, imgWidth, img
 		});
 
 		
-		console.log("Width was altered.");
-		console.log("Max width should be no larger than " + maxWidth);
-		console.log("Max height should be no larger than " + maxHeight);
-		console.log("Final image attributes:");
-		console.log(image[0]);
-		console.log("");
-		console.log("");
+		// console.log("Width was altered.");
+		// console.log("Max width should be no larger than " + maxWidth);
+		// console.log("Max height should be no larger than " + maxHeight);
+		// console.log("Final image attributes:");
+		// console.log(image[0]);
+		// console.log("");
+		// console.log("");
 	}
 
 
@@ -371,13 +371,13 @@ function formatImage(image, dimensionToAlter, maxWidth, maxHeight, imgWidth, img
 	// 	});
 
 		
-	// 	console.log("Width was altered.");
-	// 	console.log("Max width should be no larger than " + maxWidth);
-	// 	console.log("Max height should be no larger than " + maxHeight);
-	// 	console.log("Final image attributes:")
-	// 	console.log(image[0]);
-	// 	console.log("");
-	// 	console.log("");
+		console.log("Width was altered.");
+		console.log("Max width should be no larger than " + maxWidth);
+		console.log("Max height should be no larger than " + maxHeight);
+		console.log("Final image attributes:")
+		console.log(image[0]);
+		console.log("");
+		console.log("");
 
 	// }	else {
 	// 	// height is too big, or dimensions are equally too big. Constrain height.
@@ -398,13 +398,13 @@ function formatImage(image, dimensionToAlter, maxWidth, maxHeight, imgWidth, img
 	// 	});
 		
 		
-	// 	console.log("Height was altered.");
-	// 	console.log("Max width should be no larger than " + maxWidth);
-	// 	console.log("Max height should be no larger than " + maxHeight);
-	// 	console.log("Final image attributes:")
-	// 	console.log(image[0]);
-	// 	console.log("");
-	// 	console.log("");
+		console.log("Height was altered.");
+		console.log("Max width should be no larger than " + maxWidth);
+		console.log("Max height should be no larger than " + maxHeight);
+		console.log("Final image attributes:")
+		console.log(image[0]);
+		console.log("");
+		console.log("");
 
 	// }
 }
