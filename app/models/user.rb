@@ -9,12 +9,23 @@ class User < ActiveRecord::Base
 	validates :email, presence: true, format: VALID_EMAIL_REGEX, uniqueness: { case_sensitive: false }
 
 
-
+	# callbacks
+	before_create :set_default_slideshow
 
 	# Instance Methods
 	def slideshow
 		Slideshow.where(seed: self.seed).first
 	end
+
+
+
+	private
+
+	def set_default_slideshow
+		self.seed = "00000000-0000-0000-0000-000000000001"
+	end
+
+
 
 
 end

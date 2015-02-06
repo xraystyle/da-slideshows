@@ -1,5 +1,7 @@
 class SlideshowsController < ApplicationController
 
+	# require 'json'
+
 	before_action :authenticate_user!
 
 	@@wh = "00000000-0000-0000-0000-000000000001"
@@ -19,11 +21,7 @@ class SlideshowsController < ApplicationController
 
 	# Set up data to display the slideshow.
 	def slideshow
-		if current_user.seed
-			@image = Deviation.where(uuid: current_user.seed).first.src
-		else
-			@image = "2C1E2200-81EE-A42F-BAB1-BC5D7FEA0DD9"
-		end
+		@current_seed = current_user.seed
 	end
 
 	# Show the logged in user's homepage. Should have links to the
@@ -34,22 +32,51 @@ class SlideshowsController < ApplicationController
 	end
 
 	def update_slideshow
-		
-		if current_user.seed
-			@image = Deviation.where(uuid: current_user.seed).first.src
-		else
-			@image = "2C1E2200-81EE-A42F-BAB1-BC5D7FEA0DD9"
-		end
 
-		if params[:uuid]
-			current_user.seed = params[:uuid]
+		if params[:set_uuid]
+			
+			current_user.seed = params[:set_uuid]
 			current_user.save
 			render status: 200, json: @controller.to_json
+
+		elsif params[:current_seed]
+
+			seed_in_db = current_user.seed
+
+			if seed_in_db == params[:current_seed]
+				
+				render json: { update: "false" }
+
+			else
+				url_hash = { seed: seed_in_db }
+				first_deviation = Deviation.where(uuid: seed_in_db).first
+				url_hash[0] = { url: first_deviation.src, aspect: first_deviation.orientation }
+				deviations = current_user.slideshow.deviations
+				urls = deviations.map { |d| { url: d.src, aspect: d.orientation } }.compact
+
+				urls.each_with_index do |u,i|
+					url_hash[i+1] = u
+				end
+				puts "Sending updated URL list..."
+				render json: url_hash
+
+			end
+
 		else
-			render json: {url: @image}
+			render status: 200, json: @controller.to_json
 		end
 
 	end
+
+
+
+
+
+
+
+
+
+
 
 
 
