@@ -112,7 +112,9 @@ function slideshowUpdate() {
 	});
 }
 
-var slideshowInterval = 0; // necessary to be able to stop the current slideshow and start a new one.
+// necessary to be able to stop the current slideshow and start a new one.
+// Otherwise the interval goes out of scope and gets lost.
+var slideshowInterval = 0; 
 
 function startRotator(jsonObj) {
 	// console.log("interval before: " + slideshowInterval);
@@ -280,10 +282,46 @@ function rotateImage(imageList, imageIndex) {
 function formatImage(image, dimensionToAlter, maxWidth, maxHeight, imgWidth, imgHeight, windowWidth, windowHeight) {
 
 
-	if ( dimensionToAlter === "width" ) {
 
-		// width is too big. constrain width.
-		var percentChange = maxWidth / imgWidth; // % change between current and max.
+	var percentChange = maxWidth / imgWidth;
+	console.log("Image values before adjustment:")
+	console.log("Height: " + imgHeight);
+	console.log("Width: " + imgWidth);
+	console.log("Percent change:" + percentChange);
+
+	if ( (imgHeight * percentChange) > maxHeight ) {
+		// width change won't bring height within tolerance. resize height.
+		percentChange = maxHeight / imgHeight;
+		imgHeight = maxHeight; //set imgHeight to max allowable.
+		imgWidth = imgWidth * percentChange; // set width to the same percentage change.
+		console.log("Image values after adjustment:")
+		console.log("Height: " + imgHeight);
+		console.log("Width: " + imgWidth);
+
+		// Set image height & width.
+		image.attr({
+			"height": imgHeight,
+			"width": imgWidth,
+		});
+
+		// Now calculate the CSS positioning.
+		leftValue = (windowWidth - imgWidth) / 2;
+		image.css({
+			"top": "15px",
+			"left": leftValue,
+		});
+		
+		
+		console.log("Height was altered.");
+		console.log("Max width should be no larger than " + maxWidth);
+		console.log("Max height should be no larger than " + maxHeight);
+		console.log("Final image attributes:");
+		console.log(image[0]);
+		console.log("");
+		console.log("");
+
+	}	else {
+		// width change will bring height within tolerance. resize width.
 		imgWidth = maxWidth; //set imgWidth to max allowable.
 		imgHeight = imgHeight * percentChange; // set width to the same percentage change.
 		// Set image height & width.
@@ -303,39 +341,72 @@ function formatImage(image, dimensionToAlter, maxWidth, maxHeight, imgWidth, img
 		console.log("Width was altered.");
 		console.log("Max width should be no larger than " + maxWidth);
 		console.log("Max height should be no larger than " + maxHeight);
-		console.log("Final image attributes:")
+		console.log("Final image attributes:");
 		console.log(image[0]);
 		console.log("");
 		console.log("");
-
-	}	else {
-		// height is too big, or dimensions are equally too big. Constrain height.
-		var percentChange = maxHeight / imgHeight; // % change between current and max.
-		imgHeight = maxHeight; //set imgHeight to max allowable.
-		imgWidth = imgWidth * percentChange; // set width to the same percentage change.
-		// Set image height & width.
-		image.attr({
-			"height": imgHeight,
-			"width": imgWidth,
-		});
-
-		// Now calculate the CSS positioning.
-		leftValue = (windowWidth - imgWidth) / 2;
-		image.css({
-			"top": "15px",
-			"left": leftValue,
-		});
-		
-		
-		console.log("Height was altered.");
-		console.log("Max width should be no larger than " + maxWidth);
-		console.log("Max height should be no larger than " + maxHeight);
-		console.log("Final image attributes:")
-		console.log(image[0]);
-		console.log("");
-		console.log("");
-
 	}
+
+
+
+
+
+	// if ( dimensionToAlter === "width" ) {
+
+	// 	// width is too big. constrain width.
+	// 	var percentChange = maxWidth / imgWidth; // % change between current and max.
+	// 	imgWidth = maxWidth; //set imgWidth to max allowable.
+	// 	imgHeight = imgHeight * percentChange; // set width to the same percentage change.
+	// 	// Set image height & width.
+	// 	image.attr({
+	// 		"height": imgHeight,
+	// 		"width": imgWidth,
+	// 	});
+
+	// 	// Now calculate the CSS positioning.
+	// 	var topValue = (windowHeight - imgHeight) / 2;
+	// 	image.css({
+	// 		"top": topValue,
+	// 		"left": "15px",
+	// 	});
+
+		
+	// 	console.log("Width was altered.");
+	// 	console.log("Max width should be no larger than " + maxWidth);
+	// 	console.log("Max height should be no larger than " + maxHeight);
+	// 	console.log("Final image attributes:")
+	// 	console.log(image[0]);
+	// 	console.log("");
+	// 	console.log("");
+
+	// }	else {
+	// 	// height is too big, or dimensions are equally too big. Constrain height.
+	// 	var percentChange = maxHeight / imgHeight; // % change between current and max.
+	// 	imgHeight = maxHeight; //set imgHeight to max allowable.
+	// 	imgWidth = imgWidth * percentChange; // set width to the same percentage change.
+	// 	// Set image height & width.
+	// 	image.attr({
+	// 		"height": imgHeight,
+	// 		"width": imgWidth,
+	// 	});
+
+	// 	// Now calculate the CSS positioning.
+	// 	leftValue = (windowWidth - imgWidth) / 2;
+	// 	image.css({
+	// 		"top": "15px",
+	// 		"left": leftValue,
+	// 	});
+		
+		
+	// 	console.log("Height was altered.");
+	// 	console.log("Max width should be no larger than " + maxWidth);
+	// 	console.log("Max height should be no larger than " + maxHeight);
+	// 	console.log("Final image attributes:")
+	// 	console.log(image[0]);
+	// 	console.log("");
+	// 	console.log("");
+
+	// }
 }
 
 
