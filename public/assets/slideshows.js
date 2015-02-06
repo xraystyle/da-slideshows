@@ -15,7 +15,7 @@ $(document).ready(function() {
 			old_selected.addClass('channel').removeClass('channel-selected');
 
 			$.post('update_slideshow', { set_uuid: uuid }, function(data, textStatus, xhr) {
-				console.log("Slideshow seed set to " + uuid);
+				// console.log("Slideshow seed set to " + uuid);
 			});
 		
 		}
@@ -38,21 +38,26 @@ function startSpinner() {
 	// find any current images, get rid of them.
 	$("img").not("#spinner").fadeOut(500, function() {
 		$("img").not("#spinner").remove();
-		console.log("Fading out existing images.");
+		// console.log("Fading out existing images.");
 	});
 	// make the spinner.
 	if ( $("#spinner").length ) {
-		// spinner already exists. fade it in.
+		// spinner already exists. make sure it's in the right spot and fade it in.
+		windowWidth = $(window).width();
+		windowHeight = $(window).height();
+
+		$("#spinner").css({
+			"left": (windowWidth - 75) / 2,
+			"top": (windowHeight - 75) / 2,
+		});
 		$("#spinner").fadeIn(2000);
-		console.log("A spinner already exists, not running makeSpiner()");
+		// console.log("A spinner already exists, not running makeSpiner()");
 	}	else {
-		console.log("Running makeSpinner()");
+		// console.log("Running makeSpinner()");
 		makeSpinner();
 	}
 	
 }
-
-
 
 // Make the spinner.
 function makeSpinner() {
@@ -78,7 +83,7 @@ function makeSpinner() {
 		opacity: 1.0},
 		2000, function() {
 		spinner.css('z-index', '0');
-		console.log("Spinner loaded.");
+		// console.log("Spinner loaded.");
 	});
 
 }
@@ -92,14 +97,11 @@ function makeSpinner() {
 function slideshowUpdate() {
 
 	currentSeed = $("#current-seed p:first").text();
-	// console.log("Current seed is " + currentSeed);
 
 	$.getJSON('update_slideshow', { current_seed: currentSeed }, function(json, textStatus) {
-		// console.log(json["update"])
 
 		if ( json["update"] == "false" ) {
 			// do nothing.
-			// console.log("No update.");
 		}	else {
 			
 			startSpinner();
@@ -113,14 +115,9 @@ function slideshowUpdate() {
 var slideshowInterval = 0; // necessary to be able to stop the current slideshow and start a new one.
 
 function startRotator(jsonObj) {
-	console.log("interval before: " + slideshowInterval);
+	// console.log("interval before: " + slideshowInterval);
 	clearInterval(slideshowInterval);
-	console.log("after clear:" + slideshowInterval);
-	// if ( typeof slideshowInterval === 'undefined' ) {
-	// 	console.log("slideshowInterval is undefined.");
-	// }	else {
-	// 	console.log(slideshowInterval);
-	// }	
+	// console.log("after clear:" + slideshowInterval);
 
 	$("#current-seed p:first").text(jsonObj["seed"]);
 	
@@ -139,8 +136,8 @@ function startRotator(jsonObj) {
 		}
 		
 	}, 5000);
-	console.log("After set:");
-	console.log(slideshowInterval);
+	// console.log("After set:");
+	// console.log(slideshowInterval);
 }
 
 
@@ -197,6 +194,13 @@ function rotateImage(imageList, imageIndex) {
 		// get the difference between the natural dimensions of the image and their max values.
 		var widthDifferece = maxWidth - imgWidth;
 		var heightDifference = maxHeight - imgHeight;
+
+		console.log("Window width is: " + windowWidth);
+		console.log("Window height is: " + windowHeight);
+		console.log("Image width is: " + imgWidth);
+		console.log("Image height is: " + imgHeight);
+		console.log("Width difference is: " + widthDifferece);
+		console.log("Height difference is: " + heightDifference);
 
 		// If we have to scale the images down:
 		// if both dimensions are too large:
@@ -263,7 +267,6 @@ function rotateImage(imageList, imageIndex) {
 		nextImage.animate({
 			opacity: 1},
 			2000, function() {
-				// console.log("Image should have faded in.");				
 				nextImage.css('z-index', '0');
 		});
 
@@ -275,24 +278,12 @@ function rotateImage(imageList, imageIndex) {
 
 // Size the image correctly for insertion into the slideshow.
 function formatImage(image, dimensionToAlter, maxWidth, maxHeight, imgWidth, imgHeight, windowWidth, windowHeight) {
-	// console.log("Start -------------------------------------------------");
 
-	// console.log("Starting values:");
-	// console.log("dimensionToAlter: " + dimensionToAlter);
-	// console.log("windowWidth: " + windowWidth);
-	// console.log("windowHeight: " + windowHeight);
-	// console.log("maxWidth: " + maxWidth);
-	// console.log("maxHeight: " + maxHeight);
-	// console.log("imgWidth: " + imgWidth);
-	// console.log("imgHeight: " + imgHeight);
-	// console.log("");
 
 	if ( dimensionToAlter === "width" ) {
 
 		// width is too big. constrain width.
 		var percentChange = maxWidth / imgWidth; // % change between current and max.
-		// console.log("Inside 'Alter Width.'");
-		// console.log("percentChange:" + percentChange);
 		imgWidth = maxWidth; //set imgWidth to max allowable.
 		imgHeight = imgHeight * percentChange; // set width to the same percentage change.
 		// Set image height & width.
@@ -308,18 +299,19 @@ function formatImage(image, dimensionToAlter, maxWidth, maxHeight, imgWidth, img
 			"left": "15px",
 		});
 
-		// console.log("Final image attributes:");
-		// console.log(image[0]);
-
 		
+		console.log("Width was altered.");
+		console.log("Max width should be no larger than " + maxWidth);
+		console.log("Max height should be no larger than " + maxHeight);
+		console.log("Final image attributes:")
+		console.log(image[0]);
+		console.log("");
+		console.log("");
+
 	}	else {
 		// height is too big, or dimensions are equally too big. Constrain height.
 		var percentChange = maxHeight / imgHeight; // % change between current and max.
-		// console.log("Inside 'Alter height.'");
-		// console.log("percentChange:" + percentChange);
-		// console.log("Max height is currently: " + maxHeight)
 		imgHeight = maxHeight; //set imgHeight to max allowable.
-		// console.log("imgHeight has been set to maxHeight. Value is now: " + imgHeight);
 		imgWidth = imgWidth * percentChange; // set width to the same percentage change.
 		// Set image height & width.
 		image.attr({
@@ -333,14 +325,17 @@ function formatImage(image, dimensionToAlter, maxWidth, maxHeight, imgWidth, img
 			"top": "15px",
 			"left": leftValue,
 		});
-
-		// console.log("Final image attributes:");
-		// console.log(image[0]);		
+		
+		
+		console.log("Height was altered.");
+		console.log("Max width should be no larger than " + maxWidth);
+		console.log("Max height should be no larger than " + maxHeight);
+		console.log("Final image attributes:")
+		console.log(image[0]);
+		console.log("");
+		console.log("");
 
 	}
-	// console.log("End -------------------------------------------------");
-	// console.log("");
-	// console.log("");
 }
 
 
