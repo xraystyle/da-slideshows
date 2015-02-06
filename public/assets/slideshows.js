@@ -161,9 +161,6 @@ function rotateImage(imageList, imageIndex) {
 	}
 
 	nextImageAspect = imageList[imageIndex]["aspect"];
-	console.log("Start -------------------------------------------------");
-	// console.log("Next image aspect is set to: " + nextImageAspect);
-	// console.log("The value of the json is: " + imageList[imageIndex]["aspect"]);
 
 	// when nextImage has loaded, we can get it's height and width, then go from there.
 	nextImage.load(function() {
@@ -187,156 +184,56 @@ function rotateImage(imageList, imageIndex) {
 			// both are too big. Constrain the one that's "more" too big.
 			if ( Math.abs(widthDifferece) > Math.abs(heightDifference) ) {
 				// width is too big. constrain width.
+				formatImage(nextImage, "width", maxWidth, maxHeight, imgWidth, imgHeight, windowWidth, windowHeight);
+
 			}	else {
 				// Height is too big, or the difference is the same. Constrain height.
+				formatImage(nextImage, "height", maxWidth, maxHeight, imgWidth, imgHeight, windowWidth, windowHeight);
 			}
+
 		} else if ( widthDifferece < 0 ) {
+
 			// Width is too big. Constrain width.
+			formatImage(nextImage, "width", maxWidth, maxHeight, imgWidth, imgHeight, windowWidth, windowHeight);
+
 		} else if ( heightDifference < 0 ) {
+
 			// Height is too big. Constrain height.
+			formatImage(nextImage, "height", maxWidth, maxHeight, imgWidth, imgHeight, windowWidth, windowHeight);
+
 		} else {
-			// Images don't need to be scaled down. do nothing.
+			// Images need to be scaled up.
+
+			// If we have to scale images up:
+			if ( windowAspect == "landscape" ) {
+
+				if ( nextImageAspect == "landscape" ) {
+					// scale up width.
+					formatImage(nextImage, "width", maxWidth, maxHeight, imgWidth, imgHeight, windowWidth, windowHeight);
+				}	else {
+					// scale up height.
+					formatImage(nextImage, "height", maxWidth, maxHeight, imgWidth, imgHeight, windowWidth, windowHeight);
+				}
+
+			} else if ( windowAspect == "portrait" ) {
+
+				if ( nextImageAspect == "portrait" ) {
+					// scale up height.
+					formatImage(nextImage, "height", maxWidth, maxHeight, imgWidth, imgHeight, windowWidth, windowHeight);
+				}	else {
+					// scale up width.
+					formatImage(nextImage, "width", maxWidth, maxHeight, imgWidth, imgHeight, windowWidth, windowHeight);
+				}
+				
+			}
+
 		}
 
 		
-		// If we have to scale images up:
-		if ( windowAspect == "landscape" ) {
-
-			if ( nextImageAspect == "landscape" ) {
-				// scale up width.
-			}	else {
-				// scale up height.
-			}
-
-
-
-		}	else if ( windowAspect == "portrait" )
-
-			if ( nextImageAspect == "portrait" ) {
-				// scale up height.
-			}	else {
-				// scale up width.
-			}
-			
-		}
-
-
-
-
-		// portrait window case.
-		// if ( windowAspect == "portrait" ) {
-		// 	// portrait image in portrait window case.
-		// 	if ( nextImageAspect == "portrait" ) {
-		// 		var maxHeight = windowHeight - 80;
-		// 		var percentChange = imgHeight / maxHeight; // % change between current and max.
-		// 		imgHeight = maxHeight; //set imgHeight to max allowable.
-		// 		imgWidth = imgWidth * percentChange; // set width to the same percentage change.
-
-		// 		nextImage.attr({
-		// 			"height": imgHeight,
-		// 			"width": imgWidth,
-		// 		});
-
-		// 		// now calculate the css positioning.
-		// 		nextImage.css({
-		// 			"top": "15px",
-		// 			"left": (windowWidth - imgWidth) / 2,
-		// 		});
-		// 		// landscape/square image in portrait window case.
-		// 	}else {
-		// 		var maxWidth = windowWidth - 80;
-		// 		var percentChange = imgWidth / maxWidth; // % change between current and max.
-		// 		imgWidth = maxWidth; //set imgHeight to max allowable.
-		// 		imgHeight = imgHeight * percentChange; // set width to the same percentage change.
-
-		// 		nextImage.attr({
-		// 			"height": imgHeight,
-		// 			"width": imgWidth,
-		// 		});
-
-		// 		// now calculate the css positioning.
-		// 		nextImage.css({
-		// 			"top": (windowHeight - imgHeight) / 2,
-		// 			"left": "15px",
-		// 		});
-		// 	}
-
-		// }
-
-		// Landscape window case.
-		if ( windowAspect == "landscape" ) {
-			// landscape image in landscape window case.
-			if ( nextImageAspect == "landscape" ) {
-
-				var maxWidth = windowWidth - 80;
-				console.log("Before calculations:");
-				console.log("imgWidth: " + imgWidth + " maxWidth: " + maxWidth + " Window width: " + windowWidth);
-				console.log("imgHeight: " + imgHeight);
-				var percentChange = maxWidth / imgWidth; // % change between current and max.
-				console.log("landscape image. Percent change:" + percentChange);
-				imgWidth = maxWidth; //set imgWidth to max allowable.
-				imgHeight = imgHeight * percentChange; // set width to the same percentage change.
-				console.log("Image height was set to: " + imgHeight);
-				console.log("Image width was set to " + imgWidth);
-
-				nextImage.attr({
-					"height": imgHeight,
-					"width": imgWidth,
-				});
-
-				// now calculate the css positioning.
-				console.log("windowHeight is " + windowHeight);
-				console.log("imgHeight is " + imgHeight);
-
-				var topValue = (windowHeight - imgHeight) / 2;
-				console.log("Calculated top to be: " + topValue);
-				nextImage.css({
-					"top": (windowHeight - imgHeight) / 2,
-					"left": "40px",
-				});
-
-				console.log("Final image attributes:");
-				console.log(nextImage[0]);
-
-			// portrait/square image in portrait window case.
-			}	else {
-				var maxHeight = windowHeight - 80;
-				console.log("Before calculations:");
-				console.log("imgHeight: " + imgHeight + " maxHeight: " + maxHeight + " Window height: " + windowHeight);
-				console.log("imgWidth: " + imgWidth);
-				var percentChange = maxHeight / imgHeight; // % change between current and max.
-				console.log("portrait image. Percent change:" + percentChange);
-				imgHeight = maxHeight; //set imgHeight to max allowable.
-				imgWidth = imgWidth * percentChange; // set width to the same percentage change.
-				console.log("Image height was set to: " + imgHeight);
-
-				nextImage.attr({
-					"height": imgHeight,
-					"width": imgWidth,
-				});
-
-				// now calculate the css positioning.
-				console.log("windowWidth is " + windowWidth);
-				console.log("imgWidth is " + imgWidth);
-				leftValue = (windowWidth - imgWidth) / 2;
-				console.log("Calculated left to be: " + leftValue);
-				nextImage.css({
-					"top": "40px",
-					"left": leftValue,
-				});
-
-				console.log("Final image attributes:");
-				console.log(nextImage[0]);
-
-			}
-			console.log("End -------------------------------------------------------------");
-
-
-		}
 
 		slideshowDiv.append(nextImage);
 
-		currentImage.animate({opacity: 0}, 2000)
+		currentImage.animate({opacity: 0}, 2000);
 
 		nextImage.animate({
 			opacity: 1},
@@ -347,111 +244,80 @@ function rotateImage(imageList, imageIndex) {
 		});
 
 
-
-	});
+	});  //end of load function.
 
 }
 
 
+// Size the image correctly for insertion into the slideshow.
+function formatImage(image, dimensionToAlter, maxWidth, maxHeight, imgWidth, imgHeight, windowWidth, windowHeight) {
+	console.log("Start -------------------------------------------------");
 
+	console.log("Starting values:");
+	console.log("dimensionToAlter: " + dimensionToAlter);
+	console.log("windowWidth: " + windowWidth);
+	console.log("windowHeight: " + windowHeight);
+	console.log("maxWidth: " + maxWidth);
+	console.log("maxHeight: " + maxHeight);
+	console.log("imgWidth: " + imgWidth);
+	console.log("imgHeight: " + imgHeight);
+	console.log("");
 
+	if ( dimensionToAlter === "width" ) {
 
+		// width is too big. constrain width.
+		var percentChange = maxWidth / imgWidth; // % change between current and max.
+		console.log("Inside 'Alter Width.'");
+		console.log("percentChange:" + percentChange);
+		imgWidth = maxWidth; //set imgWidth to max allowable.
+		imgHeight = imgHeight * percentChange; // set width to the same percentage change.
+		// Set image height & width.
+		image.attr({
+			"height": imgHeight,
+			"width": imgWidth,
+		});
 
+		// Now calculate the CSS positioning.
+		var topValue = (windowHeight - imgHeight) / 2;
+		image.css({
+			"top": topValue,
+			"left": "15px",
+		});
 
-// old function, not using this.
-// function startSlideshow(imageList) {
-// 	console.log("I'm starting the slideshow.");
-// 	var imageIndex = 0;
-// 	initialSeedValue = $("#current-seed p:first").text();
-
-// 	// this is where the images are displayed:
-// 	slideshowDiv = $("#slideshow div:first");
-
-// 	// This is the placeholder div for each newly created image:
-// 	placeholderDiv = $("#placeholder")
-
-// 	while ( initialSeedValue == $("#current-seed p:first").text() ) {
-// 		console.log("In the while loop now...");
-
-// 		// get the current image if it exists.
-// 		currentImage = $("#slideshow div img:first");
-
-// 		currentImage.css('z-index', '0');
+		console.log("Final image attributes:");
+		console.log(image[0]);
 
 		
-// 		// if there's an image at imageIndex, use it. Otherwise set 
-// 		// imageIndex back to 0 and continue, so we start over.
-// 		if ( imageList.hasOwnProperty(imageIndex) ) {
+	}	else {
+		// height is too big, or dimensions are equally too big. Constrain height.
+		var percentChange = maxHeight / imgHeight; // % change between current and max.
+		console.log("Inside 'Alter height.'");
+		console.log("percentChange:" + percentChange);
+		console.log("Max height is currently: " + maxHeight)
+		imgHeight = maxHeight; //set imgHeight to max allowable.
+		console.log("imgHeight has been set to maxHeight. Value is now: " + imgHeight);
+		imgWidth = imgWidth * percentChange; // set width to the same percentage change.
+		// Set image height & width.
+		image.attr({
+			"height": imgHeight,
+			"width": imgWidth,
+		});
 
+		// Now calculate the CSS positioning.
+		leftValue = (windowWidth - imgWidth) / 2;
+		image.css({
+			"top": "15px",
+			"left": leftValue,
+		});
 
-// 			// load the image at index imageIndex into the next-image div.
-// 			var nextImage = $("<img />", { src: imageList[imageIndex]["url"], "css" : {"opacity" : "0"} }).appendTo(placeholderDiv);
+		console.log("Final image attributes:");
+		console.log(image[0]);		
 
-// 			nextImage.load(function() {
-// 				console.log("Hit load callback...");
-// 				var imgWidth = $(this).width();
-// 				var imgHeight = $(this).height();
-// 				console.log("Width: " + imgWidth + ". Height: " + imgHeight);
-// 				windowWidth = $(window).width();
-// 				windowHeight = $(window).height();
-
-// 				leftValue = (windowWidth - imgWidth) / 2;
-// 				topValue = (windowHeight - imgHeight) / 2;
-				
-// 				console.log("Setting top and left. Should be " + topValue + " and " + leftValue);
-// 				nextImage.css({
-// 					"left": leftValue,
-// 					"top": topValue,
-// 					"z-index": '1',
-// 					"position": "absolute",
-// 					"vertical-align": "middle"
-// 				});
-				
-// 			});
-
-// 			slideshowDiv.append(nextImage);
-
-
-// 			nextImage.animate({
-// 				opacity: 1},
-// 				2000, function() {
-// 					console.log("Image should have faded in.");				
-// 					currentImage.remove();
-// 					nextImage.css('z-index', '0');
-// 			});
-
-// 			imageIndex++;
-
-
-// 			// break;
-// 		}	else {
-// 			console.log("Hit the else statement.");
-// 			imageIndex = 0;
-// 			continue;
-// 		}
-
-// 	}
-
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	}
+	console.log("End -------------------------------------------------");
+	console.log("");
+	console.log("");
+}
 
 
 
