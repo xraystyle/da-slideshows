@@ -37,12 +37,16 @@ $(document).ready(function() {
 function startSpinner() {
 	// find any current images, get rid of them.
 	$("img").not("#spinner").fadeOut(500, function() {
-		$("img").remove();
+		$("img").not("#spinner").remove();
+		console.log("Fading out existing images.");
 	});
 	// make the spinner.
 	if ( $("#spinner").length ) {
-		// spinner already exists. leave it alone.
+		// spinner already exists. fade it in.
+		$("#spinner").fadeIn(2000);
+		console.log("A spinner already exists, not running makeSpiner()");
 	}	else {
+		console.log("Running makeSpinner()");
 		makeSpinner();
 	}
 	
@@ -54,7 +58,11 @@ function startSpinner() {
 function makeSpinner() {
 	// make the element.
 	var spinner = $("<img />", {id: "spinner", src: "../images/ajax_loader_vector.gif", width: "75", height: "75"});
-	spinner.css('opacity', '0.0');
+	// spinner.css('opacity', '0.0');
+	spinner.css({
+		"opacity": '0',
+		"z-index": '2',
+	});
 
 	windowWidth = $(window).width();
 	windowHeight = $(window).height();
@@ -66,9 +74,10 @@ function makeSpinner() {
 
 	$("#slideshow div:first").append(spinner);
 	// fade it in.
-	$("#slideshow div img:first").animate({
+	$(spinner).animate({
 		opacity: 1.0},
-		1000, function() {
+		2000, function() {
+		spinner.css('z-index', '0');
 		console.log("Spinner loaded.");
 	});
 
@@ -92,6 +101,8 @@ function slideshowUpdate() {
 			// do nothing.
 			// console.log("No update.");
 		}	else {
+			
+			startSpinner();
 			startRotator(json);
 		}
 		
@@ -112,7 +123,7 @@ function startRotator(jsonObj) {
 	// }	
 
 	$("#current-seed p:first").text(jsonObj["seed"]);
-	startSpinner();
+	
 
 	whichImage = 0;
 
@@ -145,7 +156,7 @@ function rotateImage(imageList, imageIndex) {
 	placeholderDiv = $("#placeholder");
 
 	// get the current image if it exists.
-	currentImage = $("#slideshow div img:first");
+	currentImage = $("#slideshow div img").not("#spinner");
 	// send it to the back.
 	currentImage.css('z-index', '0');
 
@@ -240,6 +251,7 @@ function rotateImage(imageList, imageIndex) {
 
 
 		slideshowDiv.append(nextImage);
+		$("#spinner").fadeOut(2000);
 
 		// currentImage.animate({opacity: 0}, 2000);
 		currentImage.animate({
