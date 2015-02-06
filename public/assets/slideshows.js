@@ -24,6 +24,7 @@ $(document).ready(function() {
 
 
 	if ($("#slideshow").length) {
+		$('html, body').css('cursor', 'none');
 		startSpinner();
 		setInterval(slideshowUpdate, 1000);
 	}
@@ -38,7 +39,7 @@ function startSpinner() {
 	// find any current images, get rid of them.
 	$("img").not("#spinner").fadeOut(500, function() {
 		$("img").not("#spinner").remove();
-		console.log("Fading out existing images.");
+		// console.log("Fading out existing images.");
 	});
 	// make the spinner.
 	if ( $("#spinner").length ) {
@@ -51,9 +52,9 @@ function startSpinner() {
 			"top": (windowHeight - 75) / 2,
 		});
 		$("#spinner").fadeIn(2000);
-		console.log("A spinner already exists, not running makeSpiner()");
+		// console.log("A spinner already exists, not running makeSpiner()");
 	}	else {
-		console.log("Running makeSpinner()");
+		// console.log("Running makeSpinner()");
 		makeSpinner();
 	}
 	
@@ -83,7 +84,7 @@ function makeSpinner() {
 		opacity: 1.0},
 		2000, function() {
 		spinner.css('z-index', '0');
-		console.log("Spinner loaded.");
+		// console.log("Spinner loaded.");
 	});
 
 }
@@ -117,9 +118,9 @@ function slideshowUpdate() {
 var slideshowInterval = 0; 
 
 function startRotator(jsonObj) {
-	console.log("interval before: " + slideshowInterval);
+	// console.log("interval before: " + slideshowInterval);
 	clearInterval(slideshowInterval);
-	console.log("after clear:" + slideshowInterval);
+	// console.log("after clear:" + slideshowInterval);
 
 	$("#current-seed p:first").text(jsonObj["seed"]);
 	
@@ -138,8 +139,8 @@ function startRotator(jsonObj) {
 		}
 		
 	}, 5000);
-	console.log("After set:");
-	console.log(slideshowInterval);
+	// console.log("After set:");
+	// console.log(slideshowInterval);
 }
 
 
@@ -371,13 +372,13 @@ function formatImage(image, dimensionToAlter, maxWidth, maxHeight, imgWidth, img
 	// 	});
 
 		
-		console.log("Width was altered.");
-		console.log("Max width should be no larger than " + maxWidth);
-		console.log("Max height should be no larger than " + maxHeight);
-		console.log("Final image attributes:")
-		console.log(image[0]);
-		console.log("");
-		console.log("");
+		// console.log("Width was altered.");
+		// console.log("Max width should be no larger than " + maxWidth);
+		// console.log("Max height should be no larger than " + maxHeight);
+		// console.log("Final image attributes:")
+		// console.log(image[0]);
+		// console.log("");
+		// console.log("");
 
 	// }	else {
 	// 	// height is too big, or dimensions are equally too big. Constrain height.
@@ -398,13 +399,13 @@ function formatImage(image, dimensionToAlter, maxWidth, maxHeight, imgWidth, img
 	// 	});
 		
 		
-		console.log("Height was altered.");
-		console.log("Max width should be no larger than " + maxWidth);
-		console.log("Max height should be no larger than " + maxHeight);
-		console.log("Final image attributes:")
-		console.log(image[0]);
-		console.log("");
-		console.log("");
+		// console.log("Height was altered.");
+		// console.log("Max width should be no larger than " + maxWidth);
+		// console.log("Max height should be no larger than " + maxHeight);
+		// console.log("Final image attributes:")
+		// console.log(image[0]);
+		// console.log("");
+		// console.log("");
 
 	// }
 }
