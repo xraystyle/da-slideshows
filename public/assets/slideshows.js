@@ -135,7 +135,7 @@ function startRotator(jsonObj) {
 			whichImage++;
 		}
 		
-	}, 15000);
+	}, 15000); // Time per image.
 }
 
 
@@ -165,18 +165,6 @@ function rotateImage(imageList, imageIndex) {
 	windowWidth = $(window).width();
 	windowHeight = $(window).height();
 
-	if ( windowWidth > windowHeight ) {
-		windowAspect = "landscape";
-	}	else if ( windowHeight > windowWidth ) {
-		windowAspect = "portrait";
-	}	else {
-		// honestly, if your window is an exact square you're in the smallest
-		// of conceivable edge cases and I don't even want to deal with you.
-		windowAspect = "square";
-	}
-
-	nextImageAspect = imageList[imageIndex]["aspect"];
-
 	// when nextImage has loaded, we can get it's height and width, then go from there.
 	nextImage.load(function() {
 		$(this).appendTo(placeholderDiv);
@@ -193,57 +181,7 @@ function rotateImage(imageList, imageIndex) {
 		var widthDifferece = maxWidth - imgWidth;
 		var heightDifference = maxHeight - imgHeight;
 
-		// If we have to scale the images down:
-		// if both dimensions are too large:
-		if ( (widthDifferece < 0) && (heightDifference < 0) ) {
-			// both are too big. Constrain the one that's "more" too big.
-			if ( Math.abs(widthDifferece) > Math.abs(heightDifference) ) {
-				// width is too big. constrain width.
-				formatImage(nextImage, "width", maxWidth, maxHeight, imgWidth, imgHeight, windowWidth, windowHeight);
-
-			}	else {
-				// Height is too big, or the difference is the same. Constrain height.
-				formatImage(nextImage, "height", maxWidth, maxHeight, imgWidth, imgHeight, windowWidth, windowHeight);
-			}
-
-		} else if ( widthDifferece < 0 ) {
-
-			// Width is too big. Constrain width.
-			formatImage(nextImage, "width", maxWidth, maxHeight, imgWidth, imgHeight, windowWidth, windowHeight);
-
-		} else if ( heightDifference < 0 ) {
-
-			// Height is too big. Constrain height.
-			formatImage(nextImage, "height", maxWidth, maxHeight, imgWidth, imgHeight, windowWidth, windowHeight);
-
-		} else {
-			// Images need to be scaled up.
-
-			// If we have to scale images up:
-			if ( windowAspect == "landscape" ) {
-
-				if ( nextImageAspect == "landscape" ) {
-					// scale up width.
-					formatImage(nextImage, "width", maxWidth, maxHeight, imgWidth, imgHeight, windowWidth, windowHeight);
-				}	else {
-					// scale up height.
-					formatImage(nextImage, "height", maxWidth, maxHeight, imgWidth, imgHeight, windowWidth, windowHeight);
-				}
-
-			} else if ( windowAspect == "portrait" ) {
-
-				if ( nextImageAspect == "portrait" ) {
-					// scale up height.
-					formatImage(nextImage, "height", maxWidth, maxHeight, imgWidth, imgHeight, windowWidth, windowHeight);
-				}	else {
-					// scale up width.
-					formatImage(nextImage, "width", maxWidth, maxHeight, imgWidth, imgHeight, windowWidth, windowHeight);
-				}
-				
-			}
-
-		}
-
+		formatImage(nextImage, maxWidth, maxHeight, imgWidth, imgHeight, windowWidth, windowHeight);
 
 		slideshowDiv.append(nextImage);
 
@@ -299,7 +237,7 @@ function rotateImage(imageList, imageIndex) {
 
 
 // Size the image correctly for insertion into the slideshow.
-function formatImage(image, dimensionToAlter, maxWidth, maxHeight, imgWidth, imgHeight, windowWidth, windowHeight) {
+function formatImage(image, maxWidth, maxHeight, imgWidth, imgHeight, windowWidth, windowHeight) {
 
 
 
