@@ -75,6 +75,13 @@ footer {
 	}
 }
 
+#back-button {
+	position: absolute;
+	left: 15px;
+	top: 15px;
+	z-index: 3;
+}
+
 #spinner {
 	z-index: 0;
 	position: absolute;

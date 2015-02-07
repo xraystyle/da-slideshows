@@ -1,4 +1,4 @@
-var justHidden = false;
+var justHidden = false; // Used for mouse hide function.
 
 $(document).ready(function() {
 
@@ -26,18 +26,19 @@ $(document).ready(function() {
 
 
 	if ($("#slideshow").length) {
-		// $('html, body').css('cursor', 'none');
-
-		var j;
+		// Hide the mouse if it stops moving.
+		var navHide;
 		$(document).mousemove(function() {
 			if (!justHidden) {
 				justHidden = false;
-				console.log('move');
-				clearTimeout(j);
+				// console.log('move');
+				clearTimeout(navHide);
 				$('html').css({cursor: 'default'});
-				j = setTimeout(hide, 1000);
+				$("#back-button").fadeIn();
+				navHide = setTimeout(hide, 1000);
 			}
 		});
+
 
 		slideshowUpdate();
 		startSpinner();
@@ -46,8 +47,10 @@ $(document).ready(function() {
 
 });
 
+// mouse hide function.
 function hide() {
     $('html').css({cursor: 'none'});
+    $("#back-button").fadeOut();
     justHidden = true;
     setTimeout(function() {
         justHidden = false;
@@ -58,7 +61,7 @@ function hide() {
 // and when slideshow is switched.
 function startSpinner() {
 	// find any current images, get rid of them.
-	$("img").not("#spinner").fadeOut(500, function() {
+	$("img").not("#spinner, #back-button").fadeOut(500, function() {
 		$("img").not("#spinner").remove();
 	});
 	// make the spinner.
