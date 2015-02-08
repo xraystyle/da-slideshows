@@ -29,6 +29,7 @@ $(document).ready(function() {
 	if ($("#slideshow").length) {
 		// Hide the mouse if it stops moving.
 		var navHide;
+		hide();
 		$(document).mousemove(function() {
 			if (!justHidden) {
 				justHidden = false;
