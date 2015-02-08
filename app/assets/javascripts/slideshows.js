@@ -1,6 +1,7 @@
 var justHidden = false; // Used for mouse hide function.
 
 $(document).ready(function() {
+	console.log("ready event fired.");
 
 	// tell the server to change the slideshow image.
 	$(".channel, .channel-selected").click(function() {
