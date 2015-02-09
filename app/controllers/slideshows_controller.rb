@@ -14,7 +14,7 @@ class SlideshowsController < ApplicationController
 
 		whats_hot = Slideshow.where(seed: @@wh).first
 
-		@channels = whats_hot.deviations.map { |d| {thumb: d.thumb, uuid: d.uuid} }.compact # add unless d.mature? for mature filter.
+		@channels = whats_hot.deviations.map { |d| {thumb: d.thumb, uuid: d.uuid} }.compact # add .where(mature: false) for mature filter.
 
 	end
 
@@ -50,14 +50,14 @@ class SlideshowsController < ApplicationController
 			else
 				url_hash = { seed: seed_in_db }
 				first_deviation = Deviation.where(uuid: seed_in_db).first
-				url_hash[0] = { url: first_deviation.src, aspect: first_deviation.orientation }
+				url_hash[0] = { url: first_deviation.src, title: first_deviation.title, author: first_deviation.author, link: first_deviation.url }
 				deviations = current_user.slideshow.deviations
-				urls = deviations.map { |d| { url: d.src, aspect: d.orientation } }.compact
+				urls = deviations.map { |d| { url: d.src, title: d.title, author: d.author, link: d.url } }.compact
 
 				urls.each_with_index do |u,i|
 					url_hash[i+1] = u
 				end
-				puts "Sending updated URL list..."
+				# puts "Sending updated URL list..."
 				render json: url_hash
 
 			end
