@@ -1,7 +1,6 @@
 var justHidden = false; // Used for mouse hide function.
 
 $(document).ready(function() {
-	console.log("ready event fired.");
 
 	// tell the server to change the slideshow image.
 	$(".channel, .channel-selected").click(function() {
@@ -29,6 +28,9 @@ $(document).ready(function() {
 	if ($("#slideshow").length) {
 		// Hide the mouse if it stops moving.
 		var navHide;
+		
+		setTimeout(hide, 1000);
+
 		$(document).mousemove(function() {
 			if (!justHidden) {
 				justHidden = false;
@@ -36,10 +38,10 @@ $(document).ready(function() {
 				clearTimeout(navHide);
 				$('html').css({cursor: 'default'});
 				$("#back-button").fadeIn();
+				$("#attribution").slideDown(100);
 				navHide = setTimeout(hide, 1000);
 			}
 		});
-
 
 		slideshowUpdate();
 		startSpinner();
@@ -52,6 +54,7 @@ $(document).ready(function() {
 function hide() {
     $('html').css({cursor: 'none'});
     $("#back-button").fadeOut();
+    $("#attribution").slideUp(100);
     justHidden = true;
     setTimeout(function() {
         justHidden = false;
@@ -63,7 +66,7 @@ function hide() {
 function startSpinner() {
 	// find any current images, get rid of them.
 	$("img").not("#spinner, #back-button").fadeOut(500, function() {
-		$("img").not("#spinner").remove();
+		$("img").not("#spinner, #back-button").remove();
 	});
 	// make the spinner.
 	if ( $("#spinner").length ) {
@@ -181,15 +184,24 @@ function rotateImage(imageList, imageIndex) {
 	// load the image at index imageIndex into the next-image div.
 	var nextImage = $("<img />", { src: imageList[imageIndex]["url"], "css" : {"opacity" : "0"} });
 
+	// get the title and artist info for the attribution.
+	var imageTitle = imageList[imageIndex]["title"];
+	var imageAuthor = imageList[imageIndex]["author"];
+	var deviationPage = imageList[imageIndex]["link"];
+	var attributionText = "\"" + imageTitle + "\" by " + imageAuthor;
 	// Once the image is loaded, do some schmaculating about how big it should be and where to put it.
 	// There should be a 15px space between the image and all sides of the window.
 
-	// Get window height, width, and orientation(portrait|landscape|square).
+	// Get window height, width.
 	windowWidth = $(window).width();
 	windowHeight = $(window).height();
 
 	// when nextImage has loaded, we can get it's height and width, then go from there.
 	nextImage.load(function() {
+
+		// clear the attribution.
+		$("#attribution a").text("");
+
 		$(this).appendTo(placeholderDiv);
 		// get the natural dimensions of the image.
 		var imgWidth = $(this).get(0).naturalWidth;
@@ -208,8 +220,6 @@ function rotateImage(imageList, imageIndex) {
 
 		slideshowDiv.append(nextImage);
 
-		// $("#spinner").fadeOut(1);
-
 		if ( $("#spinner").css('display') == "none" ) {
 			// No spinner to deal with. animate the images.
 			currentImage.animate({
@@ -222,6 +232,9 @@ function rotateImage(imageList, imageIndex) {
 				opacity: 1},
 				2000, function() {
 					nextImage.css('z-index', '0');
+					// Set the text and href for the attribution at the top of the page.
+					$("#attribution a").text(attributionText);
+					$("#attribution a").attr('href', deviationPage);
 			});
 
 
@@ -235,6 +248,9 @@ function rotateImage(imageList, imageIndex) {
 					opacity: 1},
 					2000, function() {
 						nextImage.css('z-index', '0');
+					// Set the text and href for the attribution at the top of the page.
+					$("#attribution a").text(attributionText);
+					$("#attribution a").attr('href', deviationPage);
 				});
 
 
@@ -261,8 +277,6 @@ function rotateImage(imageList, imageIndex) {
 
 // Size the image correctly for insertion into the slideshow.
 function formatImage(image, maxWidth, maxHeight, imgWidth, imgHeight, windowWidth, windowHeight) {
-
-
 
 	var percentChange = maxWidth / imgWidth;
 
