@@ -50,15 +50,22 @@ class SlideshowsController < ApplicationController
 			else
 				url_hash = { seed: seed_in_db }
 				first_deviation = Deviation.where(uuid: seed_in_db).first
-				url_hash[0] = { url: first_deviation.src, title: first_deviation.title, author: first_deviation.author, link: first_deviation.url }
+
+				url_hash[0] = { url: first_deviation.src, title: first_deviation.title, author: first_deviation.author, link: first_deviation.url } if first_deviation
+
 				deviations = current_user.slideshow.deviations
 				urls = deviations.map { |d| { url: d.src, title: d.title, author: d.author, link: d.url } }.compact
 
 				urls.each_with_index do |u,i|
-					url_hash[i+1] = u
+					if first_deviation
+						url_hash[i+1] = u
+					else
+						url_hash[i] = u
+					end
+					
 				end
-				# puts "Sending updated URL list..."
 				render json: url_hash
+
 
 			end
 
