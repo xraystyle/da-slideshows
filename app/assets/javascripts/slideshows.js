@@ -66,7 +66,7 @@ function hide() {
 function startSpinner() {
 	// find any current images, get rid of them.
 	$("img").not("#spinner, #back-button").fadeOut(500, function() {
-		$("img").not("#spinner").remove();
+		$("img").not("#spinner, #back-button").remove();
 	});
 	// make the spinner.
 	if ( $("#spinner").length ) {
@@ -219,8 +219,6 @@ function rotateImage(imageList, imageIndex) {
 		formatImage(nextImage, maxWidth, maxHeight, imgWidth, imgHeight, windowWidth, windowHeight);
 
 		slideshowDiv.append(nextImage);
-
-		// $("#spinner").fadeOut(1);
 
 		if ( $("#spinner").css('display') == "none" ) {
 			// No spinner to deal with. animate the images.
