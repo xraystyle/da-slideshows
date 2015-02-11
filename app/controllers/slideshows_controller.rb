@@ -14,7 +14,7 @@ class SlideshowsController < ApplicationController
 
 		whats_hot = Slideshow.where(seed: @@wh).first
 
-		@channels = whats_hot.deviations.map { |d| {thumb: d.thumb, uuid: d.uuid} }.compact # add .where(mature: false) for mature filter.
+		@channels = whats_hot.deviations.where(mature: false).map { |d| {thumb: d.thumb, uuid: d.uuid} }.compact # add .where(mature: false) for mature filter.
 
 	end
 
@@ -53,7 +53,7 @@ class SlideshowsController < ApplicationController
 
 				url_hash[0] = { url: first_deviation.src, title: first_deviation.title, author: first_deviation.author, link: first_deviation.url } if first_deviation
 
-				deviations = current_user.slideshow.deviations
+				deviations = current_user.slideshow.deviations.where(mature: false) # add .where(mature: false) for mature filter.
 				urls = deviations.map { |d| { url: d.src, title: d.title, author: d.author, link: d.url } }.compact
 
 				urls.each_with_index do |u,i|
