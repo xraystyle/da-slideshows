@@ -239,13 +239,22 @@ function rotateImage(imageList, imageIndex) {
 					nextImage.css('z-index', '0');
 			});
 
-			// fade out the current attribution
-			currentAttribution.fadeOut(2000);
-			// fade in the new one, then delete the old one and set the id in the callback.
-			nextAttribution.fadeIn(2000, function() {
+			// fade out the current attribution if it's visible
+			if ( $("#attribution").css("display") === "block" ) {
+				
+				currentAttribution.fadeOut(2000);
+				// fade in the new one, then delete the old one and set the id in the callback.
+				nextAttribution.fadeIn(2000, function() {
+					currentAttribution.remove();
+					$(this).attr('id', 'attribution');
+				});
+
+			}	else {
+				// just swap 'em out if they're not visible.
 				currentAttribution.remove();
-				$(this).attr('id', 'attribution');
-			});
+				nextAttribution.attr('id', 'attribution');
+			}
+
 			
 		}	else {
 			// fade out the spinner, animate images with a callback.
@@ -264,14 +273,22 @@ function rotateImage(imageList, imageIndex) {
 					currentImage.remove();
 				});
 
-				// fade out the current attribution
-				currentAttribution.fadeOut(2000);
-				// fade in the new one, then delete the old one and set the id in the callback.
-				nextAttribution.fadeIn(2000, function() {
+				// fade out the current attribution if it's visible
+				if ( $("#attribution").css("display") === "block" ) {
+					
+					currentAttribution.fadeOut(2000);
+					// fade in the new one, then delete the old one and set the id in the callback.
+					nextAttribution.fadeIn(2000, function() {
+						currentAttribution.remove();
+						$(this).attr('id', 'attribution');
+					});
+
+				}	else {
+					// just swap 'em out if they're not visible.
 					currentAttribution.remove();
-					$(this).attr('id', 'attribution');
-				});
-								
+					nextAttribution.attr('id', 'attribution');
+				}
+
 			});
 
 		}
