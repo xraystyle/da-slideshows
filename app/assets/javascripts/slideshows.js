@@ -204,7 +204,9 @@ function rotateImage(imageList, imageIndex) {
 
 		// create a new attribution p with the correct text.
 		var nextAttribution = $("<p />", { "css" : {"display" : "none"} } );
-		nextAttribution.text(attributionText);
+		var link = $("<a />", { "href" : deviationPage, "target" : "_blank" } );
+		$(nextAttribution).append(link);
+		link.text(attributionText);
 
 		// append this new image to the placeholder.
 		$(this).appendTo(placeholderDiv);
