@@ -199,10 +199,19 @@ function rotateImage(imageList, imageIndex) {
 	// when nextImage has loaded, we can get it's height and width, then go from there.
 	nextImage.load(function() {
 
-		// clear the attribution.
-		$("#attribution a").text("");
+		// get the current attribution p so we can fade it out and replace it with the next one.
+		var currentAttribution = $("#attribution");
 
+		// create a new attribution p with the correct text.
+		var nextAttribution = $("<p />", { "css" : {"display" : "none"} } );
+		nextAttribution.text(attributionText);
+
+		// append this new image to the placeholder.
 		$(this).appendTo(placeholderDiv);
+
+		// append the new attribution div to the .credited div.
+		$(".credited").append(nextAttribution);
+
 		// get the natural dimensions of the image.
 		var imgWidth = $(this).get(0).naturalWidth;
 		var imgHeight = $(this).get(0).naturalHeight;
@@ -211,10 +220,6 @@ function rotateImage(imageList, imageIndex) {
 		// There should be a 15px border on each side. That means the max = total - 30.
 		var maxWidth = windowWidth - 30;
 		var maxHeight = windowHeight - 30;
-
-		// get the difference between the natural dimensions of the image and their max values.
-		var widthDifferece = maxWidth - imgWidth;
-		var heightDifference = maxHeight - imgHeight;
 
 		formatImage(nextImage, maxWidth, maxHeight, imgWidth, imgHeight, windowWidth, windowHeight);
 
@@ -232,12 +237,15 @@ function rotateImage(imageList, imageIndex) {
 				opacity: 1},
 				2000, function() {
 					nextImage.css('z-index', '0');
-					// Set the text and href for the attribution at the top of the page.
-					$("#attribution a").text(attributionText);
-					$("#attribution a").attr('href', deviationPage);
 			});
 
-
+			// fade out the current attribution
+			currentAttribution.fadeOut(2000);
+			// fade in the new one, then delete the old one and set the id in the callback.
+			nextAttribution.fadeIn(2000, function() {
+				currentAttribution.remove();
+				$(this).attr('id', 'attribution');
+			});
 			
 		}	else {
 			// fade out the spinner, animate images with a callback.
@@ -248,18 +256,22 @@ function rotateImage(imageList, imageIndex) {
 					opacity: 1},
 					2000, function() {
 						nextImage.css('z-index', '0');
-					// Set the text and href for the attribution at the top of the page.
-					$("#attribution a").text(attributionText);
-					$("#attribution a").attr('href', deviationPage);
 				});
-
 
 				currentImage.animate({
 					"opacity": "0"},
 					2000, function() {
 					currentImage.remove();
 				});
-					
+
+				// fade out the current attribution
+				currentAttribution.fadeOut(2000);
+				// fade in the new one, then delete the old one and set the id in the callback.
+				nextAttribution.fadeIn(2000, function() {
+					currentAttribution.remove();
+					$(this).attr('id', 'attribution');
+				});
+								
 			});
 
 		}
