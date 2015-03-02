@@ -33,7 +33,7 @@ class MLTCachcing
 		logger.info("What's Hot updated. Fetching MLT for WH list...")
 
 		# Retrieve the fresh What's Hot list.
-		whats_hot = Slideshow.where(seed: "00000000-0000-0000-0000-000000000001").first
+		whats_hot = Slideshow.whats_hot_slideshow
 
 		whats_hot.deviations.each do |d|
 

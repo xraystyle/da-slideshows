@@ -10,18 +10,11 @@ class SlideshowsController < ApplicationController
 	# Set up data to display the channel changer.
 	def channels
 
-		# @user_seed = current_user.seed
-
-		# whats_hot = Slideshow.where(seed: @@wh).first
-
-		# @channels = whats_hot.deviations.where(mature: false).map { |d| {thumb: d.thumb, uuid: d.uuid} }.compact # add .where(mature: false) for mature filter.
-
-
 		@user_seed = current_user.seed
 
-		needed_deviations = Slideshow.order(created_at: :desc).limit(150).map { |s| Deviation.where(uuid: s.seed).first }
+		whats_hot = Slideshow.whats_hot_slideshow
 
-		@channels = needed_deviations.map { |d| { thumb: d.thumb, uuid: d.uuid } }
+		@channels = whats_hot.deviations.where(mature: false).map { |d| {thumb: d.thumb, uuid: d.uuid} }.compact # add .where(mature: false) for mature filter.
 
 	end
 
