@@ -12,9 +12,15 @@ class SlideshowsController < ApplicationController
 
 		@user_seed = current_user.seed
 
-		whats_hot = Slideshow.where(seed: @@wh).first
+		whats_hot = Slideshow.whats_hot_slideshow
 
-		@channels = whats_hot.deviations.where(mature: false).map { |d| {thumb: d.thumb, uuid: d.uuid} }.compact # add .where(mature: false) for mature filter.
+		@channels = whats_hot.deviations.order(created_at: :desc).where(mature: false).map { |d| {thumb: d.thumb, uuid: d.uuid} }.compact # add .where(mature: false) for mature filter.
+
+		# If a slideshow doesn't exist for a given seed, having it show up in the channel changer will produce errors if it's
+		# selected as the user's channel. This happens when What's Hot has been updated, but before all the MLT results have been
+		# retrieved for deviations new to the What's Hot list. Selecting channels only if the associated slideshow exists
+		# prevents this error.
+		@channels.select! { |c| Slideshow.exists?(seed: c[:uuid]) }
 
 	end
 

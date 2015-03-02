@@ -28,7 +28,7 @@ module ApplicationHelper
 
 
 	def get_every_deviation_uuid
-		
+		log_message("get_every_deviation_uuid was just called.")
 		all_uuids = Set.new
 			
 		Deviation.find_each do |d|
