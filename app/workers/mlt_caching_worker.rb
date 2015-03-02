@@ -28,7 +28,7 @@ class MLTCachcing
 		logger.info("Refreshing What's Hot...")
 
 		# Update the What's Hot deviations list.
-		get_whats_hot
+		get_whats_hot(all_uuids)
 
 		logger.info("What's Hot updated. Fetching MLT for WH list...")
 
