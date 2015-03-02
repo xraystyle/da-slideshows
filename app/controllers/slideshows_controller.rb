@@ -14,7 +14,9 @@ class SlideshowsController < ApplicationController
 
 		whats_hot = Slideshow.whats_hot_slideshow
 
-		@channels = whats_hot.deviations.where(mature: false).map { |d| {thumb: d.thumb, uuid: d.uuid} }.compact # add .where(mature: false) for mature filter.
+		@channels = whats_hot.deviations.order(created_at: :desc).where(mature: false).map { |d| {thumb: d.thumb, uuid: d.uuid} }.compact # add .where(mature: false) for mature filter.
+
+		@channels.select! { |c| Slideshow.exists?(seed: c[:uuid]) }
 
 	end
 
