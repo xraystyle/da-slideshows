@@ -161,7 +161,7 @@ function startRotator(jsonObj) {
 			whichImage++;
 		}
 		
-	}, 15000); // Time per image.
+	}, 6000); // Time per image.
 }
 
 
