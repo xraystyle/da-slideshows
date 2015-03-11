@@ -4,6 +4,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include Devise::Controllers::Helpers
 
+  force_ssl if: :ssl_configured?
+
+  def ssl_configured?
+    !Rails.env.development? || !Rails.env.test?
+  end
+
   def resource_name
     :user
   end
