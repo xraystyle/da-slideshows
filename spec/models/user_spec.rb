@@ -52,6 +52,10 @@ RSpec.describe User, :type => :model do
 		it { should be_valid }
 	end
 
+	it "should send a welcome email on creation" do
+	  expect { @user.save }.to change { ActionMailer::Base.deliveries.count }.by(1)
+	end
+
 	describe "when email is not present" do
 		before { @user.email = " " }
 		it { should_not be_valid }
