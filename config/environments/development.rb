@@ -3,13 +3,13 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost', port: 9292 }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
+    address: "smtp.mailgun.org",
     port: 587,
-    domain: ENV["GMAIL_DOMAIN"],
-    authentication: "plain",
-    enable_starttls_auto: true,
-    user_name: ENV["GMAIL_USERNAME"],
-    password: ENV["GMAIL_PASSWORD"]
+    domain: ENV["MG_DOMAIN"],
+    # enable_starttls_auto: true,
+    user_name: ENV["MG_USERNAME"],
+    password: ENV["MG_PASSWORD"],
+    authentication: "plain"
   }
   # DO care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
