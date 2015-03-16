@@ -33,6 +33,7 @@ group :development, :test do
   gem 'erb2haml'
   gem 'factory_girl_rails', '4.2.0'
   gem 'sinatra', :require => nil
+  gem 'dotenv-rails'
 end
 
 group :test do

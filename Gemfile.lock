@@ -60,6 +60,9 @@ GEM
     did_you_mean (0.9.4)
       interception
     diff-lcs (1.2.5)
+    dotenv (2.0.0)
+    dotenv-rails (2.0.0)
+      dotenv (= 2.0.0)
     erb2haml (0.1.5)
       html2haml
     erubis (2.7.0)
@@ -262,6 +265,7 @@ DEPENDENCIES
   coffee-rails (= 4.0.1)
   devise
   did_you_mean
+  dotenv-rails
   erb2haml
   factory_girl_rails (= 4.2.0)
   faker (= 1.4.3)
