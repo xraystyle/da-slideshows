@@ -18,15 +18,3 @@
 			= yield
 			= render 'layouts/footer'
 			= debug(params) if Rails.env.development?
-
-
-
-	-# %p.notice= notice
-	-# %p.alert= alert
-	-# .nav
-	-# 	.
-	-# 	-if user_signed_in?
-	-# 		!= "#{link_to(current_user.email, edit_user_registration_path)} #{link_to("Sign Out", destroy_user_session_path, method: :delete)}"
-	-# 	-else 
-	-# 		!= "#{link_to("Sign in", new_user_session_path)} or #{link_to("Register", new_user_registration_path)}"
-	-# = yield
