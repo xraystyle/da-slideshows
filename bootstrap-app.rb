@@ -48,10 +48,10 @@ Signal.trap("INT") {
 
 
 
-puts "Don't use this in production.\n\n"
-puts "Press enter to continue, or ctrl-c to quit.\n\n"
+# puts "Don't use this in production.\n\n"
+# puts "Press enter to continue, or ctrl-c to quit.\n\n"
 
-gets
+# gets
 
 # Launch Postgres.app
 def start_postgres_app
