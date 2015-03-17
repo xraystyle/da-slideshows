@@ -18,6 +18,7 @@
 /config/secrets.yml
 .secret
 notes
+.env
 
 # Ignore images.
 /public/images/*
