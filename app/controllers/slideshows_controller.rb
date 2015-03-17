@@ -6,7 +6,6 @@ class SlideshowsController < ApplicationController
 
 	@@wh = "00000000-0000-0000-0000-000000000001"
 
-
 	# Set up data to display the channel changer.
 	def channels
 

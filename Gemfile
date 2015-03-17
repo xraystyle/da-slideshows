@@ -19,6 +19,7 @@ gem 'sidekiq'
 gem 'sidetiq'
 gem 'devise'
 gem 'pg'
+gem 'mailgun-ruby', '~>1.0.2', require: 'mailgun'
 
 
 
@@ -33,6 +34,7 @@ group :development, :test do
   gem 'erb2haml'
   gem 'factory_girl_rails', '4.2.0'
   gem 'sinatra', :require => nil
+  gem 'dotenv-rails'
 end
 
 group :test do

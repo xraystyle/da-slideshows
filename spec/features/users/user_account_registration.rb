@@ -16,6 +16,7 @@ describe "New user signs up for an account" do
     expect(page).to have_content "user@example.com"
     expect(page).to have_content "Channel Changer"
     expect(page).to have_content "My Slideshow"
+
   end
 
   scenario 'with an invalid email address' do
@@ -59,6 +60,5 @@ describe "New user signs up for an account" do
     
     expect(page).to have_content "Password confirmation doesn't match Password"
   end
-
   
 end

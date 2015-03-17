@@ -11,12 +11,12 @@ Rails.application.routes.draw do
 
 	root "static_pages#home"
 
-	devise_for :users
+	devise_for :users, controllers: { registrations: "registrations" }
 
 
 	match 'slideshows/update_slideshow',	to: 'slideshows#update_slideshow', 	via: 'post'
 	match 'slideshows/update_slideshow',	to: 'slideshows#update_slideshow', 	via: 'get'
-	match 'slideshows/', 									to: 'slideshows#home', 							via: 'get'
+	match 'slideshows/', 									to: 'static_pages#home', 						via: 'get'
 
 	# match "/users",				to: 'static_pages#home', via: 'get'
     # get 'static_pages/home'
