@@ -5,7 +5,24 @@
     %meta{content: 'text/html', charset: "UTF-8", 'http-equiv' => "Content-Type" }
 
   %body
-    %h1!= "Welcome to #{link_to("DA Slideshows", root_url(host: "da-slidesho.ws", port: 80))}!"
-    %p!= "Thanks for registering with #{link_to("DA Slideshows", root_url(host: "da-slidesho.ws", port: 80))}! We hope you use our app to find amazing art that you can share with friends and will inspire you to create your own."
+    %h1!= "Thanks for registering with #{link_to("DA Slideshows", root_url)}"
+    
+    %p!= "We hope you use our app to find amazing art that you can share with friends and will inspire you to create your own!"
+    
     %p Some quick tips to get you started:
-    %p!= "DA Slideshows has two parts. Your art  #{link_to("slideshow", slideshows_url(host: "da-slidesho.ws", port: 80))} and the channel changer: http://da-slidesho.ws/slideshows/channels The channel changer selects an artwork to start the slideshow, and then the slideshow will show you more art that is similar to the one selected."
+    
+    %p!= "DA Slideshows has two parts. Your art #{link_to("slideshow", url_for(action: 'slideshow', controller: 'slideshows', only_path: false))} and the #{link_to("channel changer", url_for(action: 'channels', controller: 'slideshows', only_path: false))} The channel changer selects an artwork to start the slideshow, and then the slideshow will show you more art that is similar to the one selected."
+    
+    %p This helps you find more great art that is similar to what you like.
+    
+    %p DA Slideshows works best when used with two devices. Sign in on both your computer and your mobile device, start the slideshow on the computer, and the channel changer on your tablet or phone. Now you can use your phone or tablet as a remote to change your slideshow from wherever you are!
+    
+    %p This is great for parties or social events if you have a smart TV or a game console with a web browser built in. DA Slideshows works great on Internet Explorer for Xbox One! Load your slideshow on your Xbox, then use the channel changer from your phone!
+    
+    %p The art in your slideshow displays the title and author of each piece, and the titles are links which will take you directly to the Deviation page for the piece on DeviantArt. From there you can comment on the piece, fave it, or buy a print. Just move your mouse or pointing device on the slideshow to unhide the title bar.
+
+    %p Thanks again for using #{link_to("DA Slideshows", root_url)}!
+
+    %p --The DA Slideshows Team
+
+
