@@ -5,7 +5,7 @@ RSpec.describe WelcomeMailer, :type => :mailer do
   describe "Welcome Email" do
     
     let(:user) { FactoryGirl.create(:user) }
-    let(:mail) { WelcomeMailer.welcome(user.email) }
+    let(:mail) { WelcomeMailer.delay.welcome(user.email) }
 
     it "renders the subject" do
       expect(mail.subject).to eq("Welcome to DA Slideshows!")
@@ -19,11 +19,6 @@ RSpec.describe WelcomeMailer, :type => :mailer do
       expect(mail.from).to eq('info@da-slidesho.ws')
     end
 
-
   end
-
-
-
-
 
 end
