@@ -1,0 +1,11 @@
+!!!
+
+%html
+  %head
+    %meta{content: 'text/html', charset: "UTF-8", 'http-equiv' => "Content-Type" }
+
+  %body
+    %h1!= "Welcome to #{link_to("DA Slideshows", root_url(host: "da-slidesho.ws", port: 80))}!"
+    %p!= "Thanks for registering with #{link_to("DA Slideshows", root_url(host: "da-slidesho.ws", port: 80))}! We hope you use our app to find amazing art that you can share with friends and will inspire you to create your own."
+    %p Some quick tips to get you started:
+    %p!= "DA Slideshows has two parts. Your art  #{link_to("slideshow", slideshows_url(host: "da-slidesho.ws", port: 80))} and the channel changer: http://da-slidesho.ws/slideshows/channels The channel changer selects an artwork to start the slideshow, and then the slideshow will show you more art that is similar to the one selected."
