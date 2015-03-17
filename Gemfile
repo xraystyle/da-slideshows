@@ -18,6 +18,7 @@ gem 'redis', '3.0.6'
 gem 'sidekiq'
 gem 'sidetiq'
 gem 'devise'
+gem 'devise-async'
 gem 'pg'
 gem 'mailgun-ruby', '~>1.0.2', require: 'mailgun'
 
