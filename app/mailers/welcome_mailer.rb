@@ -7,7 +7,7 @@ class WelcomeMailer < ActionMailer::Base
 
   def notify_me(user_email)
     @email = user_email
-    mail to: 'bclevin@gmail.com', subject: "New user just registered!"
+    mail from: "signups@da-slidesho.ws", to: 'bclevin@gmail.com', subject: "New user just registered!"
   end
 
 end

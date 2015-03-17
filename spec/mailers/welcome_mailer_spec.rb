@@ -29,12 +29,16 @@ RSpec.describe WelcomeMailer, :type => :mailer do
       expect(mail.to).to eq(["bclevin@gmail.com"])
     end
 
-    it "is sent from the correct address" do
+    it "has the correct subject" do
       expect(mail.subject).to eq("New user just registered!")
     end
 
     it "contains the email address of the new account" do
       expect(mail.body.encoded).to match(user.email)
+    end
+
+    it "is sent from the correct address" do
+      expect(mail.from).to eq(["signups@da-slidesho.ws"])
     end
 
   end
