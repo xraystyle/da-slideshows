@@ -3,11 +3,13 @@ class RegistrationsController < Devise::RegistrationsController
 
   def create
     super
-    WelcomeMailer.delay.welcome(@user.email) unless @user.invalid?
+    
+    unless @user.invalid?
+      WelcomeMailer.delay.welcome(@user.email)
+      WelcomeMailer.delay.notify_me(@user.email)
+    end
+
   end
-
-
-
 
 
 end
