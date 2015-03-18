@@ -7,7 +7,9 @@ Rails.application.routes.draw do
 
 	get 'slideshows/slideshow'
 
-	mount Sidekiq::Web => '/sidekiq'
+	authenticate :user, lambda { |u| u.admin? } do
+		mount Sidekiq::Web => '/sidekiq'		
+	end
 
 	root "static_pages#home"
 
