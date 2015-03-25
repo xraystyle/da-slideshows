@@ -1,56 +1,56 @@
 # This sidekiq worker will update the stored results for What's Hot every
 # 4 hours so that the results displayed on the channel changer will remain
-# relatively fresh. Then it will get MLT results for each deviation and 
+# relatively fresh. Then it will get MLT results for each deviation and
 # create a slideshow for each seed.
 class MLTCachcing
 
-	include ApplicationHelper
-	include ApiHelper
-	include Sidekiq::Worker
-	include Sidetiq::Schedulable
-	
-	sidekiq_options retry: false
+  include ApplicationHelper
+  include ApiHelper
+  include Sidekiq::Worker
+  include Sidetiq::Schedulable
 
-	recurrence backfill: false do
-		daily.hour_of_day(0, 4, 8, 12, 16, 20, 24) 
-	end
+  sidekiq_options retry: false
 
-	def perform
+  recurrence backfill: false do
+    daily.hour_of_day(0, 4, 8, 12, 16, 20, 24)
+  end
 
-		logger.info("Getting all deviation UUIDs...")
+  def perform
 
-		all_uuids = get_every_deviation_uuid
+    logger.info("Getting all deviation UUIDs...")
 
-		logger.info("Getting all slideshow seeds...")
+    all_uuids = get_every_deviation_uuid
 
-		all_seeds = get_every_slideshow_seed
+    logger.info("Getting all slideshow seeds...")
 
-		logger.info("Refreshing What's Hot...")
+    all_seeds = get_every_slideshow_seed
 
-		# Update the What's Hot deviations list.
-		get_whats_hot(all_uuids)
+    logger.info("Refreshing What's Hot...")
 
-		logger.info("What's Hot updated. Fetching MLT for WH list...")
+    # Update the What's Hot deviations list.
+    get_whats_hot(all_uuids)
 
-		# Retrieve the fresh What's Hot list.
-		whats_hot = Slideshow.whats_hot_slideshow
+    logger.info("What's Hot updated. Fetching MLT for WH list...")
 
-		whats_hot.deviations.each do |d|
+    # Retrieve the fresh What's Hot list.
+    whats_hot = Slideshow.whats_hot_slideshow
 
-			# Skip MLT fetching for slideshows that already exist.
-			# No real point in updating slideshows, the MLT results
-			# are fine as is. Plus, this MAJORLY cuts down on the
-			# number of unnecessary API calls.
-			next if all_seeds.include?(d.uuid)
+    whats_hot.deviations.each do |d|
 
-			# Get MLT results and park 'em in the DB.
-			get_mlt_results(d.uuid, all_uuids)
-			
-		end
+      # Skip MLT fetching for slideshows that already exist.
+      # No real point in updating slideshows, the MLT results
+      # are fine as is. Plus, this MAJORLY cuts down on the
+      # number of unnecessary API calls.
+      next if all_seeds.include?(d.uuid)
 
-		logger.info("MLT Caching run completed.\n")
+      # Get MLT results and park 'em in the DB.
+      get_mlt_results(d.uuid, all_uuids)
 
-	end
+    end
+
+    logger.info("MLT Caching run completed.\n")
+
+  end
 
 
 end
