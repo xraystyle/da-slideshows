@@ -275,7 +275,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt-ruby (= 3.1.2)
-  bootstrap-sass (~> 3.3.4)
+  bootstrap-sass (= 3.3.4.1)
   capybara (= 2.4.4)
   childprocess (= 0.3.6)
   coffee-rails (= 4.0.1)
