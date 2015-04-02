@@ -10,7 +10,7 @@
 		= csrf_meta_tags
 
 	%body
-		- if current_page?(controller: 'slideshows', action: 'slideshow') || current_page?(controller: 'slideshows', action: 'channels')
+		- if current_page?(controller: '/slideshows', action: 'slideshow') || current_page?(controller: '/slideshows', action: 'channels')
 			= yield
 		- else
 			.container
