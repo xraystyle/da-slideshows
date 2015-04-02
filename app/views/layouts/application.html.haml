@@ -10,8 +10,8 @@
 		= csrf_meta_tags
 
 	%body
-		= render 'layouts/header'
 		.container
+			= render 'layouts/header'
 			-flash.each do |k, v|
 				=content_tag(:div, v, class: "alert alert-#{k}")
 			
