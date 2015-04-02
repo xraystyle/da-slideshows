@@ -1,9 +1,17 @@
-%h1 Choose a Channel!
-.channel-list
-	- @channels.each do |c|
-		-if c[:uuid] == @user_seed
-			.channel-selected
-				= image_tag(c[:thumb], data: {uuid: c[:uuid]})
-		-else	
-			.channel
-				= image_tag(c[:thumb], data: {uuid: c[:uuid]})
+:css
+    body {
+        padding-top: 0;
+    }
+    
+.container-fluid
+    .row
+        %h1.pull-left Choose a Channel!
+    .channel-list
+        .row
+            - @channels.each do |c|
+                -if c[:uuid] == @user_seed
+                    .channel-selected.col-xs-6.col-sm-4.col-md-3
+                        = image_tag(c[:thumb], class: "img-responsive thumbnail", data: {uuid: c[:uuid]})
+                -else    
+                    .channel.col-xs-6.col-sm-4.col-md-3
+                        = image_tag(c[:thumb], class: "img-responsive thumbnail", data: {uuid: c[:uuid]})
