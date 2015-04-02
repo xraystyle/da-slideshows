@@ -1,6 +1,8 @@
-var justHidden = false; // Used for mouse hide function.
+var justHidden = false; // Used for mouse hide function. Needs to be declared before document.ready
 
 $(document).ready(function() {
+
+	// ------------ JS For the Channel Changer ----------------------------
 
 	// tell the server to change the slideshow image.
 	$(".channel, .channel-selected").click(function() {
@@ -25,6 +27,12 @@ $(document).ready(function() {
 	});
 
 
+
+
+
+
+	// ------------ JS For the Slideshow ----------------------------
+
 	if ($("#slideshow").length) {
 		// Hide the mouse if it stops moving.
 		var navHide;
@@ -38,7 +46,7 @@ $(document).ready(function() {
 				clearTimeout(navHide);
 				$('html').css({cursor: 'default'});
 				$("#back-button").fadeIn();
-				$("#attribution").slideDown(100);
+				$(".attribution-current").slideDown(100);
 				navHide = setTimeout(hide, 1000);
 			}
 		});
@@ -54,7 +62,7 @@ $(document).ready(function() {
 function hide() {
     $('html').css({cursor: 'none'});
     $("#back-button").fadeOut();
-    $("#attribution").slideUp(100);
+    $(".attribution-current").slideUp(100);
     justHidden = true;
     setTimeout(function() {
         justHidden = false;
@@ -68,6 +76,7 @@ function startSpinner() {
 	$("img").not("#spinner, #back-button").fadeOut(500, function() {
 		$("img").not("#spinner, #back-button").remove();
 	});
+
 	// make the spinner.
 	if ( $("#spinner").length ) {
 		// spinner already exists. make sure it's in the right spot and fade it in.
@@ -200,10 +209,10 @@ function rotateImage(imageList, imageIndex) {
 	nextImage.load(function() {
 
 		// get the current attribution p so we can fade it out and replace it with the next one.
-		var currentAttribution = $("#attribution");
+		var currentAttribution = $(".attribution-current");
 
 		// create a new attribution p with the correct text.
-		var nextAttribution = $("<p />", { "css" : {"display" : "none"} } );
+		var nextAttribution = $("<p />", { "class" : "attribution-next", "css" : {"display" : "none"} } );
 		var link = $("<a />", { "href" : deviationPage, "target" : "_blank" } );
 		$(nextAttribution).append(link);
 		link.text(attributionText);
@@ -242,19 +251,20 @@ function rotateImage(imageList, imageIndex) {
 			});
 
 			// fade out the current attribution if it's visible
-			if ( $("#attribution").css("display") === "block" ) {
+			if ( $(".attribution-current").css("display") === "block" ) {
 				
 				currentAttribution.fadeOut(2000);
 				// fade in the new one, then delete the old one and set the id in the callback.
 				nextAttribution.fadeIn(2000, function() {
 					currentAttribution.remove();
-					$(this).attr('id', 'attribution');
+					// $(this).attr('id', 'attribution');
+					$(this).addClass('attribution-current').removeClass('attribution-next');
 				});
 
 			}	else {
 				// just swap 'em out if they're not visible.
 				currentAttribution.remove();
-				nextAttribution.attr('id', 'attribution');
+				nextAttribution.addClass('attribution-current').removeClass('attribution-next');
 			}
 
 			
@@ -276,28 +286,24 @@ function rotateImage(imageList, imageIndex) {
 				});
 
 				// fade out the current attribution if it's visible
-				if ( $("#attribution").css("display") === "block" ) {
+				if ( $(".attribution-current").css("display") === "block" ) {
 					
 					currentAttribution.fadeOut(2000);
 					// fade in the new one, then delete the old one and set the id in the callback.
 					nextAttribution.fadeIn(2000, function() {
 						currentAttribution.remove();
-						$(this).attr('id', 'attribution');
+						$(this).addClass('attribution-current').removeClass('attribution-next');
 					});
 
 				}	else {
 					// just swap 'em out if they're not visible.
 					currentAttribution.remove();
-					nextAttribution.attr('id', 'attribution');
+					nextAttribution.addClass('attribution-current').removeClass('attribution-next');
 				}
 
 			});
 
 		}
-
-
-
-		// currentImage.animate({opacity: 0}, 2000);
 
 
 
