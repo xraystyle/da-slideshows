@@ -6,6 +6,10 @@ class SlideshowsController < ApplicationController
 
   @@wh = "00000000-0000-0000-0000-000000000001"
 
+  def foo
+    puts "Browser width: #{params[:browser_width]}"
+  end
+
   # Set up data to display the channel changer.
   def channels
 

@@ -7,6 +7,8 @@ $(document).ready(function() {
 	// tell the server to change the slideshow image.
 	$(".channel, .channel-selected").click(function() {
 		
+		$.post('foo', { browser_width : $(window).width() }, function(data, textStatus, xhr) {});
+
 		if ( $(this).attr('class').match(/channel-selected/)  ) {
 			// do nothing
 		}	else {
