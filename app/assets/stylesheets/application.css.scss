@@ -16,11 +16,23 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+$default-font-color: white;
+
 body {
-    padding-top: 70px;
-    background-image: url("../images/gray_gradient.jpg");
-    background-repeat: repeat-x;
+    padding-top: 51px;
+    background-image: url("../images/bgpattern.jpg");
+    background-size: 25px;
+    background-repeat: repeat;
     background-position: top left;
+    background-color: black;
+}
+
+.navbar-toggle {
+    color: white;
+}
+
+h1, h2, h3, h4, p, span {
+    color: $default-font-color;
 }
 
 h1 {
@@ -39,4 +51,34 @@ footer {
 hr {
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #222222;
+    padding-top: 20px;
+    padding-left: 10px;
+    a {
+        color: #9d9d9d;
+        text-decoration: underline;
+        &:hover {
+            color: white;
+        }
+    }
+
+    p {
+        color: #9d9d9d;
+    }
+    .glyphicon {
+        color: #9d9d9d;
+    }
+}
+
+span.vertical-line {
+    border-right: 1px solid gray;
+    margin-right: 3px;
+
 }

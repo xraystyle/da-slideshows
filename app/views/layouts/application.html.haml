@@ -11,7 +11,8 @@
 		%meta{:name => "viewport", :content => "width=device-width, initial-scale=1"}
 
 	%body
-		- if current_page?(controller: '/slideshows', action: 'slideshow') || current_page?(controller: '/slideshows', action: 'channels')
+		-# - if current_page?(controller: '/slideshows', action: 'slideshow') || current_page?(controller: '/slideshows', action: 'channels')
+		- if current_page?(controller: '/slideshows', action: 'slideshow')
 			= yield
 			-# Just yield if we're on the slideshow or channel changer pages. No need for layout.
 		
@@ -26,8 +27,7 @@
 									= content_tag(:button, 'x', class: "close", data: { dismiss: 'alert' })
 									= v
 				= yield
-				.container
-					.row
-						= render 'layouts/footer'
+				.row
+					= render 'layouts/footer'
 					-# .row
 					-# 	= debug(params) if Rails.env.development?

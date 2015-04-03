@@ -9,20 +9,23 @@
 
 .hero-unit {
     position: relative;
+    background-color: black;
 }
 
 .hero-image {
-    border-radius: 10px;
     width: 100%;
+    opacity: .4;
 }
 
 .tagline {
 
     position: absolute;
     top: 5%;
-    left: 4%;
+    left: 20px;
+    margin-right: 20px;
+    margin-top: 9px;
     color: white;
-    background-color: rgba(64, 64, 64, .3);
+    background-color: rgba(64, 64, 64, .5);
     // opacity: .3;
     border-radius: 10px;
     padding: 10px;
@@ -34,5 +37,33 @@
     span {
         opacity: 1;
     }
-}
 
+     @media (max-width: 767px) { // Bootstrap XS size
+        h1 {
+            font-size: 21px;
+        }
+
+        font-size: 12px;
+    }   
+     @media (min-width: 768px) {  // Bootstrap SM size
+        h1 {
+            font-size: 36px;
+        }
+
+        font-size: 15px;
+    }  
+     @media (min-width: 992px) {  //  Bootstrap MD size
+        h1 {
+            font-size: 45px;
+        }
+
+        font-size: 20px;
+    }
+     @media (min-width: 1199px) {  //  Bootstrap MD size
+        h1 {
+            font-size: 81px;
+        }
+
+        font-size: 33px;
+    } 
+}

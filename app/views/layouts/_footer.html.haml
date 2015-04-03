@@ -1,3 +1,8 @@
-%footer
-	.contact
-		Contact us: #{mail_to("contact@da-slidesho.ws")}
+%footer.footer
+    %p
+        %span.glyphicon.glyphicon-copyright-mark
+        2015 DA Slideshows
+        %span.vertical-line
+        = link_to("More Info", "#")
+        %span.vertical-line
+        != "Contact us: #{mail_to("info@da-slidesho.ws")}"
