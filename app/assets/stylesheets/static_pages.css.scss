@@ -2,3 +2,37 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// body {
+//     padding-top: 51px;
+// }   
+
+
+.hero-unit {
+    position: relative;
+}
+
+.hero-image {
+    border-radius: 10px;
+    width: 100%;
+}
+
+.tagline {
+
+    position: absolute;
+    top: 5%;
+    left: 4%;
+    color: white;
+    background-color: rgba(64, 64, 64, .3);
+    // opacity: .3;
+    border-radius: 10px;
+    padding: 10px;
+
+    h1 {
+        opacity: 1;
+    }
+
+    span {
+        opacity: 1;
+    }
+}
+
