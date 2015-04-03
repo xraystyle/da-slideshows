@@ -4,10 +4,22 @@ $(document).ready(function() {
 
 	// ------------ JS For the Channel Changer ----------------------------
 
+	// If we're on the channel changer page, scale the window based on pixel density.
+	// if ($('.channel-list').length) {
+		
+		var scale = (window.devicePixelRatio || 1);
+		var content = 'width=device-width, initial-scale=' + scale + ', minimum-scale=' + scale;
+
+	// 	document.querySelector('meta[name="viewport"]').setAttribute('content', content);
+
+	// }
+
+
+
 	// tell the server to change the slideshow image.
 	$(".channel, .channel-selected").click(function() {
 		
-		$.post('foo', { browser_width : $(window).width() }, function(data, textStatus, xhr) {});
+		$.post('foo', { browser_width : $(window).width(), pixel_ratio : window.devicePixelRatio, scale_set : content }, function(data, textStatus, xhr) {});
 
 		if ( $(this).attr('class').match(/channel-selected/)  ) {
 			// do nothing
