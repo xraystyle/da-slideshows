@@ -22,4 +22,8 @@ class ApplicationController < ActionController::Base
     @devise_mapping ||= Devise.mappings[:user]
   end
 
+  def after_sign_in_path_for(user)
+    slideshows_home_path    
+  end
+
 end

@@ -28,8 +28,14 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
+    autoprefixer-rails (5.1.8)
+      execjs
+      json
     bcrypt (3.1.9)
     bcrypt-ruby (3.1.2)
+    bootstrap-sass (3.3.4.1)
+      autoprefixer-rails (>= 5.0.0.1)
+      sass (>= 3.2.19)
     builder (3.2.2)
     capybara (2.4.4)
       mime-types (>= 1.16)
@@ -269,34 +275,35 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt-ruby (= 3.1.2)
-  capybara
-  childprocess
+  bootstrap-sass (= 3.3.4.1)
+  capybara (= 2.4.4)
+  childprocess (= 0.3.6)
   coffee-rails (= 4.0.1)
-  devise
-  devise-async
-  did_you_mean
-  dotenv-rails
-  erb2haml
+  devise (= 3.4.1)
+  devise-async (= 0.9.0)
+  did_you_mean (= 0.9.4)
+  dotenv-rails (= 2.0.0)
+  erb2haml (= 0.1.5)
   factory_girl_rails (= 4.2.0)
   faker (= 1.4.3)
-  guard-rspec
-  guard-spork
-  haml-rails
+  guard-rspec (= 4.5.0)
+  guard-spork (= 2.1.0)
+  haml-rails (= 0.6.0)
   jbuilder (= 1.0.2)
   jquery-rails (= 3.0.4)
   mailgun-ruby (~> 1.0.2)
-  pg
-  puma
+  pg (= 0.18.1)
+  puma (= 2.10.2)
   rails (= 4.1.8)
   redis (= 3.0.6)
-  rspec-rails
-  sass-rails
+  rspec-rails (= 3.1.0)
+  sass-rails (= 4.0.5)
   sdoc (= 0.3.20)
   selenium-webdriver (= 2.35.1)
-  sidekiq
-  sidetiq
+  sidekiq (= 3.3.0)
+  sidetiq (= 0.6.3)
   sinatra
-  spork-rails
+  spork-rails (= 4.0.0)
   sprockets (= 2.12.3)
   sqlite3 (= 1.3.8)
   uglifier (= 2.1.1)

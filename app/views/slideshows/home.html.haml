@@ -1,4 +1,18 @@
-%h1 You are signed in.
+:css
+    body {
+        background: white;
+    }
 
-%div= link_to("Channel Changer", slideshows_channels_path)
-%div= link_to("My Slideshow", slideshows_slideshow_path)
+    h1 {
+        color: black;
+    }
+
+%h1 My Account
+%hr
+.row
+    .text-center.main-actions-container 
+        = link_to("Channel Changer", slideshows_channels_path, class: "btn btn-lg btn-default main-actions")
+        = link_to("My Slideshow", slideshows_slideshow_path, class: "btn btn-lg btn-default main-actions")
+.row.text-center
+    = link_to("Change email or password", edit_user_registration_path)
+%hr            

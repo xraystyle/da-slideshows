@@ -10,41 +10,131 @@ body {
 	margin: 0;
 }
 
-header {
-	display: none;
+.main-actions {
+	width: 175px;
 }
 
-footer {
-	display: none;
+.main-actions-container {
+	padding: 30px;
 }
 
 // Chanel changer CSS--------------------
-.channel-list {
-	padding-left: 20px;
-}
-
-.channel { 
-	display: inline;
-	padding: 5px;
-	img {
-		max-height: 300px;
-		max-width: 300px;
-		min-height: 100px;
-		min-width: 100px;
-		border: 3px solid black;
-		margin: auto;
-		cursor: pointer;
-	}
-}
-
-
-.channel-selected {
-	@extend .channel;
-	img {
-		border: 5px solid #00E5FF;
-		cursor: auto;	
-	}
+@media (max-width: 767px) { // Bootstrap XS size
 	
+	.channel { 
+		display: inline;
+		padding: 5px;
+		vertical-align: middle;
+		height: 300px;
+		line-height: 300px;
+		img {
+			max-height: 300px;
+			// max-width: 300px;
+			// min-height: 100px;
+			// min-width: 100px;
+			border: 3px solid black;
+			// margin: auto;
+			vertical-align: middle;	
+			cursor: pointer;
+		}
+	}
+
+
+	.channel-selected {
+		@extend .channel;
+		img {
+			border: 5px solid #00E5FF;
+			cursor: auto;	
+		}
+		
+	}
+
+}
+
+@media (min-width: 768px) {  // Bootstrap SM size
+	
+	.channel { 
+		display: inline;
+		padding: 5px;
+		vertical-align: middle;
+		min-height: 300px;
+		height: 400px;
+		line-height: 400px;
+		img {
+			max-height: 400px;
+			// max-width: 300px;
+			// min-height: 100px;
+			// min-width: 100px;
+			border: 3px solid black;
+			// margin: auto;
+			vertical-align: middle;	
+			cursor: pointer;
+		}
+	}
+
+
+	.channel-selected {
+		@extend .channel;
+		img {
+			border: 5px solid #00E5FF;
+			cursor: auto;	
+		}
+		
+	}
+
+}
+
+
+
+@media (min-width: 992px) {  //  Bootstrap MD size
+	
+	.channel { 
+		display: inline;
+		padding: 5px;
+		vertical-align: middle;
+		height: 550px;
+		line-height: 550px;
+		img {
+			max-height: 550px;
+			// max-width: 300px;
+			// min-height: 100px;
+			// min-width: 100px;
+			border: 3px solid black;
+			// margin: auto;
+			vertical-align: middle;	
+			cursor: pointer;
+		}
+	}
+
+
+	.channel-selected {
+		@extend .channel;
+		img {
+			border: 3px solid #00E5FF;
+			cursor: auto;	
+		}
+		
+	}
+
+}
+
+
+h1 {
+    color : white;
+    padding-left : 20px
+}
+
+.thumbnail {
+	padding: 1px;
+	background: #a9a9a9;
+	display : inline-block;
+}
+
+
+.back-arrow {
+  float: left;
+  margin-right: 10px;
+  margin-top: 10px;
 }
 // End channel changer CSS------------------------
 

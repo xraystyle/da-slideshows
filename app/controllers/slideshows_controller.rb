@@ -6,6 +6,14 @@ class SlideshowsController < ApplicationController
 
   @@wh = "00000000-0000-0000-0000-000000000001"
 
+  def foo
+    puts "Browser width: #{params[:browser_width]}"
+    puts "Pixel ratio: #{params[:pixel_ratio]}"
+    puts "Scale set to:  #{params[:scale_set]}"
+
+    render status: 200, json: @controller.to_json
+  end
+
   # Set up data to display the channel changer.
   def channels
 
@@ -79,17 +87,5 @@ class SlideshowsController < ApplicationController
     end
 
   end
-
-
-
-
-
-
-
-
-
-
-
-
 
 end

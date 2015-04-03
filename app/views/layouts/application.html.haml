@@ -8,13 +8,21 @@
 		= javascript_include_tag "application", params[:controller]
 		= stylesheet_link_tag "http://fonts.googleapis.com/css?family=Roboto:700,400"
 		= csrf_meta_tags
+		%meta{:name => "viewport", :content => "width=device-width, initial-scale=1"}
 
 	%body
-		= render 'layouts/header'
-		.container
-			-flash.each do |k, v|
-				=content_tag(:div, v, class: "alert alert-#{k}")
-			
+		- if current_page?(controller: '/slideshows', action: 'slideshow') || current_page?(controller: '/slideshows', action: 'channels')
 			= yield
-			= render 'layouts/footer'
-			= debug(params) if Rails.env.development?
+		- else
+			.container
+				= render 'layouts/header'
+				.row
+					-flash.each do |k, v|
+						= content_tag(:div, v, class: "alert .alert-dismissible #{bootstrap_class_for(k)}", role: "alert") do
+							= content_tag(:button, 'x', class: "close", data: { dismiss: 'alert' })
+							= v
+				= yield
+				.row
+					= render 'layouts/footer'
+				.row
+					= debug(params) if Rails.env.development?
