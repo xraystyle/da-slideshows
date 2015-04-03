@@ -18,7 +18,7 @@
 				= render 'layouts/header'
 				.row
 					-flash.each do |k, v|
-						=content_tag(:div, v, class: "alert alert-#{k}")
+						=content_tag(:div, v, class: "alert alert-disassemble alert-#{k}", role: "alert")
 				= yield
 				.row
 					= render 'layouts/footer'
