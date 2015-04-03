@@ -4,8 +4,8 @@
     }
     
 .container-fluid
-    .row
-        %h1.pull-left Choose a Channel!
+    = link_to(image_tag("../images/back.png", height: "40px", class: "back-arrow", width: "40px"), slideshows_home_path)
+    %h1 Choose a Channel!
     .channel-list
         .row
             - @channels.each do |c|

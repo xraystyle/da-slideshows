@@ -10,12 +10,12 @@ body {
 	margin: 0;
 }
 
-header {
-	display: none;
+.main-actions {
+	width: 175px;
 }
 
-footer {
-	display: none;
+.main-actions-container {
+	padding: 30px;
 }
 
 // Chanel changer CSS--------------------
@@ -130,6 +130,12 @@ h1 {
 	display : inline-block;
 }
 
+
+.back-arrow {
+  float: left;
+  margin-right: 10px;
+  margin-top: 10px;
+}
 // End channel changer CSS------------------------
 
 
