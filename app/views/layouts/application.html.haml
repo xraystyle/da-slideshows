@@ -20,12 +20,11 @@
 			.container-fluid
 				= render 'layouts/header'
 				-if flash.any?
-					.container
-						.row
-							-flash.each do |k, v|
-								= content_tag(:div, v, class: "alert .alert-dismissible #{bootstrap_class_for(k)}", role: "alert") do
-									= content_tag(:button, 'x', class: "close", data: { dismiss: 'alert' })
-									= v
+					.row
+						-flash.each do |k, v|
+							= content_tag(:div, v, class: "alert .alert-dismissible #{bootstrap_class_for(k)}", role: "alert") do
+								= content_tag(:button, 'x', class: "close", data: { dismiss: 'alert' })
+								= v
 				= yield
 				.row
 					= render 'layouts/footer'
