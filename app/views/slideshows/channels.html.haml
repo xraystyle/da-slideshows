@@ -1,11 +1,8 @@
-:css
-    body {
-        padding-top: 0;
-    }
-    
 .container-fluid
-    = link_to(image_tag("../images/back.png", height: "40px", class: "back-arrow", width: "40px"), slideshows_home_path)
+    -# = link_to(image_tag("../images/back.png", height: "40px", class: "back-arrow", width: "40px"), slideshows_home_path)
     %h1 Choose a Channel!
+    %span Select an image to change the channel on your slideshow at any time.
+    %hr
     .channel-list
         .row
             - @channels.each do |c|

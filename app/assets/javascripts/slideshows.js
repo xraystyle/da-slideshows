@@ -51,7 +51,7 @@ $(document).ready(function() {
 		// Hide the mouse if it stops moving.
 		var navHide;
 		
-		setTimeout(hide, 1000);
+		setTimeout(hide, 1500);
 
 		$(document).mousemove(function() {
 			if (!justHidden) {
@@ -61,7 +61,7 @@ $(document).ready(function() {
 				$('html').css({cursor: 'default'});
 				$("#back-button").fadeIn();
 				$(".attribution-current").slideDown(100);
-				navHide = setTimeout(hide, 1000);
+				navHide = setTimeout(hide, 1500);
 			}
 		});
 

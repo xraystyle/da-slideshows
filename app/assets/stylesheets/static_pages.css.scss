@@ -2,3 +2,68 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// body {
+//     padding-top: 51px;
+// }   
+
+
+.hero-unit {
+    position: relative;
+    background-color: black;
+}
+
+.hero-image {
+    width: 100%;
+    opacity: .5;
+}
+
+.tagline {
+
+    position: absolute;
+    top: 5%;
+    left: 20px;
+    margin-right: 20px;
+    margin-top: 9px;
+    color: white;
+    background-color: rgba(64, 64, 64, .5);
+    // opacity: .3;
+    border-radius: 10px;
+    padding: 10px;
+
+    h1 {
+        opacity: 1;
+    }
+
+    span {
+        opacity: 1;
+    }
+
+     @media (max-width: 767px) { // Bootstrap XS size
+        h1 {
+            font-size: 21px;
+        }
+
+        font-size: 12px;
+    }   
+     @media (min-width: 768px) {  // Bootstrap SM size
+        h1 {
+            font-size: 36px;
+        }
+
+        font-size: 15px;
+    }  
+     @media (min-width: 992px) {  //  Bootstrap MD size
+        h1 {
+            font-size: 45px;
+        }
+
+        font-size: 20px;
+    }
+     @media (min-width: 1199px) {  //  Bootstrap MD size
+        h1 {
+            font-size: 81px;
+        }
+
+        font-size: 33px;
+    } 
+}
