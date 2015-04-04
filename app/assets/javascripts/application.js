@@ -13,3 +13,22 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
+
+
+$(document).ready(function() {
+    
+    var heart = $(".heart");
+    console.log(heart);
+
+    heart.hover(function() {
+        $(this).contents().css('color', 'white');
+        $('.glyphicon-heart').css('color', 'white');
+    }, function() {
+        $(this).contents().css('color', '#9d9d9d');
+        $('.glyphicon-heart').css('color', '#9d9d9d');
+
+    });    
+
+
+
+});

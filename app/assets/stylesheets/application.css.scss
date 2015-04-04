@@ -20,11 +20,16 @@ $default-font-color: white;
 
 body {
     padding-top: 51px;
+    padding-bottom: 70px;
     background-image: url("../images/bgpattern.jpg");
     background-size: 25px;
     background-repeat: repeat;
     background-position: top left;
     background-color: black;
+}
+
+a:visited {
+    color: #9D9D9D;
 }
 
 .alert {
@@ -44,11 +49,6 @@ h1 {
     margin-top: 10px;
 }
 
-footer {
-    margin-top: 20px;
-}
-
-
 .debug_dump {
     margin-top: 20px;
 }
@@ -60,6 +60,7 @@ hr {
 
 footer {
 
+    margin-top: 20px;
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -80,7 +81,7 @@ footer {
         color: #9d9d9d;
     }
 
-    @media (max-width: 399px) { // Bootstrap XS size
+    @media (max-width: 399px) { // Additional smaller size for older/lower-res devices
         height: 30px;
         padding-top: 9px;
         padding-left: 6px;
@@ -101,8 +102,8 @@ footer {
     }
 
     @media (min-width: 768px) {  // Bootstrap SM size
-        height: 60px;
-        padding-top: 19px;
+        height: 50px;
+        padding-top: 13px;
         padding-left: 10px;
 
         p {
@@ -112,7 +113,26 @@ footer {
 }
 
 
+.heart {
+    &:hover {
+        color: white;
+    }
+    @media (max-width: 450px) { // Additional smaller size for older/lower-res devices
+        display: none;
+    }
 
+    @media (min-width: 400px) { // Bootstrap XS size
+        margin-right: 8px;
+    }
+
+    @media (min-width: 768px) {  // Bootstrap SM size
+        // bottom: 43px;
+    }
+    span {
+        text-decoration: underline;
+        top: 0px;
+    }    
+}
 
 
 
