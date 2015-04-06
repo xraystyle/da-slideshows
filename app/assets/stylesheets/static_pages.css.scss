@@ -71,3 +71,21 @@
         font-size: 33px;
     } 
 }
+
+.attribution {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    text-align: right;
+    padding: 10px;
+
+    a {
+        font-size: 20px;
+        opacity: .6;
+        &:hover {
+            color: white;
+            opacity: 1.0;
+        }
+    }
+}
