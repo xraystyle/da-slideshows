@@ -12,7 +12,9 @@
     %p http://orig08.deviantart.net/a337/f/2015/093/f/c/dreaming_by_boxtail-d8id7oj.png
 
 .row.hero-unit
-    = image_tag("http://orig08.deviantart.net/a337/f/2015/093/f/c/dreaming_by_boxtail-d8id7oj.png", class: "img-responsive hero-image")
+    = image_tag("headphones.jpg", class: "img-responsive hero-image")
     .tagline
         %h1 Welcome to DA Slideshows
         %p The art you love, the way it was meant to be experienced.
+        -unless current_user
+            %p!= "#{link_to("Sign in", new_user_session_path)}, or #{link_to("Register", new_user_registration_path)} to get started!"
