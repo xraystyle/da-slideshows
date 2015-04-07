@@ -18,7 +18,7 @@
 $(document).ready(function() {
     
     var heart = $(".heart");
-    console.log(heart);
+    // console.log(heart);
 
     heart.hover(function() {
         $(this).contents().css('color', 'white');
