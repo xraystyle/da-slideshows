@@ -2,11 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-// body {
-//     padding-top: 51px;
-// }   
-
-
 .hero-unit {
     position: relative;
     background-color: black;
@@ -20,7 +15,7 @@
 .tagline {
 
     position: absolute;
-    top: 5%;
+    top: 29px;
     left: 20px;
     margin-right: 20px;
     margin-top: 9px;
@@ -29,6 +24,12 @@
     // opacity: .3;
     border-radius: 10px;
     padding: 10px;
+    
+    @media (max-width: 399px) {
+
+        top: 2px;
+
+    }
 
     a {
         color: white;
@@ -42,14 +43,14 @@
         opacity: 1;
     }
 
-     @media (max-width: 767px) { // Bootstrap XS size
+     @media (max-width: 599px) { // Bootstrap XS size
         h1 {
             font-size: 21px;
         }
 
         font-size: 12px;
     }   
-     @media (min-width: 768px) {  // Bootstrap SM size
+     @media (min-width: 600px) {  // Bootstrap SM size
         h1 {
             font-size: 36px;
         }
@@ -78,14 +79,91 @@
     width: 100%;
     background-color: rgba(0, 0, 0, .5);
     text-align: right;
-    padding: 10px;
 
+    @media (max-width: 399px) {
+
+        padding: 3px;
+
+    }
+    @media (min-width: 400px) {
+
+        padding: 5px;
+
+    }
+    @media (min-width: 600px) {
+
+        padding: 10px;
+
+    }
     a {
-        font-size: 20px;
         opacity: .6;
+        color: #9d9d9d;
         &:hover {
             color: white;
             opacity: 1.0;
         }
+
+        @media (max-width: 399px) {
+
+            font-size: 10px;
+        }
+
+        @media (min-width: 400px) {
+
+            font-size: 12px;
+        }
+
+        @media (min-width: 600px) {
+
+            font-size: 20px;
+
+        }
+
+    }
+
+}
+
+#action {
+
+    @media (max-width: 399px) {
+
+        display: none;
+
+    }
+
+}
+
+#sub-action {
+    @media (min-width: 400px) {
+        display: none;
+    }
+    color : white;
+    text-align: center;
+    padding: 10px;
+    font-size: 20px;
+    a {
+        text-decoration: underline;
+        color : white;
+    }
+}
+
+#how-it-works {
+    width: 75%%;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin-top: 60px;
+}
+
+.sidebar ul {
+    margin-top: 60px;
+    padding-top: 50px;
+    padding-bottom: 170px;
+    background-color: white;
+    width: 25%;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+
+    li {
+        padding :5px;
     }
 }
