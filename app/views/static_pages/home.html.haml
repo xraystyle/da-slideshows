@@ -1,21 +1,21 @@
 .row.hero-unit
-    -# = image_tag("headphones.jpg", class: "img-responsive hero-image")
     .tagline
         %h1 Welcome to DA Slideshows
         %p The art you love, the way it was meant to be experienced.
         -unless current_user
             %p#action!= "#{link_to("Sign in", new_user_session_path)} or #{link_to("Register", new_user_registration_path)} to get started!"
-    .attribution
-        -# = link_to("Color, by yuumei", "http://yuumei.deviantart.com/art/Color-327928911", target: "_blank")
+    .attribution{ style: "display : none;" }
+
+
 -unless current_user
     .row#sub-action
         != "#{link_to("Sign in", new_user_session_path)} or #{link_to("Register", new_user_registration_path)} to get started!"
 
-.row
-    .sidebar
-        %ul.pull-left
-            %li Open your Channel Changer on your mobile device, such as a phone or tablet.
-            %li Then open your Slideshow on a larger screen. (IE on Xbox works great!)
-            %li Tap to select a new image on your phone or tablet and the slideshow will update to show you more art similar to the channel you selected!
+-# .row
+-#     .sidebar
+-#         %ul.pull-left
+-#             %li Open your Channel Changer on your mobile device, such as a phone or tablet.
+-#             %li Then open your Slideshow on a larger screen. (IE on Xbox works great!)
+-#             %li Tap to select a new image on your phone or tablet and the slideshow will update to show you more art similar to the channel you selected!
     
-    = image_tag("howitworks.jpg", class: "img-responsive pull-right", id: "how-it-works")
+-#         = image_tag("howitworks.jpg", class: "img-responsive pull-right", id: "how-it-works")
