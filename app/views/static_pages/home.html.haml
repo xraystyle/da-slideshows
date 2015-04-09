@@ -11,11 +11,11 @@
     .row#sub-action
         != "#{link_to("Sign in", new_user_session_path)} or #{link_to("Register", new_user_registration_path)} to get started!"
 
--# .row
--#     .sidebar
--#         %ul.pull-left
--#             %li Open your Channel Changer on your mobile device, such as a phone or tablet.
--#             %li Then open your Slideshow on a larger screen. (IE on Xbox works great!)
--#             %li Tap to select a new image on your phone or tablet and the slideshow will update to show you more art similar to the channel you selected!
-    
--#         = image_tag("howitworks.jpg", class: "img-responsive pull-right", id: "how-it-works")
+.row.instructions
+    = image_tag("howitworks.jpg", class: "img-responsive pull-left col-sm-8 col-md-9", id: "how-it-works")    
+    .sidebar.col-xs-12.col-sm-4.col-md-3
+        %ul.pull-right
+            %li Open your Channel Changer on your mobile device, such as a phone or tablet.
+            %li Then open your Slideshow on a larger screen. (Internet Explorer on Xbox works great!)
+            %li Tap to select a new image on your phone or tablet and the slideshow will update to show you more art similar to the channel you selected!
+
