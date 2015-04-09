@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   match 'slideshows/home',              to: 'slideshows#home',              via: 'get'
   match 'slideshows/foo',               to: 'slideshows#foo',               via: 'post' 
 
+  match '/info',                        to: 'static_pages#info',            via: 'get'
+
   # match "/users",				to: 'static_pages#home', via: 'get'
   # get 'static_pages/home'
 

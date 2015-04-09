@@ -195,3 +195,35 @@
         margin-top: 20px;
     }
 }
+
+
+
+// CSS for info page:
+
+.info {
+    color: black;
+
+    @media (max-width: 599px) {
+        font-size: 14px;
+    }
+
+    @media (min-width: 600px) {
+        font-size: 18px;
+    }
+
+
+    .row {
+        background-color: rgba(255, 255, 255, 1);
+        padding: 10px;
+        border-radius: 8px;
+
+        ul {
+            margin-top: 10px;
+           
+            @media (max-width: 599px) {
+                padding-left: 8px;
+            }
+        }
+
+    }
+}
