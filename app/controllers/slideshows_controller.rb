@@ -57,6 +57,12 @@ class SlideshowsController < ApplicationController
 
       current_user.seed = params[:set_uuid]
       current_user.save
+
+      Slideshow.transaction do
+        selected = Slideshow.lock("FOR SHARE").where(seed: params[:set_uuid]).first
+        selected.increment!(:views)
+      end
+
       render status: 200, json: @controller.to_json
 
     elsif params[:current_seed]
