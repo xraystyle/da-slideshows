@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150318220343) do
+ActiveRecord::Schema.define(version: 20150411014600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20150318220343) do
     t.string   "seed"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "views",      default: 0
   end
 
   add_index "slideshows", ["seed"], name: "index_slideshows_on_seed", using: :btree
