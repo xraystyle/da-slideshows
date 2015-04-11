@@ -5,7 +5,9 @@ describe "New user signs up for an account" do
 
   scenario 'with valid crendentials' do
     visit root_path
-    click_link 'Register'
+    within(".nav") do
+      click_link 'Register'
+    end    
     fill_in 'Email', with: 'someuser@example.com'
     fill_in 'Password', with: "foobar"
     fill_in 'Password confirmation', with: "foobar"
@@ -22,7 +24,9 @@ describe "New user signs up for an account" do
 
   scenario 'with an invalid email address' do
     visit root_path
-    click_link 'Register'
+    within(".nav") do
+      click_link 'Register'
+    end    
     fill_in 'Email', with: 'invalid@foo'
     fill_in 'Password', with: "foobar"
     fill_in 'Password confirmation', with: "foobar"
@@ -36,7 +40,9 @@ describe "New user signs up for an account" do
 
   scenario 'with an invalid password' do
     visit root_path
-    click_link 'Register'
+    within(".nav") do
+      click_link 'Register'
+    end    
     fill_in 'Email', with: 'someuser@example.com'
     fill_in 'Password', with: "foo"
     fill_in 'Password confirmation', with: "foo"
@@ -50,7 +56,9 @@ describe "New user signs up for an account" do
 
   scenario 'with mistyped password validation' do
     visit root_path
-    click_link 'Register'
+    within(".nav") do
+      click_link 'Register'
+    end    
     fill_in 'Email', with: 'someuser@example.com'
     fill_in 'Password', with: "foobar"
     fill_in 'Password confirmation', with: "foobaz"
