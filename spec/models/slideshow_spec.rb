@@ -15,6 +15,7 @@ RSpec.describe Slideshow, :type => :model do
 		it { should respond_to(:seed) }
 		it { should respond_to(:nsfw) }
 		it { should respond_to(:results) }
+		it { should respond_to(:views) }
 
 		# Relationship to Deviations
 		it { should respond_to(:deviations) }

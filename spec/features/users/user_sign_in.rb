@@ -6,10 +6,12 @@ describe "Current user signs in" do
 
   scenario 'with valid credentials' do
     visit root_path
-    click_link 'Sign in'
+    within(".nav") do
+      click_link 'Sign in'
+    end    
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
-    click_button 'Log in'
+    click_button 'Sign in'
     expect(page).to have_content user.email
     expect(page).to have_content "Channel Changer"
     expect(page).to have_content "My Slideshow"    
@@ -17,10 +19,12 @@ describe "Current user signs in" do
   
   scenario 'with invalid credentials' do
     visit root_path
-    click_link 'Sign in'
+    within(".nav") do
+      click_link 'Sign in'
+    end    
     fill_in 'Email', with: user.email
     fill_in 'Password', with: "notuserpassword"
-    click_button 'Log in'
+    click_button 'Sign in'
     expect(page).to have_content 'Invalid email or password.'
   end
 
