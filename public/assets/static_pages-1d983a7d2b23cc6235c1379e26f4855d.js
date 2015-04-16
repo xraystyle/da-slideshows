@@ -17,7 +17,7 @@ $(document).ready(function() {
                 style : "display : none;",
                 }),
             "image" : $('<img />', {
-                src : "assets/bobafett.jpg",
+                src : "assets/images/bobafett.jpg",
                 class : "next img-responsive hero-image",
                 style : "display : none;" 
             })};
@@ -31,7 +31,7 @@ $(document).ready(function() {
                 style : "display : none;",
                 }),
             "image" : $('<img />', {
-                src : "assets/scifi.jpg",
+                src : "assets/images/scifi.jpg",
                 class : "next img-responsive hero-image",
                 style : "display : none;" 
             })};
@@ -45,7 +45,7 @@ $(document).ready(function() {
                 style : "display : none;",
                 }),
             "image" : $('<img />', {
-                src : "assets/nordiclake.jpg",
+                src : "assets/images/nordiclake.jpg",
                 class : "next img-responsive hero-image",
                 style : "display : none;" 
             })};
@@ -59,7 +59,7 @@ $(document).ready(function() {
                 style : "display : none;",
                 }),
             "image" : $('<img />', {
-                src : "assets/oldman.jpg",
+                src : "assets/images/oldman.jpg",
                 class : "next img-responsive hero-image",
                 style : "display : none;" 
             })};
@@ -73,7 +73,7 @@ $(document).ready(function() {
                 style : "display : none;",
                 }),
             "image" : $('<img />', {
-                src : "assets/buick.jpg",
+                src : "assets/images/buick.jpg",
                 class : "next img-responsive hero-image",
                 style : "display : none;" 
             })};
@@ -87,7 +87,7 @@ $(document).ready(function() {
                 style : "display : none;",
                 }),
             "image" : $('<img />', {
-                src : "assets/cafegirl.jpg",
+                src : "assets/images/cafegirl.jpg",
                 class : "next img-responsive hero-image",
                 style : "display : none;" 
             })};
@@ -101,7 +101,7 @@ $(document).ready(function() {
                 style : "display : none;",
                 }),
             "image" : $('<img />', {
-                src : "assets/starscape.png",
+                src : "assets/images/starscape.png",
                 class : "next img-responsive hero-image",
                 style : "display : none;" 
             })};
@@ -116,7 +116,7 @@ $(document).ready(function() {
                 style : "display : none;",
                 }),
             "image" : $('<img />', {
-                src : "assets/sunsetriver.jpg",
+                src : "assets/images/sunsetriver.jpg",
                 class : "next img-responsive hero-image",
                 style : "display : none;" 
             })};
@@ -130,7 +130,7 @@ $(document).ready(function() {
                 style : "display : none;",
                 }),
             "image" : $('<img />', {
-                src : "assets/headphones.jpg",
+                src : "assets/images/headphones.jpg",
                 class : "next img-responsive hero-image",
                 style : "display : none;" 
             })};
@@ -144,7 +144,7 @@ $(document).ready(function() {
                 style : "display : none;",
                 }),
             "image" : $('<img />', {
-                src : "assets/chunli.jpg",
+                src : "assets/images/chunli.jpg",
                 class : "next img-responsive hero-image",
                 style : "display : none;" 
             })};
@@ -158,7 +158,7 @@ $(document).ready(function() {
                 style : "display : none;",
                 }),
             "image" : $('<img />', {
-                src : "assets/fractal.png",
+                src : "assets/images/fractal.png",
                 class : "next img-responsive hero-image",
                 style : "display : none;" 
             })};
@@ -266,3 +266,4 @@ function rotateImage(array, i) {
     });
 
 } 
+;
