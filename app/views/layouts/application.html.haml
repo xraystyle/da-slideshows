@@ -2,20 +2,16 @@
 %html
 	%head
 		%title DA Slideshows
-		-# = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
 		= stylesheet_link_tag "application", params[:controller], :media => "all"
-		-# = javascript_include_tag "application", "data-turbolinks-track" => true
 		= javascript_include_tag "application", params[:controller]
 		= stylesheet_link_tag "http://fonts.googleapis.com/css?family=Roboto:700,400"
 		= csrf_meta_tags
 		%meta{:name => "viewport", :content => "width=device-width, initial-scale=1"}
 
 	%body
-		-# - if current_page?(controller: '/slideshows', action: 'slideshow') || current_page?(controller: '/slideshows', action: 'channels')
 		- if current_page?(controller: '/slideshows', action: 'slideshow')
 			= yield
-			-# Just yield if we're on the slideshow or channel changer pages. No need for layout.
-		
+			-# Just yield if we're on the slideshow page. No need for layout.
 		- else 
 			.container-fluid
 				= render 'layouts/header'
