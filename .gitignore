@@ -19,3 +19,6 @@
 .secret
 notes
 .env
+
+#ignore compiled assets
+/public/assets/*
