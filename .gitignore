@@ -19,6 +19,3 @@
 .secret
 notes
 .env
-
-# Ignore images.
-/public/images/*
