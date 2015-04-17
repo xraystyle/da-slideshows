@@ -250,8 +250,9 @@ h1 {
 .attribution-current,.attribution-next {
 	font-size: 22px;
 	background: rgba(0,0,0,0.4);
-	font-family: "Roboto", sans-serif;
-	text-align: left;
+	// font-family: "Roboto", sans-serif;
+    font-family: inherit;
+	text-align: right;
 	color: white;
 	padding:14px;
 	margin:0;
@@ -263,12 +264,13 @@ h1 {
 }
 
 p a {
-	color:white;
+    color: #9d9d9d;
 	text-decoration:none;
 }
 
 p a:hover {
 	text-decoration:underline;
+    color:white;
 }
 
 
