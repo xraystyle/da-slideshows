@@ -4,23 +4,10 @@ $(document).ready(function() {
 
 	// ------------ JS For the Channel Changer ----------------------------
 
-	// If we're on the channel changer page, scale the window based on pixel density.
-	// if ($('.channel-list').length) {
-		
-		// var scale = (window.devicePixelRatio || 1);
-		// var content = 'width=device-width, initial-scale=' + scale + ', minimum-scale=' + scale;
-
-	// 	document.querySelector('meta[name="viewport"]').setAttribute('content', content);
-
-	// }
-
-
 
 	// tell the server to change the slideshow image.
 	$(".channel, .channel-selected").click(function() {
 		
-		// $.post('foo', { browser_width : $(window).width(), pixel_ratio : window.devicePixelRatio, scale_set : content }, function(data, textStatus, xhr) {});
-
 		if ( $(this).attr('class').match(/channel-selected/)  ) {
 			// do nothing
 		}	else {
@@ -40,8 +27,9 @@ $(document).ready(function() {
 
 	});
 
+
 // FLEX TORPEDO
-// install some divs
+// install some divs for torpedo grid.
 	$(".torpedowrap img" ).each(function() {
 		var torpedosource = $(this).prop('src');
 		$(this).parent().css("background-image", 'url("' + torpedosource + '")');
@@ -75,7 +63,8 @@ $(document).ready(function() {
 		setInterval(slideshowUpdate, 1000);
 	}
 
-});
+});  // end document.ready
+
 
 // mouse hide function.
 function hide() {
@@ -156,7 +145,6 @@ function slideshowUpdate() {
 		if ( json["update"] == "false" ) {
 			// do nothing.
 		}	else {
-			
 			startSpinner();
 			startRotator(json);
 		}
@@ -359,7 +347,7 @@ function formatImage(image, maxWidth, maxHeight, imgWidth, imgHeight, windowWidt
 	}	else {
 		// width change will bring height within tolerance. resize width.
 		imgWidth = maxWidth; //set imgWidth to max allowable.
-		imgHeight = imgHeight * percentChange; // set width to the same percentage change.
+		imgHeight = imgHeight * percentChange; // set height to the same percentage change.
 		// Set image height & width.
 		image.attr({
 			"height": imgHeight,
