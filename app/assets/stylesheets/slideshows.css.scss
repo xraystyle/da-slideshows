@@ -2,13 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-html {height: 100%;}
-
-// body {
-// 	background: black;
-// 	height: 100%;
-// 	margin: 0;
-// }
+html { height: 100%; }
 
 .main-actions {
 	width: 175px;
@@ -84,106 +78,6 @@ footer.footer {
 
 }
 
-// Chanel changer CSS--------------------
-@media (max-width: 767px) { // Bootstrap XS size
-	
-	.channel { 
-		display: inline;
-		padding: 5px;
-		vertical-align: middle;
-		height: 300px;
-		line-height: 300px;
-		img {
-			max-height: 300px;
-			// max-width: 300px;
-			// min-height: 100px;
-			// min-width: 100px;
-			border: 3px solid black;
-			// margin: auto;
-			vertical-align: middle;	
-			cursor: pointer;
-		}
-	}
-
-
-	.channel-selected {
-		@extend .channel;
-		img {
-			border: 5px solid #00E5FF;
-			cursor: auto;	
-		}
-		
-	}
-
-}
-
-@media (min-width: 768px) {  // Bootstrap SM size
-	
-	.channel { 
-		display: inline;
-		padding: 5px;
-		vertical-align: middle;
-		min-height: 300px;
-		height: 400px;
-		line-height: 400px;
-		img {
-			max-height: 400px;
-			// max-width: 300px;
-			// min-height: 100px;
-			// min-width: 100px;
-			border: 3px solid black;
-			// margin: auto;
-			vertical-align: middle;	
-			cursor: pointer;
-		}
-	}
-
-
-	.channel-selected {
-		@extend .channel;
-		img {
-			border: 5px solid #00E5FF;
-			cursor: auto;	
-		}
-		
-	}
-
-}
-
-
-
-@media (min-width: 992px) {  //  Bootstrap MD size
-	
-	.channel { 
-		display: inline;
-		padding: 5px;
-		vertical-align: middle;
-		height: 550px;
-		line-height: 550px;
-		img {
-			max-height: 550px;
-			// max-width: 300px;
-			// min-height: 100px;
-			// min-width: 100px;
-			border: 3px solid black;
-			// margin: auto;
-			vertical-align: middle;	
-			cursor: pointer;
-		}
-	}
-
-
-	.channel-selected {
-		@extend .channel;
-		img {
-			border: 3px solid #00E5FF;
-			cursor: auto;	
-		}
-		
-	}
-
-}
-
 
 h1 {
     color : white;
@@ -203,23 +97,86 @@ h1 {
   margin-top: 10px;
 }
 
-// .heart {
-//     position: fixed;
-//     left: 5px;
-    
-//     @media (max-width: 399px) { // Additional smaller size for older/lower-res devices
-//         bottom: 22px;
-//     }
 
-//     @media (min-width: 400px) { // Bootstrap XS size
-//         bottom: 32px;
-//     }
+/* ********************************************************************** */
+/* Torpedo LEELOR 
+/* ********************************************************************** */
 
-//     @media (min-width: 768px) {  // Bootstrap SM size
-//         bottom: 43px;
-//     }
-    
-// }
+.torpedo.leelor {
+    /* this controls space between thumbs */
+    margin: 8px;
+    display: flex;
+    display: -ms-flex;
+    display: -moz-flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    -moz-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    overflow: hidden;
+    flex-direction: row;
+    -webkit-flex-direction:row;
+    -moz-flex-direction:row;
+    justify-content: flex-end;
+    -webkit-justify-content:flex-end;
+    -moz-justify-content:flex-end;
+}
+/* inserted by js - this is anchor tag around each image */
+.torpedowrap {
+    flex-grow: 1;
+    -ms-flex-grow: 1;
+    -moz-flex-grow: 1;
+    -webkit-flex-grow: 1;
+    flex-shrink: 1;
+    -ms-flex-shrink: 1;
+    -moz-flex-shrink: 1;
+    -webkit-flex-shrink: 1;
+    margin: inherit;
+    background-position: 50% 35%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.torpedowrap img {
+    visibility: hidden;
+
+max-height: 200px;
+max-width: 275px;
+}
+
+.channel { cursor: pointer; }
+
+.channel-selected {
+    border: 5px solid #00E5FF;
+    cursor: auto;   
+}
+
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 800px) and (-webkit-min-device-pixel-ratio : 1.5) { 
+
+.torpedo-minus-wrapper {
+    margin: 0px -30px;
+}
+
+.torpedo.leelor {
+        margin: 2px;
+        justify-content: flex-start;
+        -webkit-justify-content:flex-start;
+        -moz-justify-content:flex-start;
+    }
+
+    .torpedowrap {
+        margin: inherit;
+    }
+    .torpedowrap img {
+        max-height: 150px;
+        max-width: 140px;
+    }
+    .torpedo.leelor a.torpedowrap:nth-child(2) {
+        max-width: none;
+    }
+}
+
 
 // End channel changer CSS------------------------
 
@@ -295,7 +252,6 @@ p a:hover {
 #current-seed {
 	display: none;
 }
-
 
 // End slideshow CSS-------------------------------
 
