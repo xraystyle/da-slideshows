@@ -6,14 +6,6 @@ class SlideshowsController < ApplicationController
 
   @@wh = "00000000-0000-0000-0000-000000000001"
 
-  # def foo
-  #   puts "Browser width: #{params[:browser_width]}"
-  #   puts "Pixel ratio: #{params[:pixel_ratio]}"
-  #   puts "Scale set to:  #{params[:scale_set]}"
-
-  #   render status: 200, json: @controller.to_json
-  # end
-
   # Set up data to display the channel changer.
   def channels
 
@@ -21,7 +13,7 @@ class SlideshowsController < ApplicationController
 
     whats_hot = Slideshow.whats_hot_slideshow
 
-    @channels = whats_hot.results.order(created_at: :desc).map { |d| {thumb: d.thumb, uuid: d.uuid} }.compact # add .where(mature: false) for mature filter.
+    @channels = whats_hot.results.order(created_at: :desc).map { |d| {thumb: d.thumb, uuid: d.uuid} }.compact # change .results to .nsfw for mature filter.
 
     # If a slideshow doesn't exist for a given seed, having it show up in the channel changer will produce errors if it's
     # selected as the user's channel. This happens when What's Hot has been updated, but before all the MLT results have been

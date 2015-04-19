@@ -5,8 +5,6 @@ $(document).ready(function() {
 // ----------------------------- static_pages/home javascript ---------------------------
     if ( $('.hero-unit').length ) {
 
-        // $('.hero-unit').css('height', ($(window).width() * .53416));
-
          // Set up all the slideshow files for the landing page slideshow.
         var bobafett = {
             "link" : $('<a />', {
@@ -171,9 +169,7 @@ $(document).ready(function() {
         shuffle(slideshowFiles);
 
         $('.hero-unit').prepend(slideshowFiles[0]["image"]);
-        // $('.hero-image').addClass('current');        
         $('.attribution').append(slideshowFiles[0]["link"]);
-        // $('.attribution a').addClass('current');
         $('.hero-image').fadeIn(1500);
         $('.attribution').fadeIn(1500);
         $('.attribution a').fadeIn(1500, function() {
@@ -220,16 +216,10 @@ function startSlideshow(files) {
 
     setInterval(function() {
        
-        // console.log(index);
-
         if ( files[index] !== undefined ) {
-            // console.log("index at beginning is " + index);
-            // console.log("has own property, yay")
             rotateImage(files, index);
             index++;
         }   else {
-            // console.log("index at beginning is " + index);
-            // console.log("cant haz own property")
             index = 0;
             rotateImage(files, index);
             index++;
@@ -241,13 +231,8 @@ function startSlideshow(files) {
 
 
 function rotateImage(array, i) {
-    // console.log(i);
-
-    // console.log(array[i]["image"].attr('src'));
 
     $('.hero-unit').prepend(array[i]["image"]);
-
-    // console.log("These are the children of .hero-unit after prepend: " + $('.hero-unit').children().attr('src'));
 
     $('.attribution').append(array[i]["link"]);
     $('.attribution').fadeOut('1500');
