@@ -40,7 +40,12 @@ $(document).ready(function() {
 
 	});
 
-
+// FLEX TORPEDO
+// install some divs
+	$(".torpedowrap img" ).each(function() {
+		var torpedosource = $(this).prop('src');
+		$(this).parent().css("background-image", 'url("' + torpedosource + '")');
+	});
 
 
 

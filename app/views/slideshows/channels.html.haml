@@ -3,12 +3,12 @@
     %h1 Choose a Channel!
     %span Select an image to change the channel on your slideshow at any time.
     %hr
-    .channel-list
-        .row
+    .torpedo-minus-wrapper
+        .channel-list.torpedo.leelor
             - @channels.each do |c|
                 -if c[:uuid] == @user_seed
-                    .channel-selected.col-xs-6.col-sm-4.col-md-3
-                        = image_tag(c[:thumb], class: "img-responsive thumbnail", data: {uuid: c[:uuid]})
+                    .channel-selected.torpedowrap
+                        = image_tag(c[:thumb], data: {uuid: c[:uuid]})
                 -else    
-                    .channel.col-xs-6.col-sm-4.col-md-3
-                        = image_tag(c[:thumb], class: "img-responsive thumbnail", data: {uuid: c[:uuid]})
+                    .channel.torpedowrap
+                        = image_tag(c[:thumb], data: {uuid: c[:uuid]})
