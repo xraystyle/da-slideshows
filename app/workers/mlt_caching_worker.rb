@@ -49,7 +49,7 @@ class MLTCachcing
 
     end
 
-    logger.info("MLT Caching run completed.\n")
+    # logger.info("MLT Caching run completed.\n")
 
   end
 
