@@ -28,7 +28,7 @@ module ApplicationHelper
 
 
   def get_every_deviation_uuid
-    Hash[Deviation.pluck(:uuid, :id)]
+    Deviation.pluck(:uuid).to_set
   end
 
   def get_every_slideshow_seed

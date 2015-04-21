@@ -40,7 +40,8 @@ class MLTCachcing
       # Skip MLT fetching for slideshows that already exist.
       # No real point in updating slideshows, the MLT results
       # are fine as is. Plus, this MAJORLY cuts down on the
-      # number of unnecessary API calls.
+      # number of unnecessary API calls, which are the longest
+      # part of the process. 
       next if all_seeds.include?(d.uuid)
 
       # Get MLT results and park 'em in the DB.

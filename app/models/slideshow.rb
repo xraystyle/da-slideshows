@@ -19,7 +19,7 @@ class Slideshow < ActiveRecord::Base
   end
 
   def self.whats_hot_slideshow
-    where(seed: "00000000-0000-0000-0000-000000000001").first
+    includes(:deviations).where(seed: "00000000-0000-0000-0000-000000000001").first
   end
 
 end
