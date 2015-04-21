@@ -1,30 +1,30 @@
 #!/usr/bin/ruby -w
+
 require 'open3'
 system 'clear'
 # exit code
 # Catch the ctrl-c, shut everything down.
-Signal.trap("INT") {
+Signal.trap('INT') do
   system 'clear'
   puts "\n\nShutting down app...\n\n"
 
   sleep 2
 
-  unless File.exist?('tmp/pids/redis.pid')
-    exit 1
-  end
+  exit 1 unless File.exist?('tmp/pids/redis.pid')
 
-  puts "Quitting Sidekiq..."
+  puts 'Quitting Sidekiq...'
 
   sleep 2
 
   sidekiq_pid = `cat tmp/pids/sidekiq.pid`
+
   if system "kill #{sidekiq_pid}"
     puts "Sidekiq shut down.\n\n"
   else
     puts "Sidekiq may have failed to quit.\n\n"
   end
 
-  puts "Quitting Redis..."
+  puts 'Quitting Redis...'
 
   sleep 2
 
@@ -36,47 +36,30 @@ Signal.trap("INT") {
   end
 
   # Quit the Postgres app gracefully via osascript.
-  puts "Quitting Postgres App..."
+  puts 'Quitting Postgres App...'
   `osascript -e 'quit app "Postgres"'`
   sleep 2
   puts "Postgres shut down.\n\n"
 
-
   puts "Quitting Puma...\n\n"
-
-}
-
-
-
-# puts "Don't use this in production.\n\n"
-# puts "Press enter to continue, or ctrl-c to quit.\n\n"
-
-# gets
+end
 
 # Launch Postgres.app
 def start_postgres_app
   `open /Applications/Postgres.app`
 end
 
-
-
 # Launch redis.
 def start_redis
-  exit_status = system 'redis-server config/redis-dev.conf'
-  return exit_status
+  system 'redis-server config/redis-dev.conf'
 end
-
-
-
 
 # Launch sidekiq
 def start_sidekiq
-
   initial_pid = `cat tmp/pids/sidekiq.pid`
   `bundle exec sidekiq -C config/sidekiq.yml`
   sleep 1
   new_pid = `cat tmp/pids/sidekiq.pid`
-
 
   if initial_pid != new_pid
     return true
@@ -86,18 +69,14 @@ def start_sidekiq
   end
 end
 
-
-
 # launch Puma webserver.
 def start_puma
-  Open3.popen3('puma') do |stdin, stdout, stderr, wait_thr|
+  Open3.popen3('puma') do |_stdin, stdout, _stderr, _wait_thr|
     while line = stdout.gets
       puts line
     end
   end
 end
-
-
 
 #  -----------------   Start Script  -----------------
 
@@ -113,10 +92,10 @@ start_postgres_app
 
 sleep 2
 
-if File.exist?(File.expand_path("#{ENV["HOME"]}/Library/Application Support/Postgres/var-9.4/postmaster.pid"))
+if File.exist?(File.expand_path("#{ENV['HOME']}/Library/Application Support/Postgres/var-9.4/postmaster.pid"))
   puts "Postgress started successfully.\n\n"
 else
-  puts "Postgress failed to start. Check your configuration and try again."
+  puts 'Postgress failed to start. Check your configuration and try again.'
   exit 1
 end
 
@@ -142,9 +121,9 @@ puts "Starting Sidekiq...\n\n"
 sleep 2
 
 if start_sidekiq
-  puts "Sidekiq started successfully."
+  puts 'Sidekiq started successfully.'
 else
-  puts "Sidekiq failed to start. Check your config file and try again."
+  puts 'Sidekiq failed to start. Check your config file and try again.'
 end
 
 # If redis and sidekiq are running, fire up puma.

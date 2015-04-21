@@ -28,27 +28,11 @@ module ApplicationHelper
 
 
   def get_every_deviation_uuid
-    log_message("get_every_deviation_uuid was just called.")
-    all_uuids = Set.new
-
-    Deviation.find_each do |d|
-      all_uuids << d.uuid
-    end
-
-    all_uuids
-
+    Hash[Deviation.pluck(:uuid, :id)]
   end
 
   def get_every_slideshow_seed
-
-    all_seeds = Set.new
-
-    Slideshow.find_each do |s|
-      all_seeds << s.seed
-    end
-
-    all_seeds
-
+    Slideshow.pluck(:seed).to_set
   end
 
   # Translate Rails flash into a Bootstrap class.
