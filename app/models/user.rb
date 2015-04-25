@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 
   # Instance Methods
   def slideshow
-    Slideshow.where(seed: self.seed).first
+    Slideshow.includes(:deviations).where(seed: self.seed).first
   end
 
 

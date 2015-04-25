@@ -155,7 +155,8 @@
 }
 
 .sidebar ul {
-    background-color: white;
+    // opacity: 0.8;
+    background-color: black;
     @media (max-width: 400px) {
         padding-top: 15px;
         padding-left: 10px;
@@ -178,16 +179,19 @@
 
     li {
         padding :5px;
+        color: white;
 
         a {
-            color: black;
             text-decoration: underline;
+            color: white;
         }
     }
 }
 
 .instructions {
-    background-color: white;
+    display: none;
+    background-color: black;
+    // opacity: 0.8;
     @media (max-width: 399px) {
         margin-top: 5px;
     }
@@ -196,6 +200,9 @@
     }
 }
 
+#how-it-works {
+    opacity: 1;
+}
 
 
 // CSS for info page:

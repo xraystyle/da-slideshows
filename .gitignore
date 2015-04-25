@@ -22,3 +22,5 @@ notes
 
 #ignore compiled assets
 /public/assets/*
+
+/retired
