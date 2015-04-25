@@ -11,9 +11,9 @@ class SlideshowsController < ApplicationController
 
     @user_seed = current_user.seed
 
-    whats_hot = Slideshow.whats_hot_slideshow
+    # whats_hot = Slideshow.whats_hot_slideshow
 
-    @channels = whats_hot.results.order(created_at: :desc).map { |d| {thumb: d.thumb, uuid: d.uuid} }.compact # change .results to .nsfw for mature filter.
+    @channels = Slideshow.whats_hot_slideshow.results.order(created_at: :desc).map { |d| {thumb: d.thumb, uuid: d.uuid} }.compact # change .results to .nsfw for mature filter.
 
     # If a slideshow doesn't exist for a given seed, having it show up in the channel changer will produce errors if it's
     # selected as the user's channel. This happens when What's Hot has been updated, but before all the MLT results have been
