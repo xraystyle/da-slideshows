@@ -11,7 +11,6 @@ gem 'sass-rails', '4.0.5'
 gem 'uglifier', '2.1.1'
 gem 'coffee-rails', '4.0.1'
 gem 'jquery-rails', '3.0.4'
-# gem 'turbolinks', '1.1.1'
 gem 'jbuilder', '1.0.2'
 gem 'sprockets', '2.12.3'
 gem 'puma', '2.10.2'
@@ -22,6 +21,8 @@ gem 'devise', '3.4.1'
 gem 'devise-async', '0.9.0'
 gem 'pg', '0.18.1'
 gem 'mailgun-ruby', '~>1.0.2', require: 'mailgun'
+gem 'dotenv-rails', '2.0.0'
+
 
 
 
@@ -36,7 +37,6 @@ group :development, :test do
   gem 'erb2haml', '0.1.5'
   gem 'factory_girl_rails', '4.2.0'
   gem 'sinatra', :require => nil
-  gem 'dotenv-rails', '2.0.0'
 end
 
 group :test do
