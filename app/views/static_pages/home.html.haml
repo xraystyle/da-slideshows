@@ -12,9 +12,9 @@
         != "#{link_to("Sign in", new_user_session_path)} or #{link_to("Register", new_user_registration_path)} to get started!"
 
 .row.instructions
-    = image_tag("howitworks.jpg", class: "img-responsive pull-left col-sm-8 col-md-9", id: "how-it-works")    
+    = image_tag("howitworks1.jpg", class: "img-responsive pull-left col-sm-8 col-md-9", id: "how-it-works")    
     .sidebar.col-xs-12.col-sm-4.col-md-3
         %ul.pull-right
-            %li!= "Open your #{link_to "Channel Changer", slideshows_channels_path} on your mobile device, such as a phone or tablet."
-            %li!= "Then open your #{link_to "Slideshow", slideshows_slideshow_path} on a larger screen. (Internet Explorer on Xbox works great!)"
-            %li!= "Tap to select a new image on your phone or tablet and the slideshow will update to show you more art similar to the channel you selected! You can find more tips on our #{link_to "info page", info_path}."
+            %li!= "Open your #{link_to "Channel Changer", slideshows_channels_path, target: :_blank} on your mobile device, such as a phone or tablet."
+            %li!= "Then open your #{link_to "Slideshow", slideshows_slideshow_path, target: :_blank} on a larger screen. (Internet Explorer on Xbox works great!)"
+            %li!= "Tap to select a new image on your phone or tablet and the slideshow will update to show you more art similar to the channel you selected! You can find more tips on our #{link_to "info page", info_path, target: :_blank}."
