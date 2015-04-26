@@ -1,5 +1,7 @@
 var justHidden = false; // Used for mouse hide function. Needs to be declared before document.ready
 
+var updateInterval  // Interval used for polling the server for updates to the slideshow.
+
 $(document).ready(function() {
 
 	// ------------ JS For the Channel Changer ----------------------------
@@ -60,7 +62,7 @@ $(document).ready(function() {
 
 		slideshowUpdate();
 		startSpinner();
-		setInterval(slideshowUpdate, 1000);
+		updateInterval = setInterval(slideshowUpdate, 1000);
 	}
 
 });  // end document.ready
@@ -145,6 +147,7 @@ function slideshowUpdate() {
 		if ( json["update"] == "false" ) {
 			// do nothing.
 		}	else {
+			clearInterval(updateInterval);
 			startSpinner();
 			startRotator(json);
 		}
@@ -178,6 +181,10 @@ function startRotator(jsonObj) {
 		}
 		
 	}, 14000); // Time per image.
+
+	setTimeout(function() {
+		updateInterval = setInterval(slideshowUpdate, 1000);
+	}, 7000);
 }
 
 
