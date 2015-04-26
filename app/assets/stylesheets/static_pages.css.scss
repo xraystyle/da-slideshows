@@ -189,14 +189,16 @@
 }
 
 .instructions {
-    display: none;
     background-color: black;
+    display: none;
     // opacity: 0.8;
     @media (max-width: 399px) {
         margin-top: 5px;
     }
     @media (min-width: 400px) {
         margin-top: 20px;
+    }
+    @media (min-width: 992px) {
     }
 }
 
