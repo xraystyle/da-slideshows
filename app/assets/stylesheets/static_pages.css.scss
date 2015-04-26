@@ -189,7 +189,6 @@
 }
 
 .instructions {
-    display: none;
     background-color: black;
     // opacity: 0.8;
     @media (max-width: 399px) {
@@ -197,6 +196,9 @@
     }
     @media (min-width: 400px) {
         margin-top: 20px;
+    }
+    @media (min-width: 992px) {
+        display: none;
     }
 }
 
