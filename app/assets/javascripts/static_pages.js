@@ -174,19 +174,20 @@ $(document).ready(function() {
         $('.attribution').fadeIn(1500);
         $('.attribution a').fadeIn(1500, function() {
            $('.next').addClass('current').removeClass('next');
+           $('.instructions').fadeIn(1500);
         });
 
 
         startSlideshow(slideshowFiles);
 
-        $(window).scroll(function() {
-            var height = $(window).scrollTop();
+        // $(window).scroll(function() {
+        //     var height = $(window).scrollTop();
 
-            if ( height > 50 ) {
-                $('.instructions').fadeIn(1500);
-            }
+        //     if ( height > 50 ) {
+        //         $('.instructions').fadeIn(1500);
+        //     }
 
-        });
+        // });
 
         
     } 
