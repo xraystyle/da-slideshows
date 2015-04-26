@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.2'
+ruby '2.1.5'
 #ruby-gemset=da-slideshow
 
 gem 'rails', '4.1.8'
@@ -22,6 +22,7 @@ gem 'devise-async', '0.9.0'
 gem 'pg', '0.18.1'
 gem 'mailgun-ruby', '~>1.0.2', require: 'mailgun'
 gem 'dotenv-rails', '2.0.0'
+gem 'sinatra', :require => nil
 
 
 
@@ -36,7 +37,6 @@ group :development, :test do
   gem 'did_you_mean', '0.9.4'
   gem 'erb2haml', '0.1.5'
   gem 'factory_girl_rails', '4.2.0'
-  gem 'sinatra', :require => nil
 end
 
 group :test do
