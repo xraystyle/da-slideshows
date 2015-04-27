@@ -137,9 +137,7 @@ function makeSpinner() {
 
 
 
-
-
-
+var updated = false; // update the slideshow if it's false. Set it to true while updating, then back to false.
 // What should I be displaying on the slideshow page?
 function slideshowUpdate() {
 
@@ -150,9 +148,17 @@ function slideshowUpdate() {
 		if ( json["update"] == "false" ) {
 			// do nothing.
 		}	else {
-			clearInterval(updateInterval);
-			startSpinner();
-			startRotator(json);
+
+			if ( updated === false ) {
+				updated = true;
+				clearInterval(updateInterval);
+				startSpinner();
+				startRotator(json);
+				setTimeout(function() {
+					updated = false;
+				}, 1000);
+			}
+
 		}
 
 	});
