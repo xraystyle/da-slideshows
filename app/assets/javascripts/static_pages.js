@@ -15,7 +15,7 @@ $(document).ready(function() {
                 style : "display : none;",
                 }),
             "image" : $('<img />', {
-                src : "assets/bobafett.jpg",
+                src : "images/bobafett.jpg",
                 class : "next img-responsive hero-image",
                 style : "display : none;" 
             })};
@@ -29,7 +29,7 @@ $(document).ready(function() {
                 style : "display : none;",
                 }),
             "image" : $('<img />', {
-                src : "assets/scifi.jpg",
+                src : "images/scifi.jpg",
                 class : "next img-responsive hero-image",
                 style : "display : none;" 
             })};
@@ -43,7 +43,7 @@ $(document).ready(function() {
                 style : "display : none;",
                 }),
             "image" : $('<img />', {
-                src : "assets/nordiclake.jpg",
+                src : "images/nordiclake.jpg",
                 class : "next img-responsive hero-image",
                 style : "display : none;" 
             })};
@@ -57,7 +57,7 @@ $(document).ready(function() {
                 style : "display : none;",
                 }),
             "image" : $('<img />', {
-                src : "assets/oldman.jpg",
+                src : "images/oldman.jpg",
                 class : "next img-responsive hero-image",
                 style : "display : none;" 
             })};
@@ -71,7 +71,7 @@ $(document).ready(function() {
                 style : "display : none;",
                 }),
             "image" : $('<img />', {
-                src : "assets/buick.jpg",
+                src : "images/buick.jpg",
                 class : "next img-responsive hero-image",
                 style : "display : none;" 
             })};
@@ -85,7 +85,7 @@ $(document).ready(function() {
                 style : "display : none;",
                 }),
             "image" : $('<img />', {
-                src : "assets/cafegirl.jpg",
+                src : "images/cafegirl.jpg",
                 class : "next img-responsive hero-image",
                 style : "display : none;" 
             })};
@@ -99,7 +99,7 @@ $(document).ready(function() {
                 style : "display : none;",
                 }),
             "image" : $('<img />', {
-                src : "assets/starscape.png",
+                src : "images/starscape.png",
                 class : "next img-responsive hero-image",
                 style : "display : none;" 
             })};
@@ -114,7 +114,7 @@ $(document).ready(function() {
                 style : "display : none;",
                 }),
             "image" : $('<img />', {
-                src : "assets/sunsetriver.jpg",
+                src : "images/sunsetriver.jpg",
                 class : "next img-responsive hero-image",
                 style : "display : none;" 
             })};
@@ -128,7 +128,7 @@ $(document).ready(function() {
                 style : "display : none;",
                 }),
             "image" : $('<img />', {
-                src : "assets/headphones.jpg",
+                src : "images/headphones.jpg",
                 class : "next img-responsive hero-image",
                 style : "display : none;" 
             })};
@@ -142,7 +142,7 @@ $(document).ready(function() {
                 style : "display : none;",
                 }),
             "image" : $('<img />', {
-                src : "assets/chunli.jpg",
+                src : "images/chunli.jpg",
                 class : "next img-responsive hero-image",
                 style : "display : none;" 
             })};
@@ -156,7 +156,7 @@ $(document).ready(function() {
                 style : "display : none;",
                 }),
             "image" : $('<img />', {
-                src : "assets/fractal.png",
+                src : "images/fractal.png",
                 class : "next img-responsive hero-image",
                 style : "display : none;" 
             })};
@@ -179,15 +179,6 @@ $(document).ready(function() {
 
 
         startSlideshow(slideshowFiles);
-
-        // $(window).scroll(function() {
-        //     var height = $(window).scrollTop();
-
-        //     if ( height > 50 ) {
-        //         $('.instructions').fadeIn(1500);
-        //     }
-
-        // });
 
         
     } 
