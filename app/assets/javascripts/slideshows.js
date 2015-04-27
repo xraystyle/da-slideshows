@@ -107,7 +107,7 @@ function startSpinner() {
 // Make the spinner.
 function makeSpinner() {
 	// make the element.
-	var spinner = $("<img />", {id: "spinner", src: "../assets/ajax_loader_vector.gif", width: "75", height: "75"});
+	var spinner = $("<img />", {id: "spinner", src: "../images/ajax_loader_vector.gif", width: "75", height: "75"});
 	// spinner.css('opacity', '0.0');
 	spinner.css({
 		"opacity": '0',
