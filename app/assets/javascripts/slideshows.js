@@ -61,8 +61,11 @@ $(document).ready(function() {
 		});
 
 		slideshowUpdate();
-		startSpinner();
-		updateInterval = setInterval(slideshowUpdate, 1000);
+		// startSpinner();
+		// setTimeout(function() {
+		// 	updateInterval = setInterval(slideshowUpdate, 1000);
+		// 	console.log("Starting update interval...");
+		// }, 7000);
 	}
 
 });  // end document.ready
