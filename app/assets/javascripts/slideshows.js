@@ -156,7 +156,7 @@ function slideshowUpdate() {
 				startRotator(json);
 				setTimeout(function() {
 					updated = false;
-				}, 2000);
+				}, 7000);
 			}
 
 		}
