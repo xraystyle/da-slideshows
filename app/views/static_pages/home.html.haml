@@ -3,7 +3,7 @@
         %h1 Welcome to DA Slideshows
         %p The art you love, the way it was meant to be experienced.
         -unless current_user
-            %p#action!= "#{link_to("Sign in", new_user_session_path)} or #{link_to("Register", new_user_registration_path)} to get started!"
+            %p#action!= "#{link_to("Sign in", new_user_session_path)} or #{link_to("Register", new_user_registration_path)} now to create your own custom slideshows!"
     .attribution{ style: "display : none;" }
 
 
@@ -15,6 +15,7 @@
     = image_tag("../images/howitworks1.jpg", class: "img-responsive pull-left col-sm-8 col-md-9", id: "how-it-works")    
     .sidebar.col-xs-12.col-sm-4.col-md-3
         %ul.pull-right
-            %li!= "Open your #{link_to "Channel Changer", slideshows_channels_path, target: :_blank} on your mobile device, such as a phone or tablet."
+            %h2 How It Works
+            %li!= "Open the #{link_to "Channel Changer", slideshows_channels_path, target: :_blank} on your mobile device, such as a phone or tablet."
             %li!= "Then open your #{link_to "Slideshow", slideshows_slideshow_path, target: :_blank} on a larger screen. (Internet Explorer on Xbox works great!)"
-            %li!= "Tap to select a new image on your phone or tablet and the slideshow will update to show you more art similar to the channel you selected! You can find more tips on our #{link_to "info page", info_path, target: :_blank}."
+            %li!= "Tap to select a new image on your phone or tablet and the slideshow will instantly update to show you more art similar to the channel you selected! You can find more usage tips on our #{link_to "info page", info_path, target: :_blank}."

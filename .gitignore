@@ -13,7 +13,7 @@
 /db/*.rdb
 
 # Ignore all logfiles and tempfiles.
-/log/*.log
+/log/*.log*
 /tmp
 /config/secrets.yml
 .secret
