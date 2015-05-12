@@ -12,7 +12,8 @@ class MLTCachcing
   sidekiq_options retry: false
 
   recurrence backfill: false do
-    daily.hour_of_day(0, 4, 8, 12, 16, 20, 24)
+    # daily.hour_of_day(0, 4, 8, 12, 16, 20, 24)
+    hourly.minute_of_hour(0)
   end
 
   def perform
