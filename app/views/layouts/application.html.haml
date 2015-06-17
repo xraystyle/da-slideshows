@@ -6,6 +6,17 @@
 		= javascript_include_tag "application", params[:controller]
 		= csrf_meta_tags
 		%meta{:name => "viewport", :content => "width=device-width, initial-scale=1"}
+		%meta{ name: "description", content: "Create beautiful custom slideshows of artwork from DeviantArt, instantly change them, and enjoy on any device with a browser. Works without Flash!" }
+		%meta{ property: "og:title", content: "DA Slideshows: Beautiful Custom Slideshows With Art From DeviantArt!" }
+		%meta{ property: "og:type", content: "website" }
+		%meta{ property: "og:image", content: "../images/opengraph_image.png" }
+		%meta{ property: "og:url", content: "https://da-slidesho.ws" }
+		%meta{ property: "og:description", content: "Create beautiful custom slideshows of artwork from DeviantArt, change them in real time from your mobile, and enjoy on any device with a browser. Works without Flash!" }
+		%meta{ name: "twitter:card", content: "summary" }
+		%meta{ name: "twitter:url", content: "https://da-slidesho.ws" }
+		%meta{ name: "twitter:title", content: "DA Slideshows: Beautiful Custom Slideshows With Art From DeviantArt!" }
+		%meta{ name: "twitter:description", content: "Create beautiful custom slideshows of artwork from DeviantArt, change them in real time from your mobile, and enjoy on any device with a browser. Works without Flash!" }
+		%meta{ name: "twitter:image", content: "../images/opengraph_image.png" }
 
 	%body
 		- if current_page?(controller: '/slideshows', action: 'slideshow')
