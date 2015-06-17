@@ -5,11 +5,22 @@
 .hero-unit {
     position: relative;
     background-color: black;
+
+    @media (min-width: 599px) {
+        margin: 0;
+        border-radius: 0;
+    }
+
+    @media (min-width: 600px) {
+        margin: 20px;
+        border-radius: 10px;
+    }
 }
 
 .hero-image {
     width: 100%;
-    opacity: .5;
+    opacity: .4;
+    border-radius: 10px;
 }
 
 .tagline {
@@ -191,14 +202,25 @@
 .instructions {
     background-color: black;
     display: none;
+    // margin: 20px;
+    // border-radius: 10px;
     // opacity: 0.8;
     @media (max-width: 399px) {
         margin-top: 5px;
+        // margin-left: 0;
+        // margin-right: 0;
     }
     @media (min-width: 400px) {
         margin-top: 20px;
     }
-    @media (min-width: 992px) {
+    @media (min-width: 599px) {
+        margin: 0;
+        border-radius: 0;
+    }
+
+    @media (min-width: 600px) {
+        margin: 20px;
+        border-radius: 10px;
     }
 }
 
