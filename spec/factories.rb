@@ -46,8 +46,8 @@ FactoryGirl.define do
 		title Faker::Lorem.words.join(" ")
 		author Faker::Internet.user_name
 		mature false
-		src "http://fc04.deviantart.net/fs70/i/2014/336/f/9/deviation-by-author-d88g3s2.jpg"
-		thumb "http://th07.deviantart.net/fs70/200H/i/2014/336/f/9/deviation-by-author-d88g3s2.jpg"
+		src "https://fc04.deviantart.net/fs70/i/2014/336/f/9/deviation-by-author-d88g3s2.jpg"
+		thumb "https://th07.deviantart.net/fs70/200H/i/2014/336/f/9/deviation-by-author-d88g3s2.jpg"
 		orientation { %w(portrait landscape square).sample }
 		uuid { make_uuid }
 

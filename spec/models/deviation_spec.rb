@@ -6,8 +6,8 @@ RSpec.describe Deviation, :type => :model do
 										title: "Looking Back", 
 										author: "xraystyle", 
 										mature: false, 
-										src: "http://fc04.deviantart.net/fs70/i/2014/336/f/9/looking_back_by_xraystyle-d88g3s2.jpg", 
-										thumb: "http://th07.deviantart.net/fs70/200H/i/2014/336/f/9/looking_back_by_xraystyle-d88g3s2.jpg", 
+										src: "https://fc04.deviantart.net/fs70/i/2014/336/f/9/looking_back_by_xraystyle-d88g3s2.jpg", 
+										thumb: "https://th07.deviantart.net/fs70/200H/i/2014/336/f/9/looking_back_by_xraystyle-d88g3s2.jpg", 
 										orientation: "landscape", 
 										uuid: "62CD20E0-F32D-CB46-1853-BF80B9F22EDE") }
 
