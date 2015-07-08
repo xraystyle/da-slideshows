@@ -140,10 +140,14 @@ RSpec.describe User, :type => :model do
 		end
 
 		it "should have the correct deviations" do
-			# expect(@user.slideshow.deviations).to eq(slideshow.deviations)	
-			@user.slideshow.deviations.each do |d|
-				expect(slideshow.deviations).to include(d)
-			end
+
+			user_value = @user.slideshow.deviations.to_ary.sort_by(&:id)
+			slideshow_value = slideshow.deviations.to_ary.sort_by(&:id)
+
+			# tests to make sure the contents are actually the same, not just that everything retrieved by
+			# one is included in what's retrieved by the other.
+			expect(user_value).to eq(slideshow_value)
+
 		end
 
 		it "should not include mature deviations" do
