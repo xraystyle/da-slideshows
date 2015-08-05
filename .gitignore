@@ -18,6 +18,7 @@
 /config/secrets.yml
 .secret
 notes
+bootstrap_notes
 .env
 
 #ignore compiled assets

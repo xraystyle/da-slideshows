@@ -9,7 +9,7 @@ RSpec.describe User, :type => :model do
 	# If '.create' is used, @user is saved first, and it will be the duplicate that is invalid,
 	# which is not what we're testing for, even though it's correct behavior.
 	let(:slideshow) { FactoryGirl.create(:slideshow) }
-	let(:boobs) { FactoryGirl.create(:mature) }	
+	let(:mature_deviation) { FactoryGirl.create(:mature) }	
 
 	before do
 		@user = FactoryGirl.build(:user)
@@ -18,7 +18,7 @@ RSpec.describe User, :type => :model do
 			slideshow.deviations << FactoryGirl.create(:deviation)
 		end
 
-		slideshow.deviations << boobs
+		slideshow.deviations << mature_deviation
 
 	end
 
@@ -140,11 +140,18 @@ RSpec.describe User, :type => :model do
 		end
 
 		it "should have the correct deviations" do
-			expect(@user.slideshow.deviations).to eq(slideshow.deviations)	
+
+			user_value = @user.slideshow.deviations.to_ary.sort_by(&:id)
+			slideshow_value = slideshow.deviations.to_ary.sort_by(&:id)
+
+			# tests to make sure the contents are actually the same, not just that everything retrieved by
+			# one is included in what's retrieved by the other.
+			expect(user_value).to eq(slideshow_value)
+
 		end
 
 		it "should not include mature deviations" do
-			expect(@user.slideshow.results).not_to include(boobs)
+			expect(@user.slideshow.results).not_to include(mature_deviation)
 		end
 	  	
 	end
