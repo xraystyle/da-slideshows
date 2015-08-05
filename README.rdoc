@@ -1,0 +1,3 @@
+== README
+
+Repo for the DA Slideshows website found here: http://da-slidesho.ws
