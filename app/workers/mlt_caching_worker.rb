@@ -18,9 +18,9 @@ class MLTCachcing
 
   def perform
 
-    logger.info("Getting all deviation UUIDs...")
+    # logger.info("Getting all deviation UUIDs...")
 
-    all_uuids = get_every_deviation_uuid
+    # all_uuids = get_every_deviation_uuid
 
     logger.info("Getting all slideshow seeds...")
 

@@ -27,9 +27,9 @@ module ApplicationHelper
   end
 
 
-  def get_every_deviation_uuid
-    Deviation.pluck(:uuid).to_set
-  end
+  # def get_every_deviation_uuid
+  #   Deviation.pluck(:uuid).to_set
+  # end
 
   def get_every_slideshow_seed
     Slideshow.pluck(:seed).to_set
