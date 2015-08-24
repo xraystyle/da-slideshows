@@ -2,7 +2,8 @@ source 'https://rubygems.org'
 ruby '2.1.5'
 #ruby-gemset=da-slideshow
 
-gem 'rails', '4.1.11'
+gem 'rails', '4.1.11', require: 'dotenv/rails-now'
+gem 'dotenv-rails', '2.0.0'
 gem 'bcrypt-ruby', '3.1.2'
 gem 'faker', '1.4.3'
 gem 'haml-rails', '0.6.0'
@@ -21,7 +22,6 @@ gem 'devise', '3.4.1'
 gem 'devise-async', '0.9.0'
 gem 'pg', '0.18.1'
 gem 'mailgun-ruby', '~>1.0.3', require: 'mailgun'
-gem 'dotenv-rails', '2.0.0'
 gem 'sinatra', :require => nil
 
 

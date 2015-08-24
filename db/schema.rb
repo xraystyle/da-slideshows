@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20150421181011) do
     t.datetime "updated_at"
   end
 
-  add_index "deviations", ["uuid"], name: "index_deviations_on_uuid", using: :btree
+  add_index "deviations", ["uuid"], name: "index_deviations_on_uuid", unique: true, using: :btree
 
   create_table "deviations_slideshows", id: false, force: true do |t|
     t.integer "slideshow_id"
