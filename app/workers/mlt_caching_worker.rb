@@ -18,10 +18,6 @@ class MLTCachcing
 
   def perform
 
-    # logger.info("Getting all deviation UUIDs...")
-
-    # all_uuids = get_every_deviation_uuid
-
     logger.info("Getting all slideshow seeds...")
 
     all_seeds = get_every_slideshow_seed
@@ -46,7 +42,7 @@ class MLTCachcing
       next if all_seeds.include?(d.uuid)
 
       # Get MLT results and park 'em in the DB.
-      get_mlt_results(d.uuid, all_uuids)
+      get_mlt_results(d.uuid)
 
     end
 

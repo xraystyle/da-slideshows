@@ -8,7 +8,7 @@ module ApiHelper
   # Retrieve a new API Access token from DA. Required for other API calls.
   def get_new_api_token
     json_response = open('https://www.deviantart.com/oauth2/token?grant_type=client_credentials&client_id=' +
-                          DA_CLIENT_ID + '&client_secret=' + DA_CLIENT_SECRET).read
+                          ENV['DA_CLIENT_ID'] + '&client_secret=' + ENV['DA_CLIENT_SECRET']).read
     token_data = JSON.parse(json_response)
 
     # if the JSON object has the key "error", something went sideways.
@@ -89,13 +89,13 @@ module ApiHelper
       if existing_deviation && slideshow
         # Check to see if the UUID of the deviation is already associated
         # with the slideshow. Associate it unless it's already there.
-        unless slideshow_uuid_set.include?(uuid)
+        unless slideshow_uuid_set.include?(entry["deviationid"])
 
           begin
             # log_message("Adding #{uuid} to slideshow #{slideshow.seed}", log_level: "info")
-            slideshow.deviations << Deviation.where(uuid: uuid).first
+            slideshow.deviations << Deviation.where(uuid: entry["deviationid"]).first
           rescue => e
-            log_message("Couldn't add deviation #{uuid} to slideshow #{slideshow.seed}.", log_level: "error")
+            log_message("Couldn't add deviation #{entry["deviationid"]} to slideshow #{slideshow.seed}. Line 98, api_helper.", log_level: "error")
             log_message(e.inspect, log_level: "error")
           end
 
@@ -164,7 +164,7 @@ module ApiHelper
           # slideshow.deviations << new_deviation 
         end
       rescue => e
-        log_message("Couldn't add deviation #{uuid} to slideshow #{slideshow.seed}.", log_level: "error")
+        log_message("Couldn't add deviation #{uuid} to slideshow #{slideshow.seed}. Line 167, api_helper", log_level: "error")
         log_message(e.inspect, log_level: "error")
       end
 
