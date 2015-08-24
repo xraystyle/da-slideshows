@@ -81,6 +81,9 @@ module ApiHelper
         existing_deviation = false
       end
 
+      # If the deviation exists and there's no slideshow, nothingtodoboat.jpg
+      next if existing_deviation && slideshow == false
+
       # If the deviation is already in the DB, add it to the
       # slideshow and move to the next deviation.
       if existing_deviation && slideshow
@@ -145,7 +148,7 @@ module ApiHelper
                                          uuid: uuid,
                                          src: src,
                                          thumb: thumb,
-                                         orientation: orientation) unless existing_deviation
+                                         orientation: orientation)
 
       rescue => e
         log_message("Deviation with UUID #{uuid} failed to save.", log_level: "error")
@@ -169,11 +172,6 @@ module ApiHelper
 
   end
 
-
-
-
-
-  
 
   # Retrieve the deviations from the "What's Hot" page.
   # Get 144 results (24*6). Max results per page is 24,
@@ -257,7 +255,7 @@ module ApiHelper
     # Put all the deviation objects into a single array, suitable for
     # passing into the add_deviations_to_db method above. Pass in the
     # given seed uuid as the slideshow seed as well.
-  def get_mlt_results(seed_uuid, all_uuids = nil)
+  def get_mlt_results(seed_uuid)
     log_message("Getting MLT for seed #{seed_uuid}...", log_level: "info", logfile: "api_calls.log")
     # First, load our API token
     access_token = load_api_token
@@ -321,17 +319,8 @@ module ApiHelper
 
     end
 
-
-    # Get the UUIDs of every deviation in the DB. This is actually
-    # pretty fast, and saves a substantial amount of time when checking
-    # to see if the deviation already exists before attempting to do an insert.
-    # If a set has been passed in, say from a Sidetiq worker, use it.
-    # otherwise, make one. Takes just under a second for 162,000 deviations
-    # on my Macbook Pro.
-    all_uuids = get_every_deviation_uuid unless all_uuids
-
     # Add our 300-odd deviations to the database and associate them with the slideshow seed.
-    add_deviations_to_db(deviations, seed_uuid, all_uuids)
+    add_deviations_to_db(deviations, seed_uuid)
 
   end
 
