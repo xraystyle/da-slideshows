@@ -13,7 +13,7 @@ class SlideshowsController < ApplicationController
 
     # whats_hot = Slideshow.whats_hot_slideshow
 
-    @channels = Slideshow.whats_hot_slideshow.results.order(created_at: :desc).map { |d| {thumb: d.thumb, uuid: d.uuid} }.compact # change .results to .nsfw for mature filter.
+    @channels = Slideshow.whats_hot_slideshow.results.order(created_at: :desc).map { |d| {thumb: d.thumb.sub!(/https/, 'http'), uuid: d.uuid} }.compact # change .results to .nsfw for mature filter.
 
     # If a slideshow doesn't exist for a given seed, having it show up in the channel changer will produce errors if it's
     # selected as the user's channel. This happens when What's Hot has been updated, but before all the MLT results have been
@@ -69,10 +69,10 @@ class SlideshowsController < ApplicationController
         url_hash = { seed: seed_in_db }
         first_deviation = Deviation.where(uuid: seed_in_db).first
 
-        url_hash[0] = { url: first_deviation.src, title: first_deviation.title, author: first_deviation.author, link: first_deviation.url } if first_deviation
+        url_hash[0] = { url: first_deviation.src.sub(/https/, 'http'), title: first_deviation.title, author: first_deviation.author, link: first_deviation.url } if first_deviation
 
         deviations = current_user.slideshow.results # add .where(mature: false) for mature filter.
-        urls = deviations.map { |d| { url: d.src, title: d.title, author: d.author, link: d.url } }.compact
+        urls = deviations.map { |d| { url: d.src.sub(/https/, 'http'), title: d.title, author: d.author, link: d.url } }.compact
 
         urls.each_with_index do |u,i|
           if first_deviation

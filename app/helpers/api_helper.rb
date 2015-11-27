@@ -120,8 +120,8 @@ module ApiHelper
       author = entry["author"]["username"]
       mature = entry["is_mature"]
       uuid = entry["deviationid"]
-      src = entry["content"]["src"].sub(/http:/, "https:")
-      thumb = entry["thumbs"].last["src"].sub(/http:/, "https:")
+      src = entry["content"]["src"]
+      thumb = entry["thumbs"].last["src"]
 
       # We don't need height and width on their own, but it makes
       # the orientation calculation easier to read. Might be interesting
