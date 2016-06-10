@@ -41,6 +41,7 @@ RSpec.describe User, :type => :model do
   	it { should respond_to(:last_sign_in_ip) }
   	it { should respond_to(:seed) }
   	it { should respond_to(:admin?) }
+  	it { should respond_to(:uuid) }
 
   	# Slideshow relationship:
   	# Handled with a method instead of an ActiveRecord relationship.
@@ -78,6 +79,16 @@ RSpec.describe User, :type => :model do
 
 	describe "with a password that's too short" do
 		before { @user.password = @user.password_confirmation = "a" * 5 }
+		it { should_not be_valid }
+	end
+
+	describe "when uuid is not present" do
+		before { @user.uuid = nil }		
+		it { should_not be_valid }
+	end
+
+	describe "when uuid is not a valid md5 hash" do
+		before { @user.uuid = "foo" }		
 		it { should_not be_valid }
 	end
 
