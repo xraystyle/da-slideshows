@@ -42,6 +42,7 @@ RSpec.describe User, :type => :model do
   	it { should respond_to(:seed) }
   	it { should respond_to(:admin?) }
   	it { should respond_to(:uuid) }
+  	it { should respond_to(:create_uuid) }
 
   	# Slideshow relationship:
   	# Handled with a method instead of an ActiveRecord relationship.

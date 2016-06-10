@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  require 'digest'
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :async
@@ -11,6 +12,7 @@ class User < ActiveRecord::Base
 
   # callbacks
   before_create :set_default_slideshow
+  before_create :create_uuid
 
   # Instance Methods
   def slideshow
@@ -25,6 +27,11 @@ class User < ActiveRecord::Base
     self.seed = "00000000-0000-0000-0000-000000000001"
   end
 
+  def create_uuid
+    md5 = Digest::MD5.new
+    md5.update self.email + Time.now.to_s
+    self.uuid = md5.hexdigest
+  end
 
 
 
