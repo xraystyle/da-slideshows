@@ -84,7 +84,7 @@ RSpec.describe User, :type => :model do
 	end
 
 	describe "when uuid is not present" do
-		before { @user.uuid = nil }		
+		before { @user.uuid = 'foo' }		
 		it { should_not be_valid }
 	end
 

@@ -12,7 +12,8 @@ class User < ActiveRecord::Base
 
 
   # callbacks
-  before_create :set_default_slideshow, :create_uuid
+  before_create :set_default_slideshow
+  before_validation :create_uuid
 
   # Instance Methods
   def slideshow
@@ -20,12 +21,12 @@ class User < ActiveRecord::Base
   end
 
   def create_uuid
-    md5 = Digest::MD5.new
-    md5.update self.email + Time.now.to_s
-    self.uuid = md5.hexdigest
+    unless self.uuid
+      md5 = Digest::MD5.new
+      md5.update self.email + Time.now.to_s
+      self.uuid = md5.hexdigest
+    end
   end
-
-
 
   private
 
