@@ -37,7 +37,8 @@ class SlideshowsController < ApplicationController
   # channel changer, the slideshow, and the user profile editing
   # pages.
   def home
-
+    current_user.create_uuid unless current_user.uuid?
+    @uuid = current_user.uuid
   end
 
 

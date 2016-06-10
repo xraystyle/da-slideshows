@@ -14,7 +14,7 @@ describe "Current user signs in" do
     click_button 'Sign in'
     expect(page).to have_content user.email
     expect(page).to have_content "Channel Changer"
-    expect(page).to have_content "My Slideshow"    
+    expect(page).to have_content "My Slideshow"
   end
   
   scenario 'with invalid credentials' do
