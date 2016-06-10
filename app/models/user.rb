@@ -8,15 +8,21 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
 
   validates :email, presence: true, format: VALID_EMAIL_REGEX, uniqueness: { case_sensitive: false }
+  validates :uuid, presence: true, length: { is: 32 }, uniqueness: true
 
 
   # callbacks
-  before_create :set_default_slideshow
-  before_create :create_uuid
+  before_create :set_default_slideshow, :create_uuid
 
   # Instance Methods
   def slideshow
     Slideshow.includes(:deviations).where(seed: self.seed).first
+  end
+
+  def create_uuid
+    md5 = Digest::MD5.new
+    md5.update self.email + Time.now.to_s
+    self.uuid = md5.hexdigest
   end
 
 
@@ -26,13 +32,6 @@ class User < ActiveRecord::Base
   def set_default_slideshow
     self.seed = "00000000-0000-0000-0000-000000000001"
   end
-
-  def create_uuid
-    md5 = Digest::MD5.new
-    md5.update self.email + Time.now.to_s
-    self.uuid = md5.hexdigest
-  end
-
 
 
 end

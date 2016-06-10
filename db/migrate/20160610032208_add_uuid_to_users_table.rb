@@ -1,6 +1,6 @@
 class AddUuidToUsersTable < ActiveRecord::Migration
   def up
-    add_column :users, :uuid, :integer, default: nil
+    add_column :users, :uuid, :string, default: nil
   end
 
   def down
