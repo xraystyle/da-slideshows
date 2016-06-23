@@ -83,15 +83,15 @@ RSpec.describe User, :type => :model do
 		it { should_not be_valid }
 	end
 
-	describe "when uuid is not present" do
-		before { @user.uuid = 'foo' }		
-		it { should_not be_valid }
-	end
+	# describe "when uuid is not present" do
+	# 	before { @user.uuid = 'foo' }		
+	# 	it { should_not be_valid }
+	# end
 
-	describe "when uuid is not a valid md5 hash" do
-		before { @user.uuid = "foo" }		
-		it { should_not be_valid }
-	end
+	# describe "when uuid does not contain valid hex characters" do
+	# 	before { @user.uuid = "foo" }		
+	# 	it { should_not be_valid }
+	# end
 
 	describe "when uuid is not unique" do
 		before do

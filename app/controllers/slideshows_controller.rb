@@ -1,8 +1,9 @@
 class SlideshowsController < ApplicationController
 
   # require 'json'
-
   before_action :authenticate_user!
+  skip_before_action :authenticate_user!, only: [:slideshow, :update_slideshow]
+
 
   @@wh = "00000000-0000-0000-0000-000000000001"
 
@@ -26,7 +27,15 @@ class SlideshowsController < ApplicationController
 
   # Set up data to display the slideshow.
   def slideshow
-    @current_seed = current_user.seed
+    if current_user
+      @user_id = current_user.uuid
+    elsif params[:id]
+      user = User.where(uuid: params[:id]).first
+      redirect_to root_path and return unless user
+      @user_id = user.uuid
+    else
+      redirect_to root_path and return
+    end
   end
 
 
@@ -35,9 +44,12 @@ class SlideshowsController < ApplicationController
 
   # Show the logged in user's homepage. Should have links to the
   # channel changer, the slideshow, and the user profile editing
-  # pages.
+  # pages. Create a uuid unless one already exists.
   def home
-    current_user.create_uuid unless current_user.uuid?
+    unless current_user.uuid?
+      current_user.create_uuid 
+      current_user.save
+    end
     @uuid = current_user.uuid
   end
 
@@ -47,6 +59,8 @@ class SlideshowsController < ApplicationController
   def update_slideshow
 
     if params[:set_uuid]
+
+      render nothing: true, status: :unauthorized and return unless current_user
 
       current_user.seed = params[:set_uuid]
       current_user.save
