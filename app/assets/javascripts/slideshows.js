@@ -142,8 +142,9 @@ var updated = false; // update the slideshow if it's false. Set it to true while
 function slideshowUpdate() {
 
 	currentSeed = $("#current-seed p:first").text();
+	userID = $("#user-id p:first").text();
 
-	$.getJSON('update_slideshow', { current_seed: currentSeed }, function(json, textStatus) {
+	$.getJSON('update_slideshow', { current_seed: currentSeed, user_id: userID }, function(json, textStatus) {
 
 		if ( json["update"] == "false" ) {
 			// do nothing.

@@ -55,16 +55,17 @@ class SlideshowsController < ApplicationController
 
 
 
-
+  # only called via AJAX. 
   def update_slideshow
 
+    # If we get :set_uuid, we're trying to change channels on the slideshow.
     if params[:set_uuid]
-
-      render nothing: true, status: :unauthorized and return unless current_user
+      # gotta be logged in to change channels.
+      render nothing: true, status: :unauthorized and return unless current_user 
 
       current_user.seed = params[:set_uuid]
       current_user.save
-
+      # Add a view count to the slideshow.
       Slideshow.transaction do
         selected = Slideshow.lock("FOR SHARE").where(seed: params[:set_uuid]).first
         selected.increment!(:views)
@@ -72,21 +73,24 @@ class SlideshowsController < ApplicationController
 
       render status: 200, json: @controller.to_json
 
-    elsif params[:current_seed]
-
-      seed_in_db = current_user.seed
+    # If we get :current_seed, we're on the slideshow page, checking for updates.
+    elsif params[:current_seed] 
+      #find the user by the uuid. Will always be present so we don't neeed current_user.
+      user = User.where(uuid: params[:user_id]).first
+      render nothing: true, status: :expectation_failed and return unless user # Bail if no user found.
+      
+      seed_in_db = user.seed
 
       if seed_in_db == params[:current_seed]
-
-        render json: { update: "false" }
-
+        render json: { update: "false" } # nothing to do boat.
       else
+
         url_hash = { seed: seed_in_db }
         first_deviation = Deviation.where(uuid: seed_in_db).first
 
         url_hash[0] = { url: first_deviation.src.sub(/https/, 'http'), title: first_deviation.title, author: first_deviation.author, link: first_deviation.url } if first_deviation
 
-        deviations = current_user.slideshow.results # add .where(mature: false) for mature filter.
+        deviations = user.slideshow.results # add .where(mature: false) for mature filter.
         urls = deviations.map { |d| { url: d.src.sub(/https/, 'http'), title: d.title, author: d.author, link: d.url } }.compact
 
         urls.each_with_index do |u,i|
@@ -98,8 +102,6 @@ class SlideshowsController < ApplicationController
 
         end
         render json: url_hash
-
-
       end
 
     else
