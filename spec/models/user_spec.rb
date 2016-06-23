@@ -41,6 +41,8 @@ RSpec.describe User, :type => :model do
   	it { should respond_to(:last_sign_in_ip) }
   	it { should respond_to(:seed) }
   	it { should respond_to(:admin?) }
+  	it { should respond_to(:uuid) }
+  	# it { should respond_to(:create_uuid) }
 
   	# Slideshow relationship:
   	# Handled with a method instead of an ActiveRecord relationship.
@@ -80,6 +82,26 @@ RSpec.describe User, :type => :model do
 		before { @user.password = @user.password_confirmation = "a" * 5 }
 		it { should_not be_valid }
 	end
+
+	# describe "when uuid is not present" do
+	# 	before { @user.uuid = 'foo' }		
+	# 	it { should_not be_valid }
+	# end
+
+	# describe "when uuid does not contain valid hex characters" do
+	# 	before { @user.uuid = "foo" }		
+	# 	it { should_not be_valid }
+	# end
+
+	describe "when uuid is not unique" do
+		before do
+			duplicate_user = @user.dup
+			duplicate_user.uuid = @user.uuid
+			duplicate_user.save
+		end
+		it { should_not be_valid }
+	end
+
 
 	describe "when email format is invalid" do
 		it "should be invalid" do
