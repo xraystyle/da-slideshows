@@ -5,7 +5,7 @@
         = link_to("Channel Changer", slideshows_channels_path, class: "btn btn-lg btn-default main-actions")
         = link_to("My Slideshow", slideshows_slideshow_path, class: "btn btn-lg btn-default main-actions")
 .row.text-center
-    %p= "Direct link to slideshow: #{root_url}#{slideshows_slideshow_path}?id=#{@uuid}"
+    %p= "Direct link to slideshow: #{root_url}#{slideshows_slideshow_path.sub(/\/slideshows/,'slideshows')}?id=#{@uuid}"
     %p Use this url to display your slideshow on any device that you can't log in on, like a digital picture frame!
 .row.text-center
     = link_to("Change email or password", edit_user_registration_path)
