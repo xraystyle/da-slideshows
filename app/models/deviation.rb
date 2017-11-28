@@ -1,6 +1,6 @@
 class Deviation < ActiveRecord::Base
 
-  DA_URL_REGEX = /http:\/\/.*\.deviantart\.(com|net)/
+  DA_URL_REGEX = /https?:\/\/.*\.deviantart\.(com|net)/
   DA_IMAGE_REGEX = /https?:\/\/.*\.deviantart\.(com|net).*(jpg|png|gif)/
 
   # Validations:

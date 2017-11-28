@@ -2,6 +2,10 @@
 
 require 'open3'
 system 'clear'
+
+puts "Did you run `export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES`?"
+gets
+
 # exit code
 # Catch the ctrl-c, shut everything down.
 Signal.trap('INT') do
